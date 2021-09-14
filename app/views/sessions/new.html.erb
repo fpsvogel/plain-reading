@@ -1,0 +1,24 @@
+<main class="container">
+  <article class="grid side-image-card">
+    <div>
+      <h1>Log in</h1>
+      <%= form_with model: @user, url: login_path do |f| %>
+        <%= render partial: "shared/flash" %>
+        <%# TODO: render form_errors instead? %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <%= link_to "Forgot your password?", password_reset_path %>
+
+        <%= f.submit "Log in" %>
+      <% end %>
+    </div>
+    <div class="image-library"></div>
+  </article>
+</main>
+
+

@@ -1,0 +1,19 @@
+<% flash.each do |type, content| %>
+  <% case type %>
+  <% when "notice" %>
+    <sl-alert type=primary open>
+      <sl-icon slot=icon name=check2-circle></sl-icon>
+      <%= content %>
+    </sl-alert>
+  <% when "alert" %>
+    <sl-alert type=warning open role=alert>
+      <sl-icon slot=icon name=exclamation-triangle></sl-icon>
+      <%= content %>
+    </sl-alert>
+  <% when "warning" %>
+    <sl-alert type=danger open role=alert>
+      <sl-icon slot=icon name=exclamation-octagon></sl-icon>
+      <%= content %>
+    </sl-alert>
+  <% end %>
+<% end %>

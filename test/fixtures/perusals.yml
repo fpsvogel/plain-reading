@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_added: 2021-09-06
+  progress: 1
+  item: one
+
+two:
+  date_added: 2021-09-06
+  progress: 1
+  item: two

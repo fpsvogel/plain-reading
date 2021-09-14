@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount_pages: 1
+  amount_time: 2021-09-06 22:06:38
+  date_started: 2021-09-06
+  days: 1
+  perusal: one
+
+two:
+  amount_pages: 1
+  amount_time: 2021-09-06 22:06:38
+  date_started: 2021-09-06
+  days: 1
+  perusal: two

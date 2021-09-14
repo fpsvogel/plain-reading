@@ -11,3 +11,12 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+import '../stylesheets/application.scss'
+import { defineCustomElements, setAssetPath } from '@shoelace-style/shoelace'
+
+setAssetPath(document.currentScript.src)
+
+// This will import all shoelace web components for convenience.
+// Check out the webpack documentation below on selective imports.
+// https://shoelace.style/getting-started/installation?id=using-webpack
+defineCustomElements()

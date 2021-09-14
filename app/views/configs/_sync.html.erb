@@ -1,0 +1,35 @@
+<article class=grid>
+  <div>
+    <h2>Connect</h2>
+  </div>
+  <div>
+    <% if !Current.user.dropbox_connected? %>
+      <%= button_to "Connect Dropbox", dropbox_auth_path, method: :get %>
+    <% else %>
+      <p>Dropbox is already connected.</p>
+      <%= button_to "Disconnect Dropbox", dropbox_disconnect_path, method: :delete, class: "secondary" %>
+    <% end %>
+  </div>
+</article>
+<% if Current.user.dropbox_connected? %>
+  <article class=grid>
+    <div>
+      <h2>Sync all</h2>
+      <p>Syncs all items. Do this when you've edited old items. (The normal <em>Sync</em> only adds new items.)</p>
+    </div>
+    <div>
+      <%= button_to "Sync all", sync_all_path %>
+    </div>
+  </article>
+  <article class=grid>
+    <div>
+      <h2>File path</h2>
+    </div>
+    <div>
+      <%= form_with model: Current.user.dropbox_account, url: dropbox_update_filepath_path do |f| %>
+        <%= f.text_field :filepath, placeholder: "/path/to/reading.csv" %>
+        <%= f.submit "Save" %>
+      <% end %>
+    </div>
+  </article>
+<% end %>

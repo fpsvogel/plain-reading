@@ -1,0 +1,35 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rating: false
+  sources_isbn: false
+  dates_started: false
+  genres: false
+  length: false
+  public_notes: false
+  blurb: false
+  private_notes: false
+  history: false
+  maximum_rating: 1
+  rating_key: MyText
+  group_read_emoji: MyString
+  date_separator: MyString
+  notes_newline: MyString
+  user: one
+
+two:
+  rating: false
+  sources_isbn: false
+  dates_started: false
+  genres: false
+  length: false
+  public_notes: false
+  blurb: false
+  private_notes: false
+  history: false
+  maximum_rating: 1
+  rating_key: MyText
+  group_read_emoji: MyString
+  date_separator: MyString
+  notes_newline: MyString
+  user: two

@@ -1,0 +1,350 @@
+:root {
+  //--font-family: system-ui, -apple-system, "Segoe UI", //"Roboto", "Ubuntu", "Cantarell", "Noto Sans", sans-serif, //"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", //"Noto Color Emoji";
+  //--line-height: 1.5;
+  //--font-weight: 400;
+  //--font-size: 16px;
+  //--border-radius: .25rem;
+  //--border-width: 1px;
+  //--outline-width: 3px;
+  --spacing: 1rem;
+  --typography-spacing-vertical: calc(var(--spacing) * 1.5);
+  --block-spacing-vertical: calc(var(--spacing));
+  //--block-spacing-horizontal: var(--spacing);
+  //--grid-spacing-vertical: 0;
+  //--grid-spacing-horizontal: var(--spacing);
+  --form-element-spacing-vertical: calc(var(--spacing) * .5);
+  //--form-element-spacing-horizontal: 1rem;
+  //--transition: .2s ease-in-out;
+}
+
+// doesn't work. I tried using this to set Shoelace's primary colors to match Pico, but in the end I had to set Shoelace colors, then set Pico's colors to match Shoelace.
+//@function toRGB($hexColor){
+//  @return unquote("#{round(red($hexColor))},#{round(green($hexColor))},#{round(blue($hexColor))}");
+//}
+
+:host, .sl-theme-dark {
+  --sl-color-neutral-600: 140 160 173;
+  --sl-color-neutral-500: 122 139 150;
+}
+
+:root:not([data-theme="light"]), :root:not([data-theme=dark]), [data-theme=dark], [data-theme=light] {
+  //--background-color: #11191f;
+  //--background-color: #11191f;
+  //--color: #bbc6ce;
+  //--h1-color: #edf0f3;
+  //--h2-color: #e1e6ea;
+  //--h3-color: #d5dce2;
+  //--h4-color: #c8d1d8;
+  //--h5-color: #bbc6ce;
+  //--h6-color: #aebbc3;
+  //--muted-color: #73828c;
+  //--muted-border-color: #1f2d38;
+  --background-color-dark: #0c1217;
+  --primary: rgb(var(--sl-color-primary-600));
+  --primary-hover: rgb(var(--sl-color-primary-500));
+  --primary-focus: rgba(var(--sl-color-primary-500) / 25%);
+  --primary-inverse: rgb(var(--sl-color-neutral-0));
+  --secondary: rgb(var(--sl-color-neutral-600));
+  --secondary-hover: rgb(var(--sl-color-neutral-500));
+  --secondary-focus: rgba(var(--sl-color-neutral-500) / 25%);
+  --secondary-inverse: rgb(var(--sl-color-neutral-0));
+  //--contrast: #edf0f3; // TODO: make outline contrast button //look line "default" Shoelace button
+  //--contrast-hover: #FFF;
+  //--contrast-focus: rgba(115, 130, 140, 0.25);
+  //--contrast-inverse: #000;
+  //--mark-background-color: #d0c284;
+  //--mark-color: #11191f;
+  //--ins-color: #388E3C;
+  //--del-color: #C62828;
+  //--blockquote-border-color: var(--muted-border-color);
+  //--blockquote-footer-color: var(--muted-color);
+  //--button-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  //--button-hover-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  //--form-element-background-color: #11191f;
+  //--form-element-border-color: #374956;
+  //--form-element-color: var(--color);
+  //--form-element-placeholder-color: var(--muted-color);
+  //--form-element-active-background-color: var//(--form-element-background-color);
+  //--form-element-active-border-color: var(--primary);
+  //--form-element-focus-color: var(--primary-focus);
+  //--form-element-disabled-background-color: #2c3d49;
+  //--form-element-disabled-border-color: #415462;
+  //--form-element-disabled-opacity: .5;
+  //--form-element-invalid-border-color: #B71C1C;
+  //--form-element-invalid-active-border-color: #C62828;
+  //--form-element-valid-border-color: #2E7D32;
+  //--form-element-valid-active-border-color: #388E3C;
+  //--switch-background-color: #374956;
+  //--switch-color: var(--primary-inverse);
+  //--switch-checked-background-color: var(--primary);
+  //--range-border-color: #23333e;
+  //--range-active-border-color: #2c3d49;
+  //--range-thumb-border-color: var(--background-color);
+  //--range-thumb-color: var(--secondary);
+  //--range-thumb-hover-color: var(--secondary-hover);
+  //--range-thumb-active-color: var(--primary);
+  //--table-border-color: var(--muted-border-color);
+  //--table-row-stripped-background-color: rgba(115, 130, 140, 0.//05);
+  //--code-background-color: #17232c;
+  //--code-color: var(--muted-color);
+  //--code-kbd-background-color: var(--contrast);
+  //--code-kbd-color: var(--contrast-inverse);
+  //--code-tag-color: #a65980;
+  //--code-property-color: #599fa6;
+  //--code-value-color: #8c8473;
+  //--code-comment-color: #4d606d;
+  //--accordion-border-color: var(--muted-border-color);
+  //--accordion-active-summary-color: var(--primary);
+  //--accordion-close-summary-color: var(--color);
+  //--accordion-open-summary-color: var(--muted-color);
+  //--card-background-color: #141e25;
+  //--card-border-color: #11191f;
+  //--card-box-shadow: 0 0.125rem 1rem rgba(0, 0, 0, 0.06), 0 0.//125rem 2rem rgba(0, 0, 0, 0.12), 0 0 0 0.0625rem rgba(0, 0, //0, 0.036);
+  //--card-sectionning-background-color: #17232c;
+  //--progress-background-color: #23333e;
+  //--progress-color: var(--primary);
+  //--loading-spinner-opacity: .5;
+  //--tooltip-background-color: var(--contrast);
+  //--tooltip-color: var(--contrast-inverse);
+}
+
+:root:not([data-theme=dark]), [data-theme=light] {
+  --nav-brand-color: #0e1419;
+}
+
+:root:not([data-theme="light"]) {
+  --nav-brand-color: #FFF;
+}
+
+:root {
+  --nav-border-color: rgba(115,130,140,0.2);
+}
+
+// NAV BAR
+
+body > nav {
+  box-shadow: 0px 1px 0 var(--nav-border-color);
+}
+
+nav a {
+  border-radius: 0;
+}
+
+.nav-sync {
+  margin: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  height: 2.2rem !important;
+  font-size: 95% !important;
+}
+
+.nav-connect {
+  margin-top: calc(var(--spacing) * .5) !important;
+  height: 1.5rem !important;
+  font-size: 80% !important;
+  padding: 0 calc(var(--form-element-spacing-horizontal) * .5) !important;
+}
+
+.nav-upload {
+  font-size: 85%;
+  font-weight: bold;
+  & form {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: -9rem;
+  }
+  & input {
+    padding-bottom: 0;
+    margin-bottom: 0 !important;
+    margin-top: calc(var(--form-element-spacing-vertical) * 1);
+    width: 30% !important;
+    font-size: 75%;
+  }
+}
+
+// ALERTS
+
+.flash sl-alert:first-of-type {
+  margin-top: var(--block-spacing-vertical);
+}
+
+sl-alert::part(message) {
+  padding: var(--sl-spacing-small); // TODO: isn't applied
+}
+
+// HEADER AND OTHER HOMEPAGE PARTS
+
+body > header {
+  --block-spacing-vertical: 7rem;
+  padding-bottom: 0;
+}
+
+header h1, header p, #demo {
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: var(--spacing);
+  --font-size: 3rem;
+  --font-weight: 800;
+}
+
+header h1 ~ p {
+  color: var(--muted-color);
+}
+
+header a:not(:last-of-type) {
+  margin-right: calc(var(--spacing));
+}
+
+header + main {
+  padding-top: 0;
+}
+
+#demo {
+  padding-top: 30rem;
+  background: linear-gradient(180deg,#11191f 0%,rgba(10,53,67,0.5) 33%,rgba(10,53,67,0.5) 66%,#11191f 100%);
+}
+
+#principles {
+  & hgroup {
+    text-align: center;
+  }
+  & svg {
+    color: var(--primary);
+    width: auto;
+    height: 1.5rem;
+    padding-bottom: .25rem;
+  }
+  & h2 {
+    --font-size: 2.25rem;
+    --font-weight: 800;
+  }
+  & h4 {
+    --font-size: 1rem;
+    --font-weight: 400;
+  }
+  & article {
+    --block-spacing-vertical: 1.2rem;
+    --block-spacing-horizontal: 1.2rem;
+  }
+  & p {
+    --color: var(--muted-color);
+    --typography-spacing-vertical: 0;
+  }
+}
+
+// HEADINGS
+
+h1 {
+  --typography-spacing-vertical: 1.5rem;
+}
+
+// FORMS
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), select, textarea {
+  padding: var(--form-element-spacing-vertical) calc(var(--form-element-spacing-horizontal) * .5);
+}
+
+// TODO show field_with_errors in red
+
+form label:first-child {
+  margin-top: var(--spacing);
+}
+
+input[type=submit] {
+  margin-top: calc(var(--spacing) * 1.5);
+}
+
+fieldset.compact input {
+  margin-bottom: calc(var(--spacing) * .5) !important;
+}
+
+a[role=button].compact, input[type=submit].compact {
+  font-size: 90%;
+  // margin-top: calc(var(--spacing) * .6) !important;
+  margin-top: calc(var(--spacing) * .1) !important;
+  padding: calc(var(--form-element-spacing-vertical) * .5) calc(var(--form-element-spacing-horizontal) * .5) !important;
+  line-height: calc(var(--line-height) * 1.2);
+  // padding-top: calc(var(--form-element-spacing-vertical) * .7) !important;
+  height: calc((1rem * var(--line-height)) + (var(--form-element-spacing-vertical) * 1.5) + (var(--border-width) * 2)) !important;
+}
+
+fieldset > legend {
+  font-weight: bold;
+}
+
+// SETTINGS CARDS
+
+article.grid {
+  --block-spacing-vertical: calc(var(--spacing) * 1.5);
+  margin-bottom: var(--typography-spacing-vertical) !important;
+}
+
+.grid > div:first-child > h2 {
+  margin-bottom: calc(var(--typography-spacing-vertical) * .5);
+}
+
+.grid > div:first-child > h2 ~ p {
+  color: var(--muted-color);
+}
+
+.grid > div > *:first-child:not(h2) {
+  margin-top: calc(var(--typography-spacing-vertical) * .5);
+}
+
+.grid > div > form:first-child > input:first-child {
+  margin-top: 0;
+}
+
+// SIDE IMAGE CARD
+
+.side-image-card {
+  padding: 0;
+  & > div {
+    padding: 2rem;
+  }
+  & > div:nth-of-type(2) {
+    display: none;
+    background-color: #374956;
+    background-position: center;
+    background-size: cover;
+  }
+  & div.image-book-glasses {
+    background-image: url("book-glasses.jpg");
+  }
+  & div.image-library {
+    background-image: url("library.jpg");
+  }
+  & div.image-book-stack-bright {
+    background-image: url("book-stack-bright.jpg");
+  }
+  & div.image-book-flower {
+    background-image: url("book-flower.jpg");
+  }
+}
+
+@media (min-width: 992px) {
+  .side-image-card > div:nth-of-type(2) {
+    display: block;
+  }
+}
+
+// FOOTER
+
+body > footer {
+  background-color: var(--background-color-dark);
+}
+
+body > footer ul, body > footer ul li {
+  list-style: none;
+}
+
+body > footer li {
+  display: inline-block;
+}
+
+body > footer li:not(:first-child)::before {
+  margin: 0 0.25rem;
+  content: "·";
+}

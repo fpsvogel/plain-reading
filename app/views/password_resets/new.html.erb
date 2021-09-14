@@ -1,0 +1,15 @@
+<main class="container">
+  <article class="grid side-image-card">
+    <div>
+      <h1>Forgot your password?</h1>
+
+      <%= form_with url: password_reset_path do |f| %>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <%= f.submit "Reset password" %>
+      <% end %>
+    </div>
+    <div class="image-book-flower"></div>
+  </article>
+</main>

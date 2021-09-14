@@ -1,0 +1,8 @@
+<% if form&.object&.errors&.any? %> <%# TODO: simplify? %>
+  <% form.object.errors.full_messages.each do |message| %>
+    <sl-alert type=danger open role=alert>
+      <sl-icon slot=icon name=exclamation-octagon></sl-icon>
+      <%= message %>
+    </sl-alert>
+  <% end %>
+<% end %>

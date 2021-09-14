@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  emoji: MyString
+  csv_config: one
+  perusal: one
+
+two:
+  name: MyString
+  emoji: MyString
+  csv_config: two
+  perusal: two

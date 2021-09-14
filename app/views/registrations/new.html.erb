@@ -1,0 +1,24 @@
+<main class="container">
+  <article class="grid side-image-card">
+    <div>
+      <h1>Register</h1>
+      <%= form_with model: @user, url: register_path do |f| %>
+        <%= render "shared/form_errors", form: f %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+
+        <%= f.submit "Register" %>
+      <% end %>
+    </div>
+    <div class="image-book-glasses"></div>
+  </article>
+</main>
+
+

@@ -1,0 +1,52 @@
+<div class="container flash">
+  <%= render partial: "shared/flash" %>
+</div>
+
+<header class="container">
+  <h1>A plain-text reading list, beautified</h1>
+
+  <p>Keep track of your reading in a plain text file, and see it transformed into a page that you can share with friends or the world.</p>
+
+  <p>Get started by downloading a <code>reading.csv</code> template.</p>
+
+  <p><a role="button">View template</a><a role="button" class="secondary">See a demo</a></p> <%# TODO: attach file %>
+</header>
+
+<main>
+  <section id="demo">
+    <div class="container">
+      <hgroup>
+        <h2>The demo will appear here</h2>
+        <h3>it'll be awesome.</h3>
+      </hgroup>
+    </div>
+  </section>
+  <section id="principles" class="container">
+    <hgroup>
+      <h2>Why track your reading in plain text?</h2>
+      <h3>Sometimes simpler is better.</h3>
+    </hgroup>
+    <div class="grid">
+      <article>
+        <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z"/></svg>
+      <h4>It's fast</h4>
+      <p>Just open up your favorite text editor or spreadsheet app, and type away.</p>
+      </article>
+      <article>
+        <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.858 61.858"><!-- Icon made by Freepik https://www.freepik.com from Flaticon https://www.flaticon.com/ --><path d="M50.097,0.014c-9.917,0.874-17.235,5.824-21.501,12.98c-2.859,3.584-8.57,14.526-10.647,20.254 c-3.766,7.123-7.05,15.598-9.62,23.238c-1.571,4.672,5.483,7.72,7.063,3.027c1.922-5.716,4.244-11.896,6.868-17.631 c2.604,5.828,5.25,11.637,8.091,17.354c2.202,4.438,8.828,0.546,6.634-3.877c-2.925-5.885-5.642-11.864-8.319-17.863 c0.034-0.116,0.077-0.229,0.113-0.344c0.446,0.127,0.938,0.166,1.48,0.063c4.096-0.769,8.192-1.536,12.291-2.305 c1.751-0.329,2.422-2.245,2.146-3.779c-0.828-4.597-3.447-7.795-6.707-10.821c-0.484-1.646-2.098-3.102-3.889-4.549 c3.631-5.87,9.559-9.056,17.275-9.736C55.313,5.68,54.001-0.329,50.097,0.014z M35.173,26.143 c1.013,1.054,1.875,2.163,2.526,3.447c-1.982,0.372-3.965,0.743-5.947,1.115C32.752,29.095,33.903,27.575,35.173,26.143z"/><circle cx="43.653" cy="15.635" r="5.275"/></svg>
+        <h4>It's flexible</h4>
+        <p>Keep a minimal reading list, a detailed log, or something in between.</p>
+      </article>
+      <article>
+        <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32 80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96-96 43-96 96 43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4 24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48 0-61.9-50.1-112-112-112z"/></svg>
+        <h4>It's sharable</h4>
+        <p>Plain Reading puts your reading list online. What it shows (and to whom) is entirely customizable.</p>
+      </article>
+      <article>
+        <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>
+        <h4>It's yours</h4>
+        <p>There's a special satisfaction in keeping all of your reading in a tiny file on your computer or in cloud.</p>
+      </article>
+    </div>
+  </section>
+</main>

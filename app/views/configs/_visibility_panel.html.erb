@@ -1,0 +1,40 @@
+<%= form_with model: Current.user.visibility_configs.find_by(level: visibility_level), url: "#{visibility_config_update_path}?level=#{visibility_level}" do |f| %>
+  <article class=grid>
+    <%= render "shared/form_errors", form: f %>
+    <div>
+      <%= f.label :formats_visible do %>
+        <%= f.check_box :formats_visible %>
+        Show formats instead of types
+      <% end %>
+
+      <%= f.label :group_reads_visible do %>
+        <%= f.check_box :group_reads_visible %>
+        Show group read icons
+      <% end %>
+
+      <%= f.label :planned_visible do %>
+        <%= f.check_box :planned_visible %>
+        Show planned items
+      <% end %>
+
+      <%= f.label :public_notes_visible do %>
+        <%= f.check_box :public_notes_visible %>
+        Show public notes
+      <% end %>
+
+      <%= f.label :private_notes_visible do %>
+        <%= f.check_box :private_notes_visible %>
+        Show private notes
+      <% end %>
+    </div>
+    <div>
+      <%= f.label :minimum_rating %>
+      <%= f.number_field :minimum_rating,
+        in: 1.0..Current.user.csv_config.maximum_rating,
+        step: 0.5,
+        value: number_with_precision(f.object.minimum_rating, precision: 2,  strip_insignificant_zeros: true) %>
+
+      <%= f.submit "Save" %>
+    </div>
+  </article>
+<% end %>

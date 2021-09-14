@@ -1,0 +1,24 @@
+<sl-tab-group>
+  <sl-tab slot="nav" panel="public">
+    Public
+  </sl-tab>
+  <sl-tab slot="nav" panel="friends">
+    Friends
+  </sl-tab>
+  <sl-tab slot="nav" panel="starred">
+    Starred friends
+  </sl-tab>
+
+  <sl-tab-panel name="public">
+    <%= render "configs/visibility_panel",
+      visibility_level: VisibilityConfig::PUBLIC %>
+  </sl-tab-panel>
+  <sl-tab-panel name="friends">
+    <%= render "configs/visibility_panel",
+      visibility_level: VisibilityConfig::FRIENDS %>
+  </sl-tab-panel>
+  <sl-tab-panel name="starred">
+    <%= render "configs/visibility_panel",
+      visibility_level: VisibilityConfig::STARRED %>
+  </sl-tab-panel>
+</sl-tab-group>

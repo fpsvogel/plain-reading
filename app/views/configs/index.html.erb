@@ -1,0 +1,33 @@
+<div class="container flash">
+  <%= render partial: "shared/flash" %>
+</div>
+
+<main class="container">
+  <sl-tab-group>
+    <sl-tab slot="nav" panel="csv">
+      CSV format
+    </sl-tab>
+    <sl-tab slot="nav" panel="visibility">
+      List visibility
+    </sl-tab>
+    <sl-tab slot="nav" panel="account">
+      Account
+    </sl-tab>
+    <sl-tab slot="nav" panel="sync">
+      Dropbox sync
+    </sl-tab>
+
+    <sl-tab-panel name="csv">
+      <%= render 'configs/csv' %>
+    </sl-tab-panel>
+    <sl-tab-panel name="visibility">
+      <%= render 'configs/visibility' %>
+    </sl-tab-panel>
+    <sl-tab-panel name="account">
+      <%= render 'configs/account' %>
+    </sl-tab-panel>
+    <sl-tab-panel name="sync">
+      <%= render 'configs/sync' %>
+    </sl-tab-panel>
+  </sl-tab-group>
+</main>

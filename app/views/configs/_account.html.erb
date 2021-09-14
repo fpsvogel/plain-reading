@@ -1,0 +1,18 @@
+<article class=grid>
+  <div>
+    <h2>Edit password</h2>
+  </div>
+  <div>
+    <%= form_with model: Current.user, url: password_update_path do |f| %>
+      <%= render "shared/form_errors", form: f %>
+
+      <%= f.label :password, "New password" %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "New password confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Update password" %>
+    <% end %>
+  </div>
+</article>
