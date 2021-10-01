@@ -216,6 +216,12 @@ header + main {
   background: linear-gradient(180deg,#11191f 0%,rgba(10,53,67,0.5) 33%,rgba(10,53,67,0.5) 66%,#11191f 100%);
 }
 
+@media (min-width: 992px) {
+  #demo-img {
+    max-width: 800px;
+  }
+}
+
 #principles {
   & hgroup {
     text-align: center;
