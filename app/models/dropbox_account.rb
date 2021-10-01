@@ -12,7 +12,7 @@ class DropboxAccount < ApplicationRecord
   end
 
   def reading_csv_file
-    uri = URI(client.get_temporary_link(filepath).link) # TODO show error or prompt if file path has not been set
+    uri = URI(client.get_temporary_link(filepath || "/reading.csv").link) # TODO show error or prompt if file path has not been set
     Net::HTTP.get(uri)
   end
 

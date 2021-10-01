@@ -166,8 +166,7 @@ class Item < ApplicationRecord
     series_and_extras = series.map(&:to_s) + (extra_info || [])
     self.view_name = "#{author + " – " if author}#{title}" +
                      "#{" 〜 " + (series_and_extras).join(" 〜 ") unless series_and_extras.empty?}"
-    self.view_date_finished = data[:experiences].map { |experience| experience[:date_finished] }
-                                               &.compact&.max&.gsub("/", "-")
+    self.view_date_finished = data[:experiences].last[:date_finished]&.gsub("/", "-")
     self.view_format = Format.find_by(name: format)
   end
 end
