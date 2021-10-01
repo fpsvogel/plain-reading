@@ -4,16 +4,15 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.float :rating
       t.string :author
       t.string :title
-      t.string :series
-      t.integer :volume
-      t.text :extra_info
-      t.string :isbn
-      t.integer :length_pages
-      t.time :length_time
-      t.text :blurb
-      t.text :history
       t.integer :visibility
-      t.references :user, null: false, foreign_key: true
+      t.text :public_notes
+      t.text :blurb
+      t.text :private_notes
+      t.text :history
+      t.string :view_url
+      t.string :view_name
+      t.string :view_date_finished
+      t.references :list, null: false, foreign_key: true
 
       t.timestamps
     end

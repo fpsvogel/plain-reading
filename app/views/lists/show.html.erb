@@ -1,0 +1,35 @@
+<div class="container flash">
+  <%= render partial: "shared/flash" %>
+</div>
+
+<main class="container">
+  <% if @items.none? { |_name, sublist| sublist&.any? } %>
+    <%= render "lists/empty_list" %>
+  <% else %>
+    <rl-container data-controller="reading-list" data-reading-list-target="container">
+      <%= render "lists/key" %>
+      <%= render "lists/sorts" %>
+      <%= render "lists/filters" %>
+
+      <% if !@show_planned_list %>
+        <%= render "lists/table", items: @items[:so_far] %>
+      <% else %>
+        <sl-tab-group>
+          <sl-tab slot="nav" panel="so_far">
+            So far
+          </sl-tab>
+          <sl-tab slot="nav" panel="planned">
+            Planned
+          </sl-tab>
+
+          <sl-tab-panel name="so_far">
+            <%= render "lists/table", items: @items[:so_far], target_name: "table" %>
+          </sl-tab-panel>
+          <sl-tab-panel name="planned">
+            <%= render "lists/table", items: @items[:planned], target_name: "plannedTable" %>
+          </sl-tab-panel>
+        </sl-tab-group>
+      <% end %>
+    </rl-container>
+  <% end %>
+</main>

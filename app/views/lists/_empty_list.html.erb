@@ -1,0 +1,14 @@
+<% if @is_current_user %>
+  <div class="container">
+    <sl-alert type="warning" open role="alert">
+      <sl-icon slot="icon" name="exclamation-triangle"></sl-icon>
+      <% if !@any_items %>
+        You haven't loaded a reading.csv file yet. In the top-right corner you can upload a file or connect to your Dropbox. (If the file is in a subfolder in Dropbox, set the file path in Settings ⇨ Sync.)
+      <% else %>
+        Your list has no visible items! If you were expecting to see something here, check Settings ⇨ Visibility.
+      <% end %>
+    </sl-alert>
+  </div>
+<% else %>
+  <p>Nothing to see here…</p>
+<% end %>

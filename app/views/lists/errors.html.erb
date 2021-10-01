@@ -1,0 +1,6 @@
+<main class=container>
+  <h1>Errors from the last upload/sync</h1>
+  <% @errors.each do |error| %>
+    <p><%= error.to_s.html_safe %></p>
+  <% end %>
+</main>

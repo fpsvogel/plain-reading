@@ -12,7 +12,7 @@ one:
   history: false
   maximum_rating: 1
   rating_key: MyText
-  group_read_emoji: MyString
+  group_experience_emoji: MyString
   date_separator: MyString
   notes_newline: MyString
   user: one
@@ -29,7 +29,7 @@ two:
   history: false
   maximum_rating: 1
   rating_key: MyText
-  group_read_emoji: MyString
+  group_experience_emoji: MyString
   date_separator: MyString
   notes_newline: MyString
   user: two

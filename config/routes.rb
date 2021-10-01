@@ -6,25 +6,20 @@ Rails.application.routes.draw do
 
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"
-  delete "logout", to: "sessions#destroy"
-
-  get "list", to: "items#index"
+  get "logout", to: "sessions#destroy" # TODO why doesn't the delete method work here? it's caught by "*path" below.
 
   get "friends", to: "friends#index"
 
   get "settings", to: "configs#index"
 
-  patch "csv-config/update", to: "configs#update_csv_config"
-  # post "csv-config/add-format", to: "configs#add_format"
-  # post "csv-config/add-type", to: "configs#add_type"
-  # post "csv-config/add-custom-column", to: "configs#add_custom_column"
-  patch "visibility-config/update", to: "configs#update_visibility_config"
+  patch "config/update-csv", to: "configs#update_csv_config"
+  patch "config/update-visibility", to: "configs#update_visibility_config"
+  patch "config/update-account", to: "configs#update_account_config"
 
-  patch "password/update", to: "configs#update_password"
-
-  post "sync", to: "items#sync"
-  post "sync-all", to: "items#sync_all"
-  post "upload", to: "items#upload"
+  post "sync", to: "lists#sync"
+  post "sync-all", to: "lists#sync_all"
+  post "upload", to: "lists#upload"
+  get "errors", to: "lists#errors"
 
   get "dropbox/auth" => "dropbox#auth"
   get "dropbox/auth/callback", to: "dropbox#auth_callback"
@@ -35,4 +30,6 @@ Rails.application.routes.draw do
   post "password/reset", to: "password_resets#create"
   get "password/reset/edit", to: "password_resets#edit"
   patch "password/reset/edit", to: "password_resets#update"
+
+  get "*path", to: "lists#show"
 end

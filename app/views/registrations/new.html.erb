@@ -5,6 +5,9 @@
       <%= form_with model: @user, url: register_path do |f| %>
         <%= render "shared/form_errors", form: f %>
 
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+
         <%= f.label :email %>
         <%= f.text_field :email %>
 

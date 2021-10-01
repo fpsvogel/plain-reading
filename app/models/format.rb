@@ -1,8 +1,9 @@
 class Format < ApplicationRecord
+  belongs_to :visibility_config, optional: true
   belongs_to :csv_config
-  belongs_to :type,
-              optional: "true"
-  has_many :perusals
+  belongs_to :type, optional: :true
+  belongs_to :item, optional: true
+  has_many :variants
 
   DEFAULTS = {book:       ["📕", # print ... pdf each appear as book in My List.
                 { print:      "📕",
@@ -17,11 +18,13 @@ class Format < ApplicationRecord
               website:    ["🌐"] }
 
   validates :name,
-    # presence: true, # TODO re-enable this when the Settings page is reactive.
+    # presence: true, # TODO re-enable this and delete allow_blank when the Settings page is reactive.
+    allow_blank: true,
     uniqueness: true
 
   validates :emoji,
-  # presence: true, # TODO re-enable this when the Settings page is reactive.
+  # presence: true, # TODO re-enable this and delete allow_blank when the Settings page is reactive.
+    allow_blank: true,
     uniqueness: true
 
   def type_by_name
@@ -32,5 +35,9 @@ class Format < ApplicationRecord
     t = Type.find_by(name)
     t.formats << self
     t.save
+  end
+
+  def to_s
+    emoji
   end
 end

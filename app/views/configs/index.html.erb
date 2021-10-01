@@ -3,7 +3,7 @@
 </div>
 
 <main class="container">
-  <sl-tab-group>
+  <sl-tab-group data-controller="configs" data-configs-target="tabGroup">
     <sl-tab slot="nav" panel="csv">
       CSV format
     </sl-tab>
@@ -14,20 +14,20 @@
       Account
     </sl-tab>
     <sl-tab slot="nav" panel="sync">
-      Dropbox sync
+      Sync
     </sl-tab>
 
     <sl-tab-panel name="csv">
-      <%= render 'configs/csv' %>
+      <%= render "configs/csv" %>
     </sl-tab-panel>
     <sl-tab-panel name="visibility">
-      <%= render 'configs/visibility' %>
+      <%= render "configs/visibility" %>
     </sl-tab-panel>
     <sl-tab-panel name="account">
-      <%= render 'configs/account' %>
+      <%= render "configs/account" %>
     </sl-tab-panel>
     <sl-tab-panel name="sync">
-      <%= render 'configs/sync' %>
+      <%= render "configs/sync" %>
     </sl-tab-panel>
   </sl-tab-group>
 </main>

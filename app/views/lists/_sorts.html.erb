@@ -1,0 +1,13 @@
+<% if @config.show_sort? %>
+  <rl-sorts>
+    <rl-label>Sort:</rl-label>
+    <rl-sort>
+      <input type="radio" id="sort-date" name="sort" value="date" data-action="change->reading-list#sort">
+      <label for=sort-date>by date</label>
+    </rl-sort>
+    <rl-sort>
+      <input type="radio" id="sort-rating" name="sort" value="rating" data-action="change->reading-list#sort">
+      <label for="sort-rating">by rating</label>
+    </rl-sort>
+  </rl-sorts>
+<% end %>

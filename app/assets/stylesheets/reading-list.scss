@@ -1,0 +1,185 @@
+:root {
+  --rating-width: calc(1rem + .6vw);
+  --type-width: calc(1rem + .3vw);
+  --icon-font-size: calc(var(--font-size) - .3rem + .3vw);
+  --icon-padding-top: calc(.3rem - .5vw);
+  --name-padding-left: calc(.2rem + .4vw);
+
+  // TODO define these properly
+  --highlighted-background-color: #212d36;
+}
+
+rl-container,
+rl-key,
+rl-sorts,
+rl-filters,
+rl-table {
+  display: block;
+}
+
+rl-key-item,
+rl-sort,
+rl-filter,
+rl-genre,
+rl-date,
+rl-group-icon {
+  display: inline-block;
+}
+
+rl-key {
+  margin: .5rem 0;
+}
+
+sl-tooltip p {
+  font-size: smaller;
+  color: var(--background-color);
+  margin: .2rem 0;
+}
+
+rl-key-item, rl-sort {
+  margin-top: .2rem;
+  font-size: 85%;
+}
+
+rl-sorts {
+  margin: .3rem 0 0 0;
+  & label {
+    margin: 0 .5rem 0 0;
+  }
+}
+
+rl-filters {
+  margin: .3rem 0 1rem 0;
+  &.collapsed {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+  &.expanded {
+    overflow: initial;
+    text-overflow: initial;
+    white-space: initial;
+  }
+}
+
+rl-filter {
+  background-color: var(--color);
+  color: var(--background-color);
+  padding: .2rem .4rem .2rem .4rem;
+  margin-top: .3rem;
+  font-size: 75%;
+  border-radius: .5rem;
+  & label {
+    margin-top: 0;
+  }
+}
+
+label[for^="toggle-all-filter-"] {
+  color: #bf2320; // TODO put this in a variable
+}
+
+// fix checkbox alignment with label.
+[type="checkbox"] + label, [type="radio"] + label {
+  vertical-align: baseline !important;
+}
+
+rl-key, rl-filters, rl-name-and-tags {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+// restore to selectable for an item's name (author and title).
+rl-name {
+  -webkit-user-select: text; /* Safari */
+  -moz-user-select: text; /* Firefox */
+  -ms-user-select: text; /* IE10+/Edge */
+  user-select: text; /* Standard */
+}
+
+rl-label {
+  font-weight: bold;
+}
+
+rl-error {
+  font-weight: bold;
+  color: #bf2320; // TODO put this in a variable
+}
+
+rl-container > rl-table {
+  margin-top: 3rem;
+}
+
+rl-table {
+  margin-bottom: 2rem;
+  .rl-item:nth-of-type(2n+1) {
+    // background-color: var(--highlighted-background-color);
+    background-color: var(--highlighted-background-color);
+  }
+  .rl-item {
+    &::part(header) {
+      padding: .5rem .5rem .5rem .8rem;
+    }
+  }
+  rl-title-line {
+    display: flex;
+    width: 100%
+  }
+  rl-rating {
+    min-width: var(--rating-width);
+    white-space: nowrap;
+    font-size: var(--icon-font-size);
+    padding-top: var(--icon-padding-top);
+  }
+  rl-type {
+    min-width: var(--type-width);
+    font-size: var(--icon-font-size);
+    padding-top: var(--icon-padding-top);
+  }
+  rl-name-and-tags {
+    // width: 100%;
+    padding-left: var(--name-padding-left);
+  }
+  rl-name {
+    margin-right: .3vw;
+  }
+  rl-date {
+    font-size: smaller;
+    // font-weight: bold;
+    color: var(--muted-color);
+  }
+  rl-blurb {
+    font-style: italic;
+  }
+  rl-genre {
+    color: var(--background-color);
+    font-size: 85%;
+    border-radius: .5rem;
+    background-color: var(--color);
+    margin-left: .1rem;
+    padding: .1rem .4rem;
+  }
+  rl-notes-icon {
+    margin-left: auto;
+  }
+  rl-notes {
+    & > p:first-of-type {
+      margin-top: 1rem;
+    }
+  }
+}
+
+// @media (prefers-color-scheme: light) {
+//   rl-genre, rl-filter {
+//     color: var(--color) !important;
+//     border: .05rem solid var(--muted-color);
+//   }
+//   rl-genre {
+//     background-color: var(--background-color-dark) !important;
+//   }
+//   rl-filter {
+//     background-color: initial !important;
+//   }
+// }

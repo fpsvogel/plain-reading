@@ -1,11 +1,17 @@
 <nav class="container-fluid">
   <ul>
     <% if Current.user %>
-      <li><strong><%= link_to "Plain Reading", list_path, class: "contrast" %></strong></li>
-      <li><%= link_to "My list", list_path %></li>
-      <li><%= link_to "Friends", friends_path %></li>
-      <li><%= link_to "Settings", settings_path %></li>
-      <li><%= link_to "Log out", logout_path, method: :delete %></li>
+      <li><strong><%= link_to "Plain Reading", Current.user.list.path, class: "contrast" %></strong></li>
+      <li <%= "class=active" if request.path == Current.user.list.path %>>
+        <%= link_to "My list", Current.user.list.path %>
+      </li>
+      <li <%= "class=active" if request.path == friends_path %>>
+        <%= link_to "Friends", friends_path %>
+      </li>
+      <li <%= "class=active" if request.path == settings_path %>>
+        <%= link_to "Settings", settings_path %>
+      </li>
+      <li><%= link_to "Log out", logout_path %></li>
     <% else %>
       <li><strong><%= link_to "Plain Reading", root_path, class: "contrast" %></strong></li>
       <li><%= link_to "Register", register_path %></li>

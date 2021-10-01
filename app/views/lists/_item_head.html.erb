@@ -1,0 +1,31 @@
+<rl-title-line slot="summary">
+  <rl-rating>
+    <%= item.view_star || item.view_rating %>
+  </rl-rating>
+  <rl-type>
+    <%= item.view_type.to_s %>
+  </rl-type>
+  <rl-name-and-tags>
+    <rl-name>
+      <a href="<%= item.view_url %>" target="_blank">
+        <%= item.view_name %>
+      </a>
+    </rl-name>
+    <% if item.group_experiences.any? %>
+      <rl-group-icon>
+        <%= CsvConfig::GROUP_EXPERIENCE_EMOJI %>
+      </rl-group-icon>
+    <% end %>
+    <rl-date>
+      <%= item.view_date %>
+    </rl-date>
+    <% item.genres.each do |genre| %>
+      <rl-genre>
+        <%= genre %>
+      </rl-genre>
+    <% end %>
+  </rl-name-and-tags>
+  <% if item.public_notes.any? %>
+    <rl-notes-icon>📝</rl-notes-icon>
+  <% end %>
+</rl-title-line>

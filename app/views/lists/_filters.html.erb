@@ -1,0 +1,42 @@
+<rl-filters class="collapsed" data-reading-list-target="filters">
+  <rl-label>
+    Filters (<a data-action="click->reading-list#expandFilters" class="dynamic" style="font-size:90%">show all</a>):
+  </rl-label>
+  <% if @config.show_stars_as_rating? %>
+    <rl-filter>
+      <input type="checkbox" id="filter-rating-star" value="<%= @config.star_for_rating_minimum %>" data-action="change->reading-list#filter">
+      <label for="filter-rating">⭐</label>
+    </rl-filter>
+  <% else # number rating mode %>
+    <% @ratings.each do |rating| %>
+      <rl-filter>
+        <input type="checkbox" id="filter-rating-<% rating %>" value="<%= rating %>" data-action="change->reading-list#filter">
+        <label for="filter-rating-<%= rating %>">
+          <%= rating %>
+        </label>
+      </rl-filter>
+    <% end %>
+    <rl-filter>
+      <input type="checkbox" id="toggle-all-filter-rating" data-action="change->reading-list#toggleRatingCheckboxes">
+      <label for="toggle-all-filter-rating">
+        toggle all ratings
+      </label>
+    </rl-filter>
+  <% end %>
+  <% if @genres %>
+    <% @genres.each do |genre| %>
+      <rl-filter>
+        <input type="checkbox" id="filter-genre-<%= genre %>" value="<%= genre %>" data-action="change->reading-list#filter">
+        <label for="filter-genre-<%= genre %>">
+          <%= genre %>
+        </label>
+      </rl-filter>
+    <% end %>
+    <rl-filter>
+      <input type="checkbox" id="toggle-all-filter-genre" data-action="change->reading-list#toggleGenreCheckboxes">
+      <label for="toggle-all-filter-genre">
+        toggle all genres
+      </label>
+    </rl-filter>
+  <% end %>
+</rl-filters>

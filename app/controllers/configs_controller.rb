@@ -8,42 +8,24 @@ class ConfigsController < ApplicationController
   def update_csv_config
     if Current.user.csv_config.update(csv_params)
       Current.user.csv_config.destroy_blanks
-      add_field # TODO: remove this after UI is reactive.
-      redirect_to settings_path, notice: @notice || "CSV settings updated."
+      add_field # TODO remove this after the Settings page is reactive.
+      redirect_to settings_path + "#csv", notice: @notice || "CSV settings updated."
     else
       render :index
     end
   end
-
-  # def add_format
-  #   update_csv_config("Blank format added.") do
-  #     Current.user.csv_config.formats.create
-  #   end
-  # end
-
-  # def add_type
-  #   update_csv_config("Blank type added.") do
-  #     Current.user.csv_config.types.create
-  #   end
-  # end
-
-  # def add_custom_column
-  #   update_csv_config("Blank custom column added.") do
-  #     Current.user.csv_config.custom_columns.create
-  #   end
-  # end
 
   def update_visibility_config
     if Current.user.visibility_configs.find_by(level: params[:level]).update(visibility_params)
-      redirect_to settings_path, notice: "Visibility settings updated."
+      redirect_to settings_path + "#visibility", notice: "Visibility settings updated."
     else
       render :index
     end
   end
 
-  def update_password
-    if Current.user.update(password_params)
-      redirect_to settings_path, notice: "Password updated."
+  def update_account_config
+    if Current.user.update(account_params)
+      redirect_to settings_path + "#account", notice: "Account settings updated."
     else
       render :index
     end
@@ -52,13 +34,13 @@ class ConfigsController < ApplicationController
   private
 
   def add_field
-    if params[:csv_config_add_format]
+    if params[:config_add_csv_format]
       Current.user.csv_config.formats.create
       @notice = "Blank format added."
-    elsif params[:csv_config_add_type]
+    elsif params[:config_add_csv_type]
       Current.user.csv_config.types.create
       @notice = "Blank type added."
-    elsif params[:csv_config_add_column]
+    elsif params[:config_add_csv_column]
       Current.user.csv_config.custom_columns.create
       @notice = "Blank column added."
     else
@@ -81,26 +63,29 @@ class ConfigsController < ApplicationController
                   :private_notes_enabled,
                   :history_enabled,
                   :maximum_rating,
+                  :star_for_rating_minimum,
                   :rating_key,
-                  :group_read_emoji,
-                  :date_separator,
-                  :notes_newline,
-                  :extra_info_prefixes_string,
-                  :extra_info_postfixes_string)
+                  :default_emoji,
+                  :comment_character,
+                  :dnf_string,
+                  :reverse_dates,
+                  :skip_compact_planned)
   end
 
   def visibility_params
     params.require(:visibility_config)
           .permit(:minimum_rating,
+                  :hidden_genres_string,
                   :formats_visible,
-                  :group_reads_visible,
+                  :group_experiences_visible,
                   :planned_visible,
                   :public_notes_visible,
                   :private_notes_visible)
   end
 
-  def password_params
-    params.require(:user).permit(:password,
+  def account_params
+    params.require(:user).permit(:username,
+                                  :password,
                                   :password_confirmation)
   end
 

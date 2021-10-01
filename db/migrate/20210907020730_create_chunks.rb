@@ -5,7 +5,7 @@ class CreateChunks < ActiveRecord::Migration[6.1]
       t.time :amount_time
       t.date :date_started
       t.integer :days
-      t.references :perusal, null: false, foreign_key: true
+      t.references :experience, null: false, foreign_key: true
 
       t.timestamps
     end

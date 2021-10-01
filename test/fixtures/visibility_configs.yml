@@ -3,7 +3,7 @@
 one:
   minimum_rating: 1.5
   formats_visible: false
-  group_reads_visible: false
+  group_experiences_visible: false
   planned_visible: false
   public_notes_visible: false
   private_notes_visible: false
@@ -12,7 +12,7 @@ one:
 two:
   minimum_rating: 1.5
   formats_visible: false
-  group_reads_visible: false
+  group_experiences_visible: false
   planned_visible: false
   public_notes_visible: false
   private_notes_visible: false

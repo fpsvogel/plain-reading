@@ -1,0 +1,12 @@
+<rl-table data-reading-list-target="<%= target_name %>">
+  <% if items.empty? %>
+    <%= render "lists/empty_list" %>
+  <% else %>
+    <% items.each do |item| %>
+      <sl-details class="rl-item" item-id="<%= item.id %>">
+        <%= render "lists/item_head", item: item %>
+        <%= render "lists/item_details", item: item %>
+      </sl-details>
+    <% end %>
+  <% end %>
+</rl-table>

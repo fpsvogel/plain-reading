@@ -1,0 +1,26 @@
+<rl-key>
+  <rl-label>Key:</rl-label>
+  <% @config.view_types.each do |type| %>
+    <rl-key-item>
+      <%= type.emoji %> <%= type.name %>
+    </rl-key-item>
+    |
+  <% end %>
+  <% if @config.show_stars_as_rating? %>
+    <rl-key-item>
+      ⭐ favorite
+    </rl-key-item>
+  <% else %>
+    <rl-key-item>
+      rating scale: 1–<%= @config.maximum_rating %>
+      <sl-tooltip>
+        <div slot="content">
+          <% @config.rating_key.split("\n").each do |line| %>
+            <p><%= line %></p>
+          <% end %>
+        </div>
+        <sl-icon name="question-circle"></sl-icon>
+      </sl-tooltip>
+    </rl-key-item>
+  <% end %>
+</rl-key>

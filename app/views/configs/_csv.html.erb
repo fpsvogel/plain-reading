@@ -1,25 +1,85 @@
-<%= form_with model: Current.user.csv_config, url: "#{csv_config_update_path}" do |f| %>
-  <article class=grid>
+<%= form_with model: Current.user.csv_config, url: "#{config_update_csv_path}" do |f| %>
+  <article class="grid">
     <%#= render "shared/form_errors", form: f %>
+    <%# LEFT COLUMN %>
     <div>
+      <%= field_set_tag "Columns" do %>
+        <%= f.fields_for :columns do |ff| %>
+          <%= ff.label :enabled do %>
+            <%= ff.check_box :enabled, disabled: ff.object.name == "name" %>
+            <%= ff.object.name %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= field_set_tag "Custom columns", class: "compact" do %>
+        <div class="grid">
+          <div>
+            <% label_shown = false %>
+            <%= f.fields_for :custom_columns do |ff| %>
+              <% unless label_shown %>
+                <%= ff.label :name %>
+                <% label_shown = true %>
+              <% end %>
+              <%= ff.text_field :name %>
+            <% end %>
+            <%= f.submit "Add custom column", name: :config_add_csv_column, class: "compact contrast outline" %>
+          </div>
+          <div>
+            <% label_shown = false %>
+            <%= f.fields_for :custom_columns do |ff| %>
+              <% unless label_shown %>
+                <%= ff.label :type %>
+                <% label_shown = true %>
+              <% end %>
+              <%= ff.select :type, ["text", "number"] %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
       <%= f.label :maximum_rating %>
       <%= f.number_field :maximum_rating,
         in: 1..f.object.maximum_rating_limit,
         step: 0.5,
         value: number_with_precision(f.object.maximum_rating, precision: 2,  strip_insignificant_zeros: true) %>
 
+      <%= f.label :star_for_rating_minimum, "Star items with at least this rating (or to show ratings, set to 0)" %>
+      <%= f.number_field :star_for_rating_minimum,
+        in: 0..f.object.maximum_rating %>
+
       <%= f.label :rating_key %>
       <%= f.text_area :rating_key, rows: 5 %>
 
-      <%#= field_set_tag "Formats (what you write into your CSV)", class: "compact" do %>
+      <%= f.label :default_emoji, "Default emoji shown when no format is specified" %>
+      <%= f.text_field :default_emoji %>
+
+      <%= f.label :comment_character %>
+      <%= f.text_field :comment_character %>
+
+      <%= f.label :dnf_string, "DNF (Did Not Finish) mark" %>
+      <%= f.text_field :dnf_string %>
+
+      <%= f.label :reverse_dates do %>
+        <%= f.check_box :reverse_dates %>
+        Dates are in reverse (right-to-left) order in the CSV file
+      <% end %>
+
+      <%= f.label :skip_compact_planned do %>
+        <%= f.check_box :skip_compact_planned %>
+        Skip compact planned lines (for faster loading)
+      <% end %>
+    </div>
+    <%# RIGHT COLUMN %>
+    <div>
       <fieldset class="compact">
         <legend>
           Formats
-          <sl-tooltip content="These are what you type into your reading.csv">
+          <sl-tooltip content="These are what you type into your reading.csv. To delete one, leave it blank and then press Save.">
             <sl-icon name="question-circle"></sl-icon>
           </sl-tooltip>
         </legend>
-        <div class=grid>
+        <div class="grid">
           <div>
             <% label_shown = false %>
             <%= f.fields_for :formats do |ff| %>
@@ -29,7 +89,7 @@
               <% end %>
               <%= ff.text_field :name %>
             <% end %>
-            <%= f.submit "Add format", name: :csv_config_add_format, class: "compact contrast outline" %>
+            <%= f.submit "Add format", name: :config_add_csv_format, class: "compact contrast outline" %>
           </div>
           <div>
             <% label_shown = false %>
@@ -53,11 +113,10 @@
           </div>
         </div>
       </fieldset>
-      <%#= field_set_tag "Types", class: "compact" do %>
       <fieldset class="compact">
         <legend>
           Types
-          <sl-tooltip content="These are what appear in My List, unless you have set formats to be visible in Visibility settings.">
+          <sl-tooltip content="These are what appear in My List, unless you have set formats to be visible in Visibility settings. To delete one, leave it blank and then press Save.">
             <sl-icon name="question-circle"></sl-icon>
           </sl-tooltip>
         </legend>
@@ -71,7 +130,7 @@
               <% end %>
               <%= ff.text_field :name %>
             <% end %>
-            <%= f.submit "Add type", name: :csv_config_add_type, class: "compact contrast outline" %>
+            <%= f.submit "Add type", name: :config_add_csv_type, class: "compact contrast outline" %>
           </div>
           <div>
             <% label_shown = false %>
@@ -85,104 +144,6 @@
           </div>
         </div>
       </fieldset>
-    </div>
-    <%# RIGHT COLUMN %>
-    <div>
-      <%= field_set_tag "Columns" do %>
-        <%= f.label :rating_enabled do %>
-          <%= f.check_box :rating_enabled %>
-          Rating
-        <% end %>
-
-        <%= f.label nil do %>
-          <%= f.check_box nil, checked: true, disabled: true %>
-          Format, Author, Title
-        <% end %>
-
-        <%= f.label :sources_isbn_enabled do %>
-          <%= f.check_box :sources_isbn_enabled %>
-          Sources, ISBN/ASIN
-        <% end %>
-
-        <%= f.label :dates_started_enabled do %>
-          <%= f.check_box :dates_started_enabled %>
-          Date added, Dates started
-        <% end %>
-
-        <%= f.label nil do %>
-          <%= f.check_box nil, checked: true, disabled: true %>
-          Dates finished
-        <% end %>
-
-        <%= f.label :genres_enabled do %>
-          <%= f.check_box :genres_enabled %>
-          Genres
-        <% end %>
-
-        <%= f.label :length_enabled do %>
-          <%= f.check_box :length_enabled %>
-          Length
-        <% end %>
-
-        <%= f.label :public_notes_enabled do %>
-          <%= f.check_box :public_notes_enabled %>
-          Public notes
-        <% end %>
-
-        <%= f.label :blurb_enabled do %>
-          <%= f.check_box :blurb_enabled %>
-          Blurb
-        <% end %>
-
-        <%= f.label :private_notes_enabled do %>
-          <%= f.check_box :private_notes_enabled %>
-          Private notes
-        <% end %>
-
-        <%= f.label :history_enabled do %>
-          <%= f.check_box :history_enabled %>
-          History
-        <% end %>
-      <% end %>
-      <%= field_set_tag "Custom columns", class: "compact" do %>
-        <div class=grid>
-          <div>
-            <% label_shown = false %>
-            <%= f.fields_for :custom_columns do |ff| %>
-              <% unless label_shown %>
-                <%= ff.label :name %>
-                <% label_shown = true %>
-              <% end %>
-              <%= ff.text_field :name %>
-            <% end %>
-            <%= f.submit "Add custom column", name: :csv_config_add_column, class: "compact contrast outline" %>
-          </div>
-          <div>
-            <% label_shown = false %>
-            <%= f.fields_for :custom_columns do |ff| %>
-              <% unless label_shown %>
-                <%= ff.label :type %>
-                <% label_shown = true %>
-              <% end %>
-              <%= ff.select :type, ["text", "number"] %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-      <%= f.label :group_read_emoji %>
-      <%= f.text_field :group_read_emoji %>
-
-      <%= f.label :date_separator %>
-      <%= f.text_field :date_separator %>
-
-      <%= f.label :notes_newline %>
-      <%= f.text_field :notes_newline %>
-
-      <%= f.label :extra_info_prefixes_string, "Extra info prefixes (starts with)" %>
-      <%= f.text_field :extra_info_prefixes_string %>
-
-      <%= f.label :extra_info_postfixes_string, "Extra info postfixes (ends with)" %>
-      <%= f.text_field :extra_info_postfixes_string %>
 
       <%= f.submit "Save" %>
     </div>

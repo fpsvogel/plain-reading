@@ -120,6 +120,12 @@
   --nav-border-color: rgba(115,130,140,0.2);
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 // NAV BAR
 
 body > nav {
@@ -128,6 +134,10 @@ body > nav {
 
 nav a {
   border-radius: 0;
+}
+
+nav .active {
+  background-color: var(--code-background-color);
 }
 
 .nav-sync {
@@ -234,6 +244,12 @@ header + main {
   }
 }
 
+// SPACING
+
+body > main {
+  --block-spacing-vertical: calc(var(--spacing) * 2);
+}
+
 // HEADINGS
 
 h1 {
@@ -242,7 +258,7 @@ h1 {
 
 // FORMS
 
-input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), select, textarea {
+input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), select, textarea {
   padding: var(--form-element-spacing-vertical) calc(var(--form-element-spacing-horizontal) * .5);
 }
 
@@ -333,6 +349,7 @@ article.grid {
 // FOOTER
 
 body > footer {
+  margin-top: auto;
   background-color: var(--background-color-dark);
 }
 

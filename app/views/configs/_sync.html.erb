@@ -1,4 +1,4 @@
-<article class=grid>
+<article class="grid">
   <div>
     <h2>Connect</h2>
   </div>
@@ -12,7 +12,7 @@
   </div>
 </article>
 <% if Current.user.dropbox_connected? %>
-  <article class=grid>
+  <article class="grid">
     <div>
       <h2>Sync all</h2>
       <p>Syncs all items. Do this when you've edited old items. (The normal <em>Sync</em> only adds new items.)</p>
@@ -21,7 +21,7 @@
       <%= button_to "Sync all", sync_all_path %>
     </div>
   </article>
-  <article class=grid>
+  <article class="grid">
     <div>
       <h2>File path</h2>
     </div>
@@ -33,3 +33,12 @@
     </div>
   </article>
 <% end %>
+<article class="grid">
+  <div>
+    <h2>Load errors</h2>
+    <p>Errors from the last time you uploaded/synced your reading.csv file.</p>
+  </div>
+  <div>
+    <%= button_to "View errors", errors_path, method: :get %>
+  </div>
+</article>

@@ -41,6 +41,8 @@ group :development do
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
+  # gem 'memory_profiler'
+  # gem 'stackprof'
 end
 
 group :test do
@@ -55,6 +57,16 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "dropbox_api", "~> 0.1.19"
+
+gem "reading-csv"
+gem "rinku"
+
+gem 'importmap-rails'
+gem 'stimulus-rails'
+
+# gem "attr_extras", "~> 6.0"
+# gem "date", "~> 3.0"
+# gem "pastel", "~> 0.8"
 
 # gem "omniauth-rails_csrf_protection", "~> 1.0"
 # gem "omniauth", "~> 2.0"

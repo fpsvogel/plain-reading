@@ -2,17 +2,25 @@ class User < ApplicationRecord
   has_one :dropbox_account
   has_one :csv_config
   has_many :visibility_configs
-  has_many :items
+  has_one :list
 
   has_secure_password
 
   before_create :build_default_visibility_configs
   before_create :build_default_csv_config
+  before_create :build_empty_list
+
+  validates :username,
+    presence: true,
+    uniqueness: true,
+    format: { with: /\A[a-z0-9\-\s]+\z/,
+              message: "must include only lowercase letters, numbers, and hyphens" }
 
   validates :email,
     presence: true,
     uniqueness: true,
-    format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "must be a valid email address" }
+    format: { with: /\A[^@\s]+@[^@\s]+\z/,
+              message: "must be a valid email address" }
 
   def build_default_csv_config
     build_csv_config # all defaults are in the model CsvConfig.
@@ -20,31 +28,26 @@ class User < ApplicationRecord
 
   def build_default_visibility_configs
     visibility_configs.build(
-      level: VisibilityConfig::PUBLIC
+      level: VisibilityConfig::LEVELS[:public]
       # these defaults are in the model VisibilityConfig.
     )
     visibility_configs.build(
-      level: VisibilityConfig::FRIENDS,
+      level: VisibilityConfig::LEVELS[:friends],
       minimum_rating: 0
     )
     visibility_configs.build(
-      level: VisibilityConfig::STARRED,
+      level: VisibilityConfig::LEVELS[:starred_friends],
       minimum_rating: 0
     )
     true
   end
 
-  def dropbox_connected?
-    !dropbox_account.nil?
+  def build_empty_list
+    build_list
   end
 
-  def sync_items(uploaded_file: nil)
-    _file = uploaded_file || dropbox_account.reading_csv_file
-    # the uploaded file is a Tmpfile
-    # but the dropbox file is a string
-    # so can I iterate over either with #each_line?
-    binding.pry
-    nil
+  def dropbox_connected?
+    !dropbox_account.nil?
   end
 
   def self.nuke
