@@ -1,4 +1,5 @@
 class ListsController < ApplicationController
+
   def show
     username = request.path.split("/").last
     user = User.find_by(username: username)

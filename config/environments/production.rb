@@ -121,4 +121,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "https://plainreading.com" }
 
   config.active_job.queue_adapter = :sidekiq
+
+  config.public_file_server.headers = {
+    "Content-Type" => "text/javascript; charset=utf-8"
+  }
 end
