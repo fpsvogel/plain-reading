@@ -64,6 +64,8 @@ gem "rinku"
 gem 'importmap-rails'
 gem 'stimulus-rails'
 
+gem "sidekiq"
+
 # gem "attr_extras", "~> 6.0"
 # gem "date", "~> 3.0"
 # gem "pastel", "~> 0.8"
