@@ -27,7 +27,7 @@
   --sl-color-neutral-500: 122 139 150;
 }
 
-:root:not([data-theme="light"]), :root:not([data-theme=dark]), [data-theme=dark], [data-theme=light] {
+:root:not([data-theme=light]), :root:not([data-theme=dark]), [data-theme=dark], [data-theme=light] {
   //--background-color: #11191f;
   //--background-color: #11191f;
   //--color: #bbc6ce;

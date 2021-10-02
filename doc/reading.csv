@@ -6,7 +6,7 @@
 
 \ You can edit this file in any spreadsheet app or text editor. When you open the file, be sure to select the pipe character (|) as the column separator.
 \ If you use VS Code, try the Rainbow CSV extension: https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv. Be sure to set VS Code's Language Mode to "CSV (pipe)".
-\ For editing in VS Code or other text editors, you might want to make a hotkey to set up a new column instantly. This way you won't have to type out all the column dividers and today's date. For more on that, see https://github.com/fpsvogel/plain-reading/blob/main/doc/autohotkey-reading-csv.ahk
+\ For editing in VS Code or other text editors, you might want to make a hotkey to set up a new column instantly. This way you won't have to type out all the column dividers and today's date. For more on that, see https://github.com/fpsvogel/plainreading/blob/main/doc/autohotkey-reading-csv.ahk
 
 
 
@@ -94,7 +94,7 @@ Tom Holt - Goatsong: A Novel of Ancient Athens -- The Walled Orchard, #1|2019/06
 
 
 \ Whew! That covers all the odd cases that Plain Reading handles, except for the History column, which I've relegated to the Appendix at the bottom since not everyone is so… *careful* as to want to track every page of every day.
-\ I'm open to new ideas, so if you want to add an item in your reading.csv in a different way that Plain Reading *can't* handle currently, then please let me know by adding a feature request at https://github.com/fpsvogel/plain-reading/issues
+\ I'm open to new ideas, so if you want to add an item in your reading.csv in a different way that Plain Reading *can't* handle currently, then please let me know by adding a feature request at https://github.com/fpsvogel/plainreading/issues
 
 
 

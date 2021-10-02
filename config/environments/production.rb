@@ -118,11 +118,7 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.action_mailer.default_url_options = { host: "https://plainreading.com" }
+  config.action_mailer.default_url_options = { host: "https://www.plainreading.com" }
 
   config.active_job.queue_adapter = :sidekiq
-
-  config.public_file_server.headers = {
-    "Content-Type" => "text/javascript; charset=utf-8"
-  }
 end
