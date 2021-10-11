@@ -128,7 +128,7 @@ class Item < ApplicationRecord
                         date_finished: experiences_hash[:date_finished],
                         progress: experiences_hash[:progress],
                         group: experiences_hash[:group],
-                        variant_id: variants.all[experiences_hash[:variant_id]])
+                        variant_id: variants.all[experiences_hash[:variant_index]])
     end
   end
 

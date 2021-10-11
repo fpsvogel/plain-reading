@@ -27,6 +27,9 @@ module Plainreading
     # config.eager_load_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/lib)
 
+    # from https://andycroll.com/ruby/compress-your-rails-html-responses-on-heroku/
+    config.middleware.use Rack::Deflater
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
