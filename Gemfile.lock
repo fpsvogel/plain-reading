@@ -181,7 +181,7 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5.0.beta3)
     rake (13.0.6)
-    reading-csv (0.2.4)
+    reading-csv (0.2.5)
       activesupport (>= 6.0)
       attr_extras (~> 6.0)
       date (~> 3.0)
@@ -257,7 +257,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 7.0.0.alpha2)
-  reading-csv
+  reading-csv (= 0.2.5)
   rinku
   sassc-rails
   selenium-webdriver
