@@ -6,8 +6,5 @@ import { application } from "./application"
 import ConfigsController from "./configs_controller"
 application.register("configs", ConfigsController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
 import ReadingListController from "./reading_list_controller"
 application.register("reading-list", ReadingListController)
