@@ -1,5 +1,5 @@
 class ConfigsController < ApplicationController
-  before_action :require_user_logged_in!
+  before_action :require_login
 
   # TODO use anchor or param to show a specified settings tab
   def index

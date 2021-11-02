@@ -126,6 +126,13 @@ body {
   height: 100vh;
 }
 
+nav ul, footer, label {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
 // NAV BAR
 
 body > nav {
@@ -266,6 +273,12 @@ h1 {
 
 input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]), select, textarea {
   padding: var(--form-element-spacing-vertical) calc(var(--form-element-spacing-horizontal) * .5);
+}
+
+label[for=remember_me] {
+  margin-top: var(--form-element-spacing-vertical);
+  margin-bottom: -1rem;
+  padding: calc(var(--form-element-spacing-vertical) * 2) 0;
 }
 
 // TODO show field_with_errors in red

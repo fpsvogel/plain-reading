@@ -1,41 +1,35 @@
 Rails.application.routes.draw do
-  root to: "main#index"
+  root to: 'main#index'
 
-  resource :registration, only: [] do
-    get  :new   , path: 'register'
-    post :create, path: 'register'
-  end
+  get  'register', to: 'users#new'
+  post 'register', to: 'users#create'
 
-  resource :session, only: [] do
-    get    :new    , path: :login
-    post   :create , path: :login
-    delete :destroy, path: :logout # TODO why doesn't the delete method work here? it's caught by "*path" below.
-  end
+  get  'login' , to: 'sessions#new'
+  post 'login' , to: 'sessions#create'
+  get  'logout', to: 'sessions#destroy' # TODO why doesn't the delete method work here? it's caught by '*path' below.
 
-  resource :password_reset, only: [] do
-    get   :new   , path: 'password/reset'
-    post  :create, path: 'password/reset'
-    get   :edit  , path: 'password/reset/edit'
-    patch :update, path: 'password/reset/edit'
-  end
+  get 'friends', to: 'friends#index'
 
-  get "friends", to: "friends#index"
+  get 'settings', to: 'configs#index'
 
-  get "settings", to: "configs#index"
+  patch 'config/update-csv'       , to: 'configs#update_csv_config'
+  patch 'config/update-visibility', to: 'configs#update_visibility_config'
+  patch 'config/update-account'   , to: 'configs#update_account_config'
 
-  patch "config/update-csv", to: "configs#update_csv_config"
-  patch "config/update-visibility", to: "configs#update_visibility_config"
-  patch "config/update-account", to: "configs#update_account_config"
+  post 'sync'    , to: 'lists#sync'
+  post 'sync-all', to: 'lists#sync_all'
+  post 'upload'  , to: 'lists#upload'
+  get  'errors'  , to: 'lists#errors'
 
-  post "sync", to: "lists#sync"
-  post "sync-all", to: "lists#sync_all"
-  post "upload", to: "lists#upload"
-  get "errors", to: "lists#errors"
+  get    'dropbox/auth'           , to: 'dropbox#auth'
+  get    'dropbox/auth/callback'  , to: 'dropbox#auth_callback'
+  delete 'dropbox/disconnect'     , to: 'dropbox#disconnect'
+  patch  'dropbox/update-filepath', to: 'dropbox#update_filepath'
 
-  get "dropbox/auth" => "dropbox#auth"
-  get "dropbox/auth/callback", to: "dropbox#auth_callback"
-  delete "dropbox/disconnect", to: "dropbox#disconnect"
-  patch "dropbox/update-filepath", to: "dropbox#update_filepath"
+  get   'password/reset'     , to: 'password_resets#new'
+  post  'password/reset'     , to: 'password_resets#create'
+  get   'password/reset/edit', to: 'password_resets#edit'
+  patch 'password/reset/edit', to: 'password_resets#update'
 
-  get "*path", to: "lists#show"
+  get '*path', to: 'lists#show'
 end
