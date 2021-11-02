@@ -7,7 +7,7 @@ class ListsController < ApplicationController
       not_found(username)
       return
     end
-    @is_current_user = user == Current.user
+    @is_current_user = user == current_user
     @items = {}
     @items[:so_far], @items[:planned] = user.list.visible_items
     @show_planned_list = !@items[:planned].nil?
@@ -18,11 +18,11 @@ class ListsController < ApplicationController
   end
 
   def sync(selective: true)
-    if Current.user.dropbox_account.file_exists?
-      Current.user.list.load_items(selective: selective)
+    if current_user.dropbox_account.file_exists?
+      current_user.list.load_items(selective: selective)
       redirect_after_loading
     else
-      if Current.user.dropbox_account.filepath.nil? # if path hasn't yet been set.
+      if current_user.dropbox_account.filepath.nil? # if path hasn't yet been set.
         redirect_back(alert: "Could not sync. Please set the path to your reading list in Settings ⇨ Dropbox sync ⇨ File path.", fallback_location: root_path)
       else # path has been set, but it's a nonexistent file.
         redirect_back(alert: "File not found! Fix the path to your reading list in Settings ⇨ Dropbox sync ⇨ File path.", fallback_location: root_path)
@@ -37,7 +37,7 @@ class ListsController < ApplicationController
   def upload
     file = params[:uploaded_file]
     if file.original_filename.match?(/\.csv\z/)
-      Current.user.list.load_items(uploaded_file: file.tempfile, selective: false)
+      current_user.list.load_items(uploaded_file: file.tempfile, selective: false)
       redirect_after_loading
     else
       redirect_back(fallback_location: root_path, alert: "Only a CSV file can be uploaded.")
@@ -45,7 +45,7 @@ class ListsController < ApplicationController
   end
 
   def errors
-    @errors = Current.user.list.load_errors
+    @errors = current_user.list.load_errors
   end
 
   private
@@ -55,10 +55,10 @@ class ListsController < ApplicationController
   end
 
   def redirect_after_loading
-    if Current.user.list.load_errors.any?
-      redirect_to Current.user.list.path, alert: "Not all items could be loaded. #{view_context.link_to "View the errors here.", errors_path}"
+    if current_user.list.load_errors.any?
+      redirect_to current_user.list.path, alert: "Not all items could be loaded. #{view_context.link_to "View the errors here.", errors_path}"
     else
-      redirect_to Current.user.list.path, notice: "List updated successfully."
+      redirect_to current_user.list.path, notice: "List updated successfully."
     end
   end
 end

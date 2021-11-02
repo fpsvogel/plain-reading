@@ -111,7 +111,7 @@ class List < ApplicationRecord
   end
 
   def load_config
-    Current.user.csv_config.to_h
+    current_user.csv_config.to_h
            .deep_merge(errors: { handle_error: handle_error,
                                  style_mode: :html },
                        csv: { selective_continue: selective_continue })

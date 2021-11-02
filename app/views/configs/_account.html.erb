@@ -3,7 +3,7 @@
     <h2>Edit account details</h2>
   </div>
   <div>
-    <%= form_with model: Current.user, url: config_update_account_path do |f| %>
+    <%= form_with model: current_user, url: config_update_account_path do |f| %>
       <%= render "shared/form_errors", form: f %>
 
       <%= f.label :username %>

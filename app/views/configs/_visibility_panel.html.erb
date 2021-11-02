@@ -1,4 +1,4 @@
-<%= form_with model: Current.user.visibility_configs.find_by(level: visibility_level), url: "#{config_update_visibility_path}?level=#{visibility_level}" do |f| %>
+<%= form_with model: current_user.visibility_configs.find_by(level: visibility_level), url: "#{config_update_visibility_path}?level=#{visibility_level}" do |f| %>
   <article class=grid>
     <%= render "shared/form_errors", form: f %>
     <div>
@@ -30,7 +30,7 @@
     <div>
       <%= f.label :minimum_rating %>
       <%= f.number_field :minimum_rating,
-        in: 1.0..Current.user.csv_config.maximum_rating,
+        in: 1.0..current_user.csv_config.maximum_rating,
         step: 0.5,
         value: number_with_precision(f.object.minimum_rating, precision: 2,  strip_insignificant_zeros: true) %>
 

@@ -9,12 +9,12 @@ class DropboxController < ApplicationController
   def auth_callback
     token = MyDropboxToken.from_code(self.class.authenticator, params[:code], redirect_uri: redirect_uri)
     token.save!
-    Current.user.list.items.destroy_all
+    current_user.list.items.destroy_all
     redirect_to settings_path + "#sync", notice: "Successfully connected your Dropbox account. If your reading.csv file is in a Dropbox subfolder, set its path in Settings ⇨ Sync. Your previously loaded list (if any) has been cleared."
   end
 
   def disconnect
-    Current.user.dropbox_account.destroy
+    current_user.dropbox_account.destroy
     redirect_to settings_path + "#sync", notice: "Disconnected your Dropbox account."
   end
 
@@ -30,7 +30,7 @@ class DropboxController < ApplicationController
       filepath_param.tap { |p| p[:filepath].downcase! }
                     .tap { |p| p[:filepath].sub!(/\A/, "/") }
                     .tap { |p| p[:filepath].sub!("//", "/") }
-    Current.user.dropbox_account.update(param_downcase_with_leading_slash)
+    current_user.dropbox_account.update(param_downcase_with_leading_slash)
     redirect_to settings_path + "#sync", notice: "Dropbox file path updated."
   end
 

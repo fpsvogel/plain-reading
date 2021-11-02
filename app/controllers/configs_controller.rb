@@ -6,8 +6,8 @@ class ConfigsController < ApplicationController
   end
 
   def update_csv_config
-    if Current.user.csv_config.update(csv_params)
-      Current.user.csv_config.destroy_blanks
+    if current_user.csv_config.update(csv_params)
+      current_user.csv_config.destroy_blanks
       add_field # TODO remove this after the Settings page is reactive.
       redirect_to settings_path + "#csv", notice: @notice || "CSV settings updated."
     else
@@ -16,7 +16,7 @@ class ConfigsController < ApplicationController
   end
 
   def update_visibility_config
-    if Current.user.visibility_configs.find_by(level: params[:level]).update(visibility_params)
+    if current_user.visibility_configs.find_by(level: params[:level]).update(visibility_params)
       redirect_to settings_path + "#visibility", notice: "Visibility settings updated."
     else
       render :index
@@ -24,7 +24,7 @@ class ConfigsController < ApplicationController
   end
 
   def update_account_config
-    if Current.user.update(account_params)
+    if current_user.update(account_params)
       redirect_to settings_path + "#account", notice: "Account settings updated."
     else
       render :index
@@ -35,13 +35,13 @@ class ConfigsController < ApplicationController
 
   def add_field
     if params[:config_add_csv_format]
-      Current.user.csv_config.formats.create
+      current_user.csv_config.formats.create
       @notice = "Blank format added."
     elsif params[:config_add_csv_type]
-      Current.user.csv_config.types.create
+      current_user.csv_config.types.create
       @notice = "Blank type added."
     elsif params[:config_add_csv_column]
-      Current.user.csv_config.custom_columns.create
+      current_user.csv_config.custom_columns.create
       @notice = "Blank column added."
     else
       @notice = nil

@@ -3,7 +3,7 @@
     <h2>Connect</h2>
   </div>
   <div>
-    <% if !Current.user.dropbox_connected? %>
+    <% if !current_user.dropbox_connected? %>
       <%= button_to "Connect Dropbox", dropbox_auth_path, method: :get %>
     <% else %>
       <p>Dropbox is already connected.</p>
@@ -11,7 +11,7 @@
     <% end %>
   </div>
 </article>
-<% if Current.user.dropbox_connected? %>
+<% if current_user.dropbox_connected? %>
   <article class="grid">
     <div>
       <h2>Sync all</h2>
@@ -26,7 +26,7 @@
       <h2>File path</h2>
     </div>
     <div>
-      <%= form_with model: Current.user.dropbox_account, url: dropbox_update_filepath_path do |f| %>
+      <%= form_with model: current_user.dropbox_account, url: dropbox_update_filepath_path do |f| %>
         <%= f.text_field :filepath, placeholder: "/path/to/reading.csv" %>
         <%= f.submit "Save" %>
       <% end %>

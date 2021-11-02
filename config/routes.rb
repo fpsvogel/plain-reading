@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   end
 
   resource :session, only: [] do
-    get  :new    , path: 'login'
-    post :create , path: 'login'
-    get  :destroy, path: 'logout' # TODO why doesn't the delete method work here? it's caught by "*path" below.
+    get    :new    , path: :login
+    post   :create , path: :login
+    delete :destroy, path: :logout # TODO why doesn't the delete method work here? it's caught by "*path" below.
   end
 
   resource :password_reset, only: [] do

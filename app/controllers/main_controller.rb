@@ -1,7 +1,7 @@
 class MainController < ApplicationController
   def index
-    if Current.user
-      redirect_to Current.user.list.path
+    if logged_in?
+      redirect_to current_user.list.path
     end
   end
 end

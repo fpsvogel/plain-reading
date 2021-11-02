@@ -1,9 +1,9 @@
 <nav class="container-fluid">
   <ul>
-    <% if Current.user %>
-      <li><strong><%= link_to "Plain Reading", Current.user.list.path, class: "contrast" %></strong></li>
-      <li <%= "class=active" if request.path == Current.user.list.path %>>
-        <%= link_to "My list", Current.user.list.path %>
+    <% if logged_in? %>
+      <li><strong><%= link_to "Plain Reading", current_user.list.path, class: "contrast" %></strong></li>
+      <li <%= "class=active" if request.path == current_user.list.path %>>
+        <%= link_to "My list", current_user.list.path %>
       </li>
       <li <%= "class=active" if request.path == friends_path %>>
         <%= link_to "Friends", friends_path %>
@@ -19,8 +19,8 @@
     <% end %>
   </ul>
   <ul>
-    <% if Current.user %>
-      <% if Current.user.dropbox_connected? %>
+    <% if logged_in? %>
+      <% if current_user.dropbox_connected? %>
         <li class=nav-sync>
           <%= button_to "Sync", sync_path, class: "nav-sync" %>
         </li>

@@ -76,7 +76,7 @@ class CsvConfig < ApplicationRecord
 
   def to_h
     # alternative:
-    # Current.user.csv_config.as_json(
+    # current_user.csv_config.as_json(
     #                 include: { formats: { only: [:name, :emoji] },
     #                            columns: { only: [:name, :enabled] },
     #                            custom_columns: { only: [:name, :emoji] } })
