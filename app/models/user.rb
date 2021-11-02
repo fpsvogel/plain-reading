@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :visibility_configs
   has_one :list
 
-  has_secure_password
+  authenticates_with_sorcery!
 
   before_create :build_default_visibility_configs
   before_create :build_default_csv_config
