@@ -1,12 +1,23 @@
 Rails.application.routes.draw do
   root to: "main#index"
 
-  get "register", to: "registrations#new"
-  post "register", to: "registrations#create"
+  resource :registration, only: [] do
+    get  :new   , path: 'register'
+    post :create, path: 'register'
+  end
 
-  get "login", to: "sessions#new"
-  post "login", to: "sessions#create"
-  get "logout", to: "sessions#destroy" # TODO why doesn't the delete method work here? it's caught by "*path" below.
+  resource :session, only: [] do
+    get  :new    , path: 'login'
+    post :create , path: 'login'
+    get  :destroy, path: 'logout' # TODO why doesn't the delete method work here? it's caught by "*path" below.
+  end
+
+  resource :password_reset, only: [] do
+    get   :new   , path: 'password/reset'
+    post  :create, path: 'password/reset'
+    get   :edit  , path: 'password/reset/edit'
+    patch :update, path: 'password/reset/edit'
+  end
 
   get "friends", to: "friends#index"
 
@@ -25,11 +36,6 @@ Rails.application.routes.draw do
   get "dropbox/auth/callback", to: "dropbox#auth_callback"
   delete "dropbox/disconnect", to: "dropbox#disconnect"
   patch "dropbox/update-filepath", to: "dropbox#update_filepath"
-
-  get "password/reset", to: "password_resets#new"
-  post "password/reset", to: "password_resets#create"
-  get "password/reset/edit", to: "password_resets#edit"
-  patch "password/reset/edit", to: "password_resets#update"
 
   get "*path", to: "lists#show"
 end
