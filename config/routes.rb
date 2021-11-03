@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   get  'register', to: 'users#new'
   post 'register', to: 'users#create'
 
-  get  'login' , to: 'sessions#new'
-  post 'login' , to: 'sessions#create'
-  get  'logout', to: 'sessions#destroy' # TODO why doesn't the delete method work here? it's caught by '*path' below.
+  get    'login'  , to: 'sessions#new'
+  post   'login'  , to: 'sessions#create'
+  delete 'logout' , to: 'sessions#destroy'
 
   get 'friends', to: 'friends#index'
 
@@ -31,5 +31,7 @@ Rails.application.routes.draw do
   get   'password/reset/edit', to: 'password_resets#edit'
   patch 'password/reset/edit', to: 'password_resets#update'
 
-  get '*path', to: 'lists#show'
+  # commented out as I try to set up Mrujs to allow delete 'logout'
+  # get '*path', to: 'lists#show'
+  get 'fpsvogel', to: 'lists#show' # temporary
 end
