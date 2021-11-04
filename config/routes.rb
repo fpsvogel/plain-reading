@@ -10,11 +10,10 @@ Rails.application.routes.draw do
 
   get 'friends', to: 'friends#index'
 
-  get 'settings', to: 'configs#index'
-
-  patch 'config/update-csv'       , to: 'configs#update_csv_config'
-  patch 'config/update-visibility', to: 'configs#update_visibility_config'
-  patch 'config/update-account'   , to: 'configs#update_account_config'
+  get   'settings'                 , to: 'configs#index'
+  patch 'config/update-csv'        , to: 'configs#update_csv_config'
+  patch 'config/update-visibility' , to: 'configs#update_visibility_config'
+  patch 'config/update-account'    , to: 'configs#update_account_config'
 
   post 'sync'    , to: 'lists#sync'
   post 'sync-all', to: 'lists#sync_all'
@@ -31,7 +30,5 @@ Rails.application.routes.draw do
   get   'password/reset/edit', to: 'password_resets#edit'
   patch 'password/reset/edit', to: 'password_resets#update'
 
-  # commented out as I try to set up Mrujs to allow delete 'logout'
-  # get '*path', to: 'lists#show'
-  get 'fpsvogel', to: 'lists#show' # temporary
+  get '*path', to: 'lists#show'
 end
