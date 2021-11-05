@@ -28,7 +28,8 @@
         <li class=nav-sync>
           <div class=nav-upload>
             <%= form_with url: upload_path, multipart: true do |f| %>
-              <%= f.file_field :uploaded_file, onchange: "this.form.submit()" %>
+              <label class="custom-file-input" for="uploaded_file" ></label>
+              <%= f.file_field :uploaded_file, onchange: "this.form.submit()", style: "visibility:hidden" %>
             <% end %>
           </div>
         </li>
