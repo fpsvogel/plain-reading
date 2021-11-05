@@ -29,7 +29,7 @@
           <div class=nav-upload>
             <%= form_with url: upload_path, multipart: true do |f| %>
               <label class="custom-file-input" for="uploaded_file" ></label>
-              <%= f.file_field :uploaded_file, onchange: "this.form.submit()", style: "visibility:hidden" %>
+              <%= f.file_field :uploaded_file, onchange: "this.form.submit()", style: "visibility:hidden", accept: ".csv" %>
             <% end %>
           </div>
         </li>
