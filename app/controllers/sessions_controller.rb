@@ -8,12 +8,12 @@ class SessionsController < ApplicationController
       redirect_back_or_to root_path, notice: "Logged in successfully."
     else
       flash.now[:alert] = "Invalid email or password."
-      render :new
+      render :new, status: :see_other
     end
   end
 
   def destroy
     logout
-    redirect_to root_path, notice: "Logged out."
+    redirect_to root_path, notice: "Logged out.", status: 303
   end
 end

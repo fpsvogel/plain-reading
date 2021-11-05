@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       redirect_to root_path, notice: "Successfully created account."
       # TODO show "welcome" flash to new user.
     else
-      render :new
+      render :new, status: :see_other
     end
   end
 

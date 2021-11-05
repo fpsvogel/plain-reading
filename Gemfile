@@ -3,8 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
 
-gem 'sassc-rails'
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.0.alpha2"
 
@@ -23,8 +21,6 @@ gem "turbo-rails", ">= 0.7.11"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails", ">= 0.4.0"
 
-gem "sorcery"
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "~> 2.7"
 
@@ -41,7 +37,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 gem "bcrypt", "~> 3.1.7"
 
 # Use Sass to process CSS
-# gem "sassc-rails", "~> 2.1"
+gem "sassc-rails", "~> 2.1"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -49,10 +45,6 @@ gem "bcrypt", "~> 3.1.7"
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # gem "pry"
-  # gem "pry-byebug"
 end
 
 group :development do
@@ -61,8 +53,9 @@ group :development do
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
+  gem 'rails_mini_profiler'
   # gem 'memory_profiler'
-  # gem 'stackprof'
+  gem 'stackprof'
 end
 
 group :test do
@@ -73,18 +66,17 @@ group :test do
   gem 'webdrivers'
 end
 
-gem "dropbox_api", "~> 0.1.19"
+# Authentication [https://github.com/Sorcery/sorcery]
+gem "sorcery"
 
-gem "reading-csv"
-gem "rinku"
-
+# Background jobs processing [https://github.com/mperham/sidekiq]
 gem "sidekiq"
 
-# gem "attr_extras", "~> 6.0"
-# gem "date", "~> 3.0"
-# gem "pastel", "~> 0.8"
+# Dropbox API [https://github.com/Jesus/dropbox_api/]
+gem "dropbox_api", "~> 0.1.19"
 
-# gem "omniauth-rails_csrf_protection", "~> 1.0"
-# gem "omniauth", "~> 2.0"
-# gem 'omniauth-oauth2'
-# gem "omniauth-dropbox-oauth2", "~> 0.2.0"
+# CSV reading log parsing [https://github.com/fpsvogel/reading-csv]
+gem "reading-csv"
+
+# Autolinking [https://github.com/vmg/rinku]
+gem "rinku"

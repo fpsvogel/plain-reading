@@ -10,9 +10,6 @@ pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
 
 pin_all_from "app/javascript/controllers", under: "controllers"
 
-pin "mrujs", to: "https://ga.jspm.io/npm:mrujs@0.6.0/dist/mrujs.module.js"
-pin "morphdom", to: "https://ga.jspm.io/npm:morphdom@2.6.1/dist/morphdom.js"
-
 pin "@shoelace-style/shoelace", to: "https://ga.jspm.io/npm:@shoelace-style/shoelace@2.0.0-beta.57/dist/shoelace.js"
 pin "@lit/reactive-element", to: "https://ga.jspm.io/npm:@lit/reactive-element@1.0.1/reactive-element.js"
 pin "@lit/reactive-element/decorators/custom-element.js", to: "https://ga.jspm.io/npm:@lit/reactive-element@1.0.1/decorators/custom-element.js"

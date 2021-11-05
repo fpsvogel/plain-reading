@@ -11,7 +11,7 @@
       <li <%= "class=active" if request.path == settings_path %>>
         <%= link_to "Settings", settings_path %>
       </li>
-      <li><%= link_to "Log out", logout_path, method: :delete %></li>
+      <li><%= link_to "Log out", logout_path, "data-turbo-method": :delete %></li>
     <% else %>
       <li><strong><%= link_to "Plain Reading", root_path, class: "contrast" %></strong></li>
       <li><%= link_to "Register", register_path %></li>
@@ -27,7 +27,6 @@
       <% else %>
         <li class=nav-sync>
           <div class=nav-upload>
-            <span>Upload: </span>
             <%= form_with url: upload_path, multipart: true do |f| %>
               <%= f.file_field :uploaded_file, onchange: "this.form.submit()" %>
             <% end %>
