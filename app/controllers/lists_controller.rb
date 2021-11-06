@@ -12,8 +12,8 @@ class ListsController < ApplicationController
     @items[:so_far], @items[:planned] = user.list.visible_items
     @show_planned_list = !@items[:planned].nil?
     @any_items = user.list.items.any?
-    @genres = user.list.visible_genres
-    @ratings = user.list.visible_ratings
+    @genres = user.list.visible_genres(@items[:so_far] + @items[:planned])
+    @ratings = user.list.visible_ratings(@items[:so_far] + @items[:planned])
     @config = user.csv_config
   end
 

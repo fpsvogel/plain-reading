@@ -9,9 +9,13 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.text :blurb
       t.text :private_notes
       t.text :history
+      t.string :view_rating
+      t.string :view_type
       t.string :view_url
       t.string :view_name
       t.string :view_date_finished
+      t.boolean :planned
+      t.string :group_experiences
       t.references :list, null: false, foreign_key: true
 
       t.timestamps

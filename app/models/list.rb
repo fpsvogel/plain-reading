@@ -9,18 +9,8 @@ class List < ApplicationRecord
   end
 
   def visible_items
-    current_visibility = user.visibility_configs.find_by(level: visibility_to_current_user)
-    planned = []
-    in_progress_and_done = items.reject do |item|
-      show_by_visibility_genre_rating =
-        item.visibility < current_visibility.level ||
-          (item.genres.map(&:to_s) & current_visibility.hidden_genres).any? ||
-          (item.rating || 0) < current_visibility.minimum_rating
-      planned << item if item.planned? && show_by_visibility_genre_rating
-      item.planned? || show_by_visibility_genre_rating
-    end
-    planned = nil unless current_visibility.planned_visible
-    [in_progress_and_done, planned]
+    in_progress_and_done, planned = query_visible
+    [sort_by_date(in_progress_and_done), planned]
   end
 
   # TODO why is this approach to caching even slower than without it?
@@ -45,12 +35,12 @@ class List < ApplicationRecord
   #   @items_for ||= []
   # end
 
-  def visible_genres
-    uniq_of_attribute(:genres, sort_by: :frequency, convert: :to_s)
+  def visible_genres(visible_items)
+    uniq_of_attribute(visible_items, :genres, sort_by: :frequency, convert: :to_s)
   end
 
-  def visible_ratings
-    uniq_of_attribute(:rating, sort_by: :value).map do |uniq_rating|
+  def visible_ratings(visible_items)
+    uniq_of_attribute(visible_items, :rating, sort_by: :value).map do |uniq_rating|
       if uniq_rating.to_i == uniq_rating
         uniq_rating.to_i
       else
@@ -89,11 +79,42 @@ class List < ApplicationRecord
     VisibilityConfig::LEVELS[:public]
   end
 
+  def query_visible
+    current_visibility = user.visibility_configs.find_by(level: visibility_to_current_user)
+    planned = []
+    visible_items = items
+      .where("visibility >= ?", current_visibility.level)
+      .where("rating IS NOT NULL AND rating >= ?", current_visibility.minimum_rating)
+      .includes(:genres)
+      .where.not(genres: { name: current_visibility.hidden_genres.presence || [""] })
+      .includes(:view_format)
+    in_progress_and_done = visible_items.where(planned: false)
+    planned = visible_items.where(planned: true)
+    planned = nil unless current_visibility.planned_visible
+    [in_progress_and_done, planned]
+  end
+
+  # returns items sorted by date (most recent first) then name (alphabetical)
+  def sort_by_date(items)
+    in_progress = items.select { |item| item.view_date.nil? }
+                       .sort_by { |item| item.title.downcase }
+    done = items - in_progress
+    done = done.sort do |item_a, item_b|
+      case item_a.view_date <=> item_b.view_date
+      when -1 then 1
+      when 1 then -1
+      else
+        item_a.title.downcase <=> item_b.title.downcase
+      end
+    end
+    in_progress + done
+  end
+
   # returns the unique varieties of an attribute across all items.
   # sort_by: :frequency or :value
   # convert: type conversion, such as :to_s
-  def uniq_of_attribute(attribute, sort_by:, convert: nil)
-    all = items.flat_map do |item|
+  def uniq_of_attribute(visible_items, attribute, sort_by:, convert: nil)
+    all = visible_items.flat_map do |item|
       item.send(attribute).presence
     end.compact.uniq
     if convert
@@ -111,10 +132,10 @@ class List < ApplicationRecord
   end
 
   def load_config
-    current_user.csv_config.to_h
-           .deep_merge(errors: { handle_error: handle_error,
-                                 style_mode: :html },
-                       csv: { selective_continue: selective_continue })
+    user.csv_config.to_h
+        .deep_merge(errors: { handle_error: handle_error,
+                              style_mode: :html },
+                    csv: { selective_continue: selective_continue })
   end
 
   def handle_error

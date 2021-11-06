@@ -1,8 +1,7 @@
 class Format < ApplicationRecord
   belongs_to :visibility_config, optional: true
   belongs_to :csv_config
-  belongs_to :type, optional: :true
-  belongs_to :item, optional: true
+  belongs_to :type, optional: true
   has_many :variants
 
   DEFAULTS = {book:       ["📕", # print ... pdf each appear as book in My List.

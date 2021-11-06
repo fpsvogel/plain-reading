@@ -12,7 +12,7 @@
       <%= render "lists/filters" %>
 
       <% if !@show_planned_list %>
-        <%= render "lists/table", items: @items[:so_far] %>
+        <%= render "lists/table", items: @items[:so_far], target_name: "table" %>
       <% else %>
         <sl-tab-group>
           <sl-tab slot="nav" panel="so_far">

@@ -115,8 +115,9 @@ rl-container > rl-table {
 rl-table {
   margin-bottom: 2rem;
   .rl-item:nth-of-type(2n+1) {
-    // background-color: var(--highlighted-background-color);
-    background-color: var(--highlighted-background-color);
+    &::part(base) {
+      background-color: var(--highlighted-background-color);
+    }
   }
   .rl-item {
     &::part(header) {

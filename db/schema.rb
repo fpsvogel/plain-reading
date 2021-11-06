@@ -122,9 +122,13 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.text "blurb"
     t.text "private_notes"
     t.text "history"
+    t.string "view_rating"
+    t.string "view_type"
     t.string "view_url"
     t.string "view_name"
     t.string "view_date_finished"
+    t.boolean "planned"
+    t.string "group_experiences"
     t.bigint "list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -220,6 +224,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
   create_table "variants", force: :cascade do |t|
     t.string "isbn"
     t.text "extra_info"
+    t.boolean "view"
     t.string "length_type"
     t.bigint "length_id"
     t.bigint "item_id", null: false

@@ -1,14 +1,13 @@
 class ConfigsController < ApplicationController
   before_action :require_login
 
-  # TODO use anchor or param to show a specified settings tab
   def index
   end
 
   def update_csv_config
     if current_user.csv_config.update(csv_params)
       current_user.csv_config.destroy_blanks
-      add_field # TODO remove this after the Settings page is reactive.
+      add_field # TODO remove this after making the Settings page reactive.
       redirect_to settings_path + "#csv", notice: @notice || "CSV settings updated."
     else
       render :index
