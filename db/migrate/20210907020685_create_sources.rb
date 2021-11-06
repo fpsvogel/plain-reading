@@ -8,6 +8,9 @@ class CreateSources < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
+    add_index :sources, :name
+    add_index :sources, :url
+
     # TODO why do I need both of these join tables for HABTM? in the Rails
     # Guides there's only one. but when I have only one, there's a DB error
     # either in creating or destroying an item, depending on which is omitted.

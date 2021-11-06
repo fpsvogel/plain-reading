@@ -20,5 +20,11 @@ class CreateItems < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :items, :rating
+    add_index :items, :view_type
+    add_index :items, :visibility
+    add_index :items, :planned
+    add_index :items, :view_date_finished
   end
 end

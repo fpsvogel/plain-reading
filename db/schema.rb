@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.bigint "visibility_config_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_genres_on_name", unique: true
     t.index ["visibility_config_id"], name: "index_genres_on_visibility_config_id"
   end
 

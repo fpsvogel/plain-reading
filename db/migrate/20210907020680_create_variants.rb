@@ -10,5 +10,8 @@ class CreateVariants < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :variants, :isbn
+    add_index :variants, :view
   end
 end

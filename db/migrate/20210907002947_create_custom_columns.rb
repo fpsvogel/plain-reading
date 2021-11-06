@@ -7,5 +7,7 @@ class CreateCustomColumns < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :custom_columns, :name
   end
 end

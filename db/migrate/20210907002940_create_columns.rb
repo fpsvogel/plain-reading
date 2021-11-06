@@ -8,5 +8,7 @@ class CreateColumns < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :columns, :name
   end
 end

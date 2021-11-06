@@ -6,8 +6,8 @@ class Genre < ApplicationRecord
   # before_create :replace_default
 
   validates :name,
-    presence: true,
-    uniqueness: true
+    presence: true#,
+    #uniqueness: true #TODO: uniqueness within one user.
 
   # RM
   # def replace_default

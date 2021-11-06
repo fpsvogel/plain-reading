@@ -9,31 +9,8 @@ class List < ApplicationRecord
   end
 
   def visible_items
-    in_progress_and_done, planned = query_visible
-    [sort_by_date(in_progress_and_done), planned]
+    query_visible
   end
-
-  # TODO why is this approach to caching even slower than without it?
-  # def visible_items
-  #   visibility = visibility_to_current_user
-  #   return items_for[visibility] unless items_for[visibility].nil?
-  #   planned = []
-  #   visibility_config = VisibilityConfig.find_by(level: visibility)
-  #   in_progress_and_done = items.reject do |item|
-  #     show_by_visibility_genre_rating =
-  #       item.visibility < visibility_config.level ||
-  #         (item.genres.map(&:to_s) & visibility_config.hidden_genres).any? ||
-  #         (item.rating || 0) < visibility_config.minimum_rating
-  #     planned << item if item.planned? && show_by_visibility_genre_rating
-  #     item.planned? || show_by_visibility_genre_rating
-  #   end
-  #   planned = nil unless visibility_config.planned_visible
-  #   items_for[visibility] = [in_progress_and_done,
-  #                             planned]
-  # end
-  # def items_for
-  #   @items_for ||= []
-  # end
 
   def visible_genres(visible_items)
     uniq_of_attribute(visible_items, :genres, sort_by: :frequency, convert: :to_s)
@@ -88,26 +65,12 @@ class List < ApplicationRecord
       .includes(:genres)
       .where.not(genres: { name: current_visibility.hidden_genres.presence || [""] })
       .includes(:view_format)
-    in_progress_and_done = visible_items.where(planned: false)
+    in_progress_and_done = visible_items
+      .where(planned: false)
+      .order("view_date_finished DESC, title ASC")
     planned = visible_items.where(planned: true)
     planned = nil unless current_visibility.planned_visible
     [in_progress_and_done, planned]
-  end
-
-  # returns items sorted by date (most recent first) then name (alphabetical)
-  def sort_by_date(items)
-    in_progress = items.select { |item| item.view_date.nil? }
-                       .sort_by { |item| item.title.downcase }
-    done = items - in_progress
-    done = done.sort do |item_a, item_b|
-      case item_a.view_date <=> item_b.view_date
-      when -1 then 1
-      when 1 then -1
-      else
-        item_a.title.downcase <=> item_b.title.downcase
-      end
-    end
-    in_progress + done
   end
 
   # returns the unique varieties of an attribute across all items.
