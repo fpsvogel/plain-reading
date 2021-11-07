@@ -8,12 +8,12 @@ class ListsController < ApplicationController
       return
     end
     @is_current_user = user == current_user
-    @items = {}
-    @items[:so_far], @items[:planned] = user.list.visible_items
-    @show_planned_list = !@items[:planned].nil?
+    @items, @show_planned_list = user.list.visible_items
+    @items = @items.to_a
+    @items_planned, @items_so_far = @items.partition(&:planned?)
     @any_items = user.list.items.any?
-    @genres = user.list.visible_genres(@items[:so_far] + @items[:planned])
-    @ratings = user.list.visible_ratings(@items[:so_far] + @items[:planned])
+    @genres = user.list.visible_genres(@items)
+    @ratings = user.list.visible_ratings(@items)
     @config = user.csv_config
   end
 

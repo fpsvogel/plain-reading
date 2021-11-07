@@ -18,7 +18,7 @@ class Item < ApplicationRecord
   validates :title,
     presence: true
 
-  # TODO invalidate the cache, when Settings is changed
+  # TODO invalidate this cache, when Settings is changed
   def view_rating
     return read_attribute(:view_rating) unless read_attribute(:view_rating).nil?
     if list.user.csv_config.show_stars_as_rating?
@@ -38,7 +38,7 @@ class Item < ApplicationRecord
     read_attribute(:view_rating)
   end
 
-  # TODO invalidate the cache, when Settings is changed
+  # TODO invalidate this cache, when Settings is changed
   def view_type
     return read_attribute(:view_type) unless read_attribute(:view_type).nil?
     if list.user.visibility_configs.find_by(level: VisibilityConfig::LEVELS[:public]).formats_visible
@@ -56,7 +56,7 @@ class Item < ApplicationRecord
       CsvConfig::IN_PROGRESS_LABEL
   end
 
-  # TODO invalidate the cache, when Settings is changed
+  # TODO invalidate this cache, when Settings is changed
   def group_experiences
     return read_attribute(:group_experiences) unless read_attribute(:group_experiences).nil?
     self.group_experiences = experiences.map { |experience| experience.group }.compact.presence
@@ -95,8 +95,10 @@ class Item < ApplicationRecord
     end
   end
 
+  # TODO load all of this user's Formats, Sources
   def load_hash_variants(data)
     data[:variants].each do |variants_hash|
+      # TODO why do I need item_id here? what if I do variants.new?
       new_variant = variants.build(item_id: id)
       new_variant.format = Format.find_by(name: variants_hash[:format])
       variants_hash[:sources].each do |source_hash|
@@ -135,18 +137,19 @@ class Item < ApplicationRecord
     self.planned = experiences.none? { |experience| experience.date_started || experience.date_finished }
   end
 
+  # TODO load all of this user's Genres
   def load_hash_genres(data)
     data[:genres].each do |genre_string|
       existing_genre = Genre.find_by(name: genre_string)
       if existing_genre
         self.genres << existing_genre
       else
-        # self.genres.build(item_id: id, name: genre_string)
         self.genres.build(name: genre_string)
       end
     end
   end
 
+  # TODO use the preloaded user Formats
   def set_view_attributes(data)
     first_isbn, format, extra_info =
       data[:variants].map do |variant|

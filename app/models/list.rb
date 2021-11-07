@@ -9,7 +9,15 @@ class List < ApplicationRecord
   end
 
   def visible_items
-    query_visible
+    current_visibility = user.visibility_configs.find_by(level: visibility_to_current_user)
+    visible_items = items
+      .where("visibility >= ?", current_visibility.level)
+      .where("rating IS NOT NULL AND rating >= ?", current_visibility.minimum_rating)
+      .includes(:genres)
+      .where.not(genres: { name: current_visibility.hidden_genres.presence || [""] })
+      .includes(:view_format)
+      .order("view_date_finished DESC, title ASC")
+    [visible_items, current_visibility.planned_visible]
   end
 
   def visible_genres(visible_items)
@@ -35,11 +43,11 @@ class List < ApplicationRecord
                                           selective: selective,
                                           skip_compact_planned: user.csv_config.skip_compact_planned)
     items_data.each do |data|
-      item = items.build
+      item = items.new
       item.load_hash(data)
       item.save
     end
-    # TODO why does load_errors become nil if it's a plain instance variable (instead of a db field)?
+    # TODO why does load_errors become nil by this point if it's a plain instance variable (instead of a db field)?
     load_errors.map!(&:to_s)
     save
   end
@@ -54,23 +62,6 @@ class List < ApplicationRecord
     # TODO assign different level based on whether the current user is myself, a
     # friend, starred friend, or a random visitor.
     VisibilityConfig::LEVELS[:public]
-  end
-
-  def query_visible
-    current_visibility = user.visibility_configs.find_by(level: visibility_to_current_user)
-    planned = []
-    visible_items = items
-      .where("visibility >= ?", current_visibility.level)
-      .where("rating IS NOT NULL AND rating >= ?", current_visibility.minimum_rating)
-      .includes(:genres)
-      .where.not(genres: { name: current_visibility.hidden_genres.presence || [""] })
-      .includes(:view_format)
-    in_progress_and_done = visible_items
-      .where(planned: false)
-      .order("view_date_finished DESC, title ASC")
-    planned = visible_items.where(planned: true)
-    planned = nil unless current_visibility.planned_visible
-    [in_progress_and_done, planned]
   end
 
   # returns the unique varieties of an attribute across all items.

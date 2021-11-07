@@ -3,7 +3,7 @@
 </div>
 
 <main class="container">
-  <% if @items.none? { |_name, sublist| sublist&.any? } %>
+  <% if @items.none? %>
     <%= render "lists/empty_list" %>
   <% else %>
     <rl-container data-controller="reading-list" data-reading-list-target="container">
@@ -12,7 +12,7 @@
       <%= render "lists/filters" %>
 
       <% if !@show_planned_list %>
-        <%= render "lists/table", items: @items[:so_far], target_name: "table" %>
+        <%= render "lists/table", items: @items_so_far, target_name: "table" %>
       <% else %>
         <sl-tab-group>
           <sl-tab slot="nav" panel="so_far">
@@ -23,10 +23,10 @@
           </sl-tab>
 
           <sl-tab-panel name="so_far">
-            <%= render "lists/table", items: @items[:so_far], target_name: "table" %>
+            <%= render "lists/table", items: @items_so_far, target_name: "table" %>
           </sl-tab-panel>
           <sl-tab-panel name="planned">
-            <%= render "lists/table", items: @items[:planned], target_name: "plannedTable" %>
+            <%= render "lists/table", items: @items_planned, target_name: "plannedTable" %>
           </sl-tab-panel>
         </sl-tab-group>
       <% end %>

@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["csv_config_id"], name: "index_columns_on_csv_config_id"
+    t.index ["name"], name: "index_columns_on_name"
   end
 
   create_table "csv_configs", force: :cascade do |t|
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["csv_config_id"], name: "index_custom_columns_on_csv_config_id"
+    t.index ["name"], name: "index_custom_columns_on_name"
   end
 
   create_table "dropbox_accounts", force: :cascade do |t|
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.bigint "variant_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["group"], name: "index_experiences_on_group"
     t.index ["item_id"], name: "index_experiences_on_item_id"
     t.index ["variant_id"], name: "index_experiences_on_variant_id"
   end
@@ -94,6 +97,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["csv_config_id"], name: "index_formats_on_csv_config_id"
     t.index ["item_id"], name: "index_formats_on_item_id"
+    t.index ["name"], name: "index_formats_on_name"
     t.index ["type_id"], name: "index_formats_on_type_id"
     t.index ["visibility_config_id"], name: "index_formats_on_visibility_config_id"
   end
@@ -103,7 +107,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.bigint "visibility_config_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_genres_on_name", unique: true
+    t.index ["name"], name: "index_genres_on_name"
     t.index ["visibility_config_id"], name: "index_genres_on_visibility_config_id"
   end
 
@@ -134,6 +138,11 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["list_id"], name: "index_items_on_list_id"
+    t.index ["planned"], name: "index_items_on_planned"
+    t.index ["rating"], name: "index_items_on_rating"
+    t.index ["view_date_finished"], name: "index_items_on_view_date_finished"
+    t.index ["view_type"], name: "index_items_on_view_type"
+    t.index ["visibility"], name: "index_items_on_visibility"
   end
 
   create_table "items_genres", id: false, force: :cascade do |t|
@@ -171,6 +180,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.integer "volume"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_series_on_name"
   end
 
   create_table "series_items", id: false, force: :cascade do |t|
@@ -185,6 +195,8 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_sources_on_name"
+    t.index ["url"], name: "index_sources_on_url"
   end
 
   create_table "sources_variants", id: false, force: :cascade do |t|
@@ -209,6 +221,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["csv_config_id"], name: "index_types_on_csv_config_id"
+    t.index ["name"], name: "index_types_on_name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -233,8 +246,10 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["format_id"], name: "index_variants_on_format_id"
+    t.index ["isbn"], name: "index_variants_on_isbn"
     t.index ["item_id"], name: "index_variants_on_item_id"
     t.index ["length_type", "length_id"], name: "index_variants_on_length"
+    t.index ["view"], name: "index_variants_on_view"
   end
 
   create_table "variants_sources", id: false, force: :cascade do |t|
@@ -256,6 +271,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["level"], name: "index_visibility_configs_on_level"
     t.index ["user_id"], name: "index_visibility_configs_on_user_id"
   end
 
