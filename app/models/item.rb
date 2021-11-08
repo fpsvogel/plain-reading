@@ -64,19 +64,19 @@ class Item < ApplicationRecord
     read_attribute(:group_experiences)
   end
 
-  def load_hash(data)
+  def load_hash(data, user_formats: nil, user_sources: nil, user_genres: nil)
     self.rating = data[:rating]
     self.title = data[:title]
     load_hash_series(data)
-    load_hash_variants(data)
+    load_hash_variants(data, user_formats, user_sources)
     load_hash_experiences(data)
     self.visibility = data[:visibility]
-    load_hash_genres(data)
+    load_hash_genres(data, user_genres)
     self.public_notes = data[:public_notes]
     self.blurb = data[:blurb]
     self.private_notes = data[:private_notes]
     self.history = data[:history]
-    set_view_attributes(data)
+    set_view_attributes(data, user_formats)
   end
 
   private
@@ -96,14 +96,26 @@ class Item < ApplicationRecord
   end
 
   # TODO load all of this user's Formats, Sources
-  def load_hash_variants(data)
+  def load_hash_variants(data, user_formats = nil, user_sources = nil)
     data[:variants].each do |variants_hash|
       # TODO why do I need item_id here? what if I do variants.new?
       new_variant = variants.build(item_id: id)
-      new_variant.format = Format.find_by(name: variants_hash[:format])
+      if user_formats.nil?
+        new_variant.format = Format.find_by(name: variants_hash[:format])
+      else
+        new_variant.format = user_formats.find do |user_format|
+          user_format.name == variants_hash[:format]
+        end
+      end
       variants_hash[:sources].each do |source_hash|
-        existing_source = Source.find_by(name: source_hash[:name],
-                                         url: source_hash[:url])
+        if user_sources.nil?
+          existing_source = Source.find_by(name: source_hash[:name],
+                                           url: source_hash[:url])
+        else
+          existing_source = user_sources.find do |user_source|
+            user_source.name == source_hash[:name] && user_source.url == source_hash[:url]
+          end
+        end
         if existing_source
           new_variant.sources << existing_source
         else
@@ -138,19 +150,26 @@ class Item < ApplicationRecord
   end
 
   # TODO load all of this user's Genres
-  def load_hash_genres(data)
+  def load_hash_genres(data, user_genres = nil)
     data[:genres].each do |genre_string|
-      existing_genre = Genre.find_by(name: genre_string)
+      if user_genres.nil?
+        existing_genre = Genre.find_by(name: genre_string)
+      else
+        existing_genre = user_genres.find do |user_genre|
+          user_genre.name == genre_string
+        end
+      end
       if existing_genre
         self.genres << existing_genre
       else
-        self.genres.build(name: genre_string)
+        new_genre = self.genres.build(name: genre_string)
+        user_genres << new_genre
       end
     end
   end
 
   # TODO use the preloaded user Formats
-  def set_view_attributes(data)
+  def set_view_attributes(data, user_formats = nil)
     first_isbn, format, extra_info =
       data[:variants].map do |variant|
         [variant[:isbn], variant[:format], variant[:extra_info]]
@@ -177,6 +196,12 @@ class Item < ApplicationRecord
     self.view_name = "#{author + " – " if author}#{title}" +
                      "#{" 〜 " + (series_and_extras).join(" 〜 ") unless series_and_extras.empty?}"
     self.view_date_finished = data[:experiences].last&.dig(:date_finished)&.gsub("/", "-")
-    self.view_format = Format.find_by(name: format)
+    if user_formats.nil?
+      self.view_format = Format.find_by(name: format)
+    else
+      self.view_format = user_formats.find do |user_format|
+        user_format.name == format
+      end
+    end
   end
 end

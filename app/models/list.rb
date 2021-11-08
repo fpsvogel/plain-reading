@@ -42,9 +42,16 @@ class List < ApplicationRecord
                                     .call(file,
                                           selective: selective,
                                           skip_compact_planned: user.csv_config.skip_compact_planned)
+    user_formats = user.csv_config.formats.to_a # TODO move formats to list
+    # user_sources = Source.includes(variants: { item: :list })
+    #                      .where('variants.item.list.user = ?', user)
+    #                      .to_a
+    # user_genres = Genre.includes(items: :list)
+    #                    .where(items: { list: { user_id: user.id } }) # or: .where('items.list.user_id = ?', user.id)
+    #                    .to_a
     items_data.each do |data|
       item = items.new
-      item.load_hash(data)
+      item.load_hash(data, user_formats: user_formats, user_sources: nil, user_genres: nil)
       item.save
     end
     # TODO why does load_errors become nil by this point if it's a plain instance variable (instead of a db field)?
@@ -99,6 +106,7 @@ class List < ApplicationRecord
   end
 
   # TODO countdown to stop (go 10 items further down from)
+  # this is already done in my blog, so look there for inspiration.
   def selective_continue
     @selective_continue ||= lambda do |last_parsed_data|
       last_title = last_parsed_data[:title]
