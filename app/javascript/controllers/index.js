@@ -3,8 +3,8 @@
 
 import { application } from "./application"
 
-import ConfigsController from "./configs_controller"
+import ConfigsController from "./configs_controller.js"
 application.register("configs", ConfigsController)
 
-import ReadingListController from "./reading_list_controller"
-application.register("reading_list", ReadingListController)
+import ReadingListController from "./reading_list_controller.js"
+application.register("reading-list", ReadingListController)
