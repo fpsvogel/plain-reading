@@ -1,0 +1,16 @@
+{
+  "name": "plainreading",
+  "private": true,
+  "dependencies": {
+    "@hotwired/stimulus": "^3.0.1",
+    "@hotwired/turbo-rails": "^7.0.1",
+    "@rails/actioncable": "^6.0.0",
+    "@shoelace-style/shoelace": "^2.0.0-beta.57",
+    "esbuild": "^0.13.12"
+  },
+  "version": "0.1.0",
+  "devDependencies": {},
+  "scripts": {
+    "build": "./node_modules/.bin/esbuild app/javascript/application.js --bundle --outdir=app/assets/builds"
+  }
+}
