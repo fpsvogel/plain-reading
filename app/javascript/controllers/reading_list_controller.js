@@ -10,6 +10,12 @@ export default class extends Controller {
     this.goToAnchor()
   }
 
+  disconnect() {
+    // this.containerTarget.querySelector("sl-tab-group").style.visibility = "hidden"
+    document.querySelector("main.container").display = "none"
+    document.querySelector("footer").display = "none"
+  }
+
   // resets sort and filters.
   resetOptions() {
     let firstSort = this.containerTarget.querySelector("rl-sorts input:first-of-type")

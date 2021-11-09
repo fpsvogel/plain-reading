@@ -8,6 +8,12 @@ export default class extends Controller {
     this.goToAnchor()
   }
 
+  disconnect() {
+    // this.tabGroupTarget.style.visibility = "hidden"
+    document.querySelector("main.container").display = "none"
+    document.querySelector("footer").display = "none"
+  }
+
   // shows the config tab indicated by the URL's anchor (if any).
   goToAnchor() {
     let anchor = window.location.hash.substr(1)

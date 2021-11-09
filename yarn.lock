@@ -40,7 +40,7 @@
   resolved "https://registry.yarnpkg.com/@shoelace-style/animations/-/animations-1.1.0.tgz#17539abafd6dcbf2a79e089e1593175e9f7835b5"
   integrity sha512-Be+cahtZyI2dPKRm8EZSx3YJQ+jLvEcn3xzRP7tM4tqBnvd/eW/64Xh0iOf0t2w5P8iJKfdBbpVNE9naCaOf2g==
 
-"@shoelace-style/shoelace@^2.0.0-beta.57":
+"@shoelace-style/shoelace@^2.0.0-beta.60":
   version "2.0.0-beta.60"
   resolved "https://registry.yarnpkg.com/@shoelace-style/shoelace/-/shoelace-2.0.0-beta.60.tgz#fc5d5aecfb60ca8e2772c2f399dc8db9f560f33b"
   integrity sha512-iozuLRjIR2UvzVEXrgcPvRHjqkWhRnWhTOuZcXWfAI5mmSB2ko8lqNXxnzgOtpFak4Z7Vei/9qOWSkAt0+fxRA==

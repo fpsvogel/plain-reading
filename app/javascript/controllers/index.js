@@ -8,3 +8,4 @@ application.register("configs", ConfigsController)
 
 import ReadingListController from "./reading_list_controller.js"
 application.register("reading-list", ReadingListController)
+console.log(ReadingListController)
