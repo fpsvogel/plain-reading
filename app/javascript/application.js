@@ -3,7 +3,8 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 
 import { setBasePath } from '@shoelace-style/shoelace'
-setBasePath("https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.57/dist/")
+// setBasePath("https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.57/dist/")
+setBasePath("./shoelace/dist/")
 
 // // from https://github.com/ParamagicDev/shoelace-rails-importmaps/issues/2#issuecomment-961356638
 // // but I have no idea what to put inside the function below.
