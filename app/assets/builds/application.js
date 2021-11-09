@@ -15,10 +15,10 @@
     return value;
   };
 
-  // node_modules/@rails/actioncable/src/adapters.js
+  // ../../node_modules/@rails/actioncable/src/adapters.js
   var adapters_default;
   var init_adapters = __esm({
-    "node_modules/@rails/actioncable/src/adapters.js"() {
+    "../../node_modules/@rails/actioncable/src/adapters.js"() {
       adapters_default = {
         logger: self.console,
         WebSocket: self.WebSocket
@@ -26,10 +26,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/logger.js
+  // ../../node_modules/@rails/actioncable/src/logger.js
   var logger_default;
   var init_logger = __esm({
-    "node_modules/@rails/actioncable/src/logger.js"() {
+    "../../node_modules/@rails/actioncable/src/logger.js"() {
       init_adapters();
       logger_default = {
         log(...messages) {
@@ -42,10 +42,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/connection_monitor.js
+  // ../../node_modules/@rails/actioncable/src/connection_monitor.js
   var now, secondsSince, clamp, ConnectionMonitor, connection_monitor_default;
   var init_connection_monitor = __esm({
-    "node_modules/@rails/actioncable/src/connection_monitor.js"() {
+    "../../node_modules/@rails/actioncable/src/connection_monitor.js"() {
       init_logger();
       now = () => new Date().getTime();
       secondsSince = (time) => (now() - time) / 1e3;
@@ -146,10 +146,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/internal.js
+  // ../../node_modules/@rails/actioncable/src/internal.js
   var internal_default;
   var init_internal = __esm({
-    "node_modules/@rails/actioncable/src/internal.js"() {
+    "../../node_modules/@rails/actioncable/src/internal.js"() {
       internal_default = {
         "message_types": {
           "welcome": "welcome",
@@ -172,10 +172,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/connection.js
+  // ../../node_modules/@rails/actioncable/src/connection.js
   var message_types, protocols, supportedProtocols, indexOf, Connection, connection_default;
   var init_connection = __esm({
-    "node_modules/@rails/actioncable/src/connection.js"() {
+    "../../node_modules/@rails/actioncable/src/connection.js"() {
       init_adapters();
       init_connection_monitor();
       init_internal();
@@ -326,10 +326,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/subscription.js
+  // ../../node_modules/@rails/actioncable/src/subscription.js
   var extend, Subscription;
   var init_subscription = __esm({
-    "node_modules/@rails/actioncable/src/subscription.js"() {
+    "../../node_modules/@rails/actioncable/src/subscription.js"() {
       extend = function(object, properties) {
         if (properties != null) {
           for (let key in properties) {
@@ -359,10 +359,10 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/subscriptions.js
+  // ../../node_modules/@rails/actioncable/src/subscriptions.js
   var Subscriptions;
   var init_subscriptions = __esm({
-    "node_modules/@rails/actioncable/src/subscriptions.js"() {
+    "../../node_modules/@rails/actioncable/src/subscriptions.js"() {
       init_subscription();
       Subscriptions = class {
         constructor(consumer2) {
@@ -426,7 +426,7 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/consumer.js
+  // ../../node_modules/@rails/actioncable/src/consumer.js
   function createWebSocketURL(url) {
     if (typeof url === "function") {
       url = url();
@@ -443,7 +443,7 @@
   }
   var Consumer;
   var init_consumer = __esm({
-    "node_modules/@rails/actioncable/src/consumer.js"() {
+    "../../node_modules/@rails/actioncable/src/consumer.js"() {
       init_connection();
       init_subscriptions();
       Consumer = class {
@@ -473,7 +473,7 @@
     }
   });
 
-  // node_modules/@rails/actioncable/src/index.js
+  // ../../node_modules/@rails/actioncable/src/index.js
   var src_exports = {};
   __export(src_exports, {
     Connection: () => connection_default,
@@ -498,7 +498,7 @@
     }
   }
   var init_src = __esm({
-    "node_modules/@rails/actioncable/src/index.js"() {
+    "../../node_modules/@rails/actioncable/src/index.js"() {
       init_connection();
       init_connection_monitor();
       init_consumer();
@@ -510,7 +510,7 @@
     }
   });
 
-  // node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js
+  // ../../node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js
   (function() {
     if (window.Reflect === void 0 || window.customElements === void 0 || window.customElements.polyfillWrapFlushCallback) {
       return;
@@ -3540,7 +3540,7 @@
   window.Turbo = Turbo;
   start();
 
-  // node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable.js
+  // ../../node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable.js
   var consumer;
   async function getConsumer() {
     return consumer || setConsumer(createConsumer2().then(setConsumer));
@@ -3557,7 +3557,7 @@
     return subscriptions.create(channel, mixin);
   }
 
-  // node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable_stream_source_element.js
+  // ../../node_modules/@hotwired/turbo-rails/app/javascript/turbo/cable_stream_source_element.js
   var TurboCableStreamSourceElement = class extends HTMLElement {
     async connectedCallback() {
       connectStreamSource(this);
@@ -3580,7 +3580,7 @@
   };
   customElements.define("turbo-cable-stream-source", TurboCableStreamSourceElement);
 
-  // node_modules/@hotwired/stimulus/dist/stimulus.js
+  // ../../node_modules/@hotwired/stimulus/dist/stimulus.js
   var EventListener = class {
     constructor(eventTarget, eventName, eventOptions) {
       this.eventTarget = eventTarget;
@@ -5446,15 +5446,14 @@
   Controller.targets = [];
   Controller.values = {};
 
-  // app/javascript/controllers/application.js
-  var application = Application.start();
-  application.warnings = true;
-  application.debug = false;
-  window.Stimulus = application;
-
-  // app/javascript/controllers/configs_controller.js
+  // controllers/configs_controller.js
+  var configs_controller_exports = {};
+  __export(configs_controller_exports, {
+    default: () => configs_controller_default
+  });
   var configs_controller_default = class extends Controller {
     connect() {
+      document.delayFooterAppearance();
       this.goToAnchor();
     }
     goToAnchor() {
@@ -5464,9 +5463,14 @@
   };
   __publicField(configs_controller_default, "targets", ["tabGroup"]);
 
-  // app/javascript/controllers/reading_list_controller.js
+  // controllers/reading_list_controller.js
+  var reading_list_controller_exports = {};
+  __export(reading_list_controller_exports, {
+    default: () => reading_list_controller_default
+  });
   var reading_list_controller_default = class extends Controller {
     connect() {
+      document.delayFooterAppearance();
       this.resetOptions();
       this.goToAnchor();
     }
@@ -5625,11 +5629,34 @@
   };
   __publicField(reading_list_controller_default, "targets", ["container", "filters", "table", "plannedTable"]);
 
-  // app/javascript/controllers/index.js
-  application.register("configs", configs_controller_default);
-  application.register("reading-list", reading_list_controller_default);
+  // rails:/home/felipe/working/plainreading/app/javascript/controllers/*_controller.js
+  var modules = [{ name: "controllers--configs", module: configs_controller_exports, filename: "./controllers/configs_controller.js" }, { name: "controllers--reading-list", module: reading_list_controller_exports, filename: "./controllers/reading_list_controller.js" }];
+  var controller_default = modules;
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.GADG7AUG.js
+  // stimulus-setup.js
+  var application = Application.start();
+  application.warnings = true;
+  application.debug = false;
+  window.Stimulus = application;
+  namePrefix = "controllers--";
+  controller_default.forEach((controller) => {
+    console.log(controller.name.substring(namePrefix.length));
+    application.register(controller.name.substring(namePrefix.length), controller.module.default);
+  });
+  document.addEventListener("turbo:before-cache", () => {
+    document.querySelector("main.container").style.visibility = "hidden";
+    document.querySelector("footer").style.visibility = "hidden";
+  });
+  document.delayFooterAppearance = () => {
+    document.querySelector("footer").style.visibility = "hidden";
+    let aWhile = 10;
+    let resetFooter = function() {
+      document.querySelector("footer").style.visibility = "visible";
+    };
+    setTimeout(resetFooter, aWhile);
+  };
+
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.GADG7AUG.js
   function getBoundingClientRect(element) {
     var rect = element.getBoundingClientRect();
     return {
@@ -6907,7 +6934,7 @@
     defaultModifiers
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.IHGPZX35.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.IHGPZX35.js
   var __create = Object.create;
   var __defProp2 = Object.defineProperty;
   var __defProps = Object.defineProperties;
@@ -6960,7 +6987,7 @@
     return result;
   };
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.NVGT36PI.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.NVGT36PI.js
   function animateTo(el, keyframes, options) {
     return new Promise(async (resolve) => {
       if ((options == null ? void 0 : options.duration) === Infinity) {
@@ -7003,7 +7030,7 @@
     }));
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.EVK2ASE6.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.EVK2ASE6.js
   var defaultAnimationRegistry = new Map();
   var customAnimationRegistry = new WeakMap();
   function ensureAnimation(animation) {
@@ -7027,7 +7054,7 @@
     };
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.2JQPDYNA.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.2JQPDYNA.js
   var t = { ATTRIBUTE: 1, CHILD: 2, PROPERTY: 3, BOOLEAN_ATTRIBUTE: 4, EVENT: 5, ELEMENT: 6 };
   var e = (t23) => (...e24) => ({ _$litDirective$: t23, values: e24 });
   var i = class {
@@ -7047,7 +7074,7 @@
     }
   };
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.X3WLUTHF.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.X3WLUTHF.js
   var t2 = window.ShadowRoot && (window.ShadyCSS === void 0 || window.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype;
   var e2 = Symbol();
   var n = new Map();
@@ -7611,7 +7638,7 @@
   n4.finalized = true, n4._$litElement$ = true, (l2 = globalThis.litElementHydrateSupport) === null || l2 === void 0 || l2.call(globalThis, { LitElement: n4 }), (o4 = globalThis.litElementPolyfillSupport) === null || o4 === void 0 || o4.call(globalThis, { LitElement: n4 });
   ((r4 = globalThis.litElementVersions) !== null && r4 !== void 0 ? r4 : globalThis.litElementVersions = []).push("3.0.0");
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.JTSEMIY7.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.JTSEMIY7.js
   var o5 = e(class extends i {
     constructor(t23) {
       var i25;
@@ -7641,7 +7668,7 @@
     }
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.BD26TKS4.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.BD26TKS4.js
   function watch(propName, options) {
     return (protoOrDescriptor, name) => {
       const { update } = protoOrDescriptor;
@@ -7661,7 +7688,7 @@
     };
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.I4TE3TJV.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.I4TE3TJV.js
   function emit(el, name, options) {
     const event = new CustomEvent(name, Object.assign({
       bubbles: true,
@@ -7684,7 +7711,7 @@
     });
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.G466JWVF.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.G466JWVF.js
   var utility_styles_default = r`
   .sl-scroll-lock {
     overflow: hidden !important;
@@ -7726,7 +7753,7 @@
   style.textContent = utility_styles_default.toString();
   document.head.append(style);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.L2RLCVJQ.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.L2RLCVJQ.js
   var n5 = (n22) => (e33) => typeof e33 == "function" ? ((n32, e42) => (window.customElements.define(n32, e42), e42))(n22, e33) : ((n32, e42) => {
     const { kind: t23, elements: i32 } = e42;
     return { kind: t23, elements: i32, finisher(e5) {
@@ -7784,7 +7811,7 @@
     }, enumerable: true, configurable: true }) });
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.CEQRM34I.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.CEQRM34I.js
   var tooltip_styles_default = r`
   ${component_styles_default}
 
@@ -8183,7 +8210,7 @@
     options: { duration: 150, easing: "ease" }
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.R2VDRJDM.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.R2VDRJDM.js
   var skeleton_styles_default = r`
   ${component_styles_default}
 
@@ -8271,7 +8298,7 @@
     n5("sl-skeleton")
   ], SlSkeleton);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.PDRHYLLG.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.PDRHYLLG.js
   var r5 = (o8) => o8.strings === void 0;
   var f2 = {};
   var s4 = (o8, i25 = f2) => o8._$AH = i25;
@@ -8301,10 +8328,10 @@
     }
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.SJSINRNQ.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.SJSINRNQ.js
   var l4 = (l22) => l22 != null ? l22 : x;
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.YTV73MAM.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.YTV73MAM.js
   var hasFocusVisible = (() => {
     const style2 = document.createElement("style");
     let isSupported;
@@ -8321,7 +8348,7 @@
   })();
   var focusVisibleSelector = o(hasFocusVisible ? ":focus-visible" : ":focus");
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.OGFJOV5J.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.OGFJOV5J.js
   var switch_styles_default = r`
   ${component_styles_default}
 
@@ -8596,7 +8623,7 @@
     n5("sl-switch")
   ], SlSwitch);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.DFSTU6BZ.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.DFSTU6BZ.js
   var tab_styles_default = r`
   ${component_styles_default}
 
@@ -8725,7 +8752,7 @@
     n5("sl-tab")
   ], SlTab);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.XAZN5AQ5.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.XAZN5AQ5.js
   function getOffset(element, parent) {
     return {
       top: Math.round(element.getBoundingClientRect().top - parent.getBoundingClientRect().top),
@@ -8767,7 +8794,7 @@
     }
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.CK3QYPJ3.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.CK3QYPJ3.js
   var tab_group_styles_default = r`
   ${component_styles_default}
 
@@ -9271,7 +9298,7 @@
     n5("sl-tab-group")
   ], SlTabGroup);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.7YRP3T4X.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.7YRP3T4X.js
   var tab_panel_styles_default = r`
   ${component_styles_default}
 
@@ -9324,7 +9351,7 @@
     n5("sl-tab-panel")
   ], SlTabPanel);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.CXC6WMS2.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.CXC6WMS2.js
   var renderFormControl = (props, input) => {
     const hasLabel = props.label ? true : !!props.hasLabelSlot;
     const hasHelpText = props.helpText ? true : !!props.hasHelpTextSlot;
@@ -9422,7 +9449,7 @@
   }
 `;
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.IBDZI3K2.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.IBDZI3K2.js
   function getTextContent(slot) {
     const nodes = slot ? slot.assignedNodes({ flatten: true }) : [];
     let text = "";
@@ -9451,7 +9478,7 @@
     });
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ODFJNWIR.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ODFJNWIR.js
   var textarea_styles_default = r`
   ${component_styles_default}
   ${form_control_styles_default}
@@ -9907,7 +9934,7 @@
     n5("sl-textarea")
   ], SlTextarea);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.VCOHQHQN.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.VCOHQHQN.js
   var radio_styles_default = r`
   ${component_styles_default}
 
@@ -10167,7 +10194,7 @@
     n5("sl-radio")
   ], SlRadio);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.OZBPYNIL.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.OZBPYNIL.js
   var radio_group_styles_default = r`
   ${component_styles_default}
 
@@ -10259,7 +10286,7 @@
     n5("sl-radio-group")
   ], SlRadioGroup);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.QM24T5RN.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.QM24T5RN.js
   var range_styles_default = r`
   ${component_styles_default}
   ${form_control_styles_default}
@@ -10679,7 +10706,7 @@
     n5("sl-range")
   ], SlRange);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.T56CG5BM.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.T56CG5BM.js
   function clamp2(value, min2, max2) {
     if (value < min2)
       return min2;
@@ -10688,7 +10715,7 @@
     return value;
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.LYXFR7WN.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.LYXFR7WN.js
   var i24 = e(class extends i {
     constructor(t23) {
       var e24;
@@ -10720,7 +10747,7 @@
     }
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.S6TJZ6NJ.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.S6TJZ6NJ.js
   var basePath = "";
   function setBasePath(path) {
     basePath = path;
@@ -10741,14 +10768,14 @@
     setBasePath(path.split("/").slice(0, -1).join("/"));
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.FGIYSBZ6.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.FGIYSBZ6.js
   var library = {
     name: "default",
     resolver: (name) => `${getBasePath()}/assets/icons/${name}.svg`
   };
   var library_default_default = library;
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.HEOUBJ7T.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.HEOUBJ7T.js
   var icons = {
     check: `
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -10836,7 +10863,7 @@
   };
   var library_system_default = systemLibrary;
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.S67EMIEU.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.S67EMIEU.js
   var registry = [library_default_default, library_system_default];
   var watchedIcons = [];
   function watchIcon(icon) {
@@ -10849,7 +10876,7 @@
     return registry.filter((lib) => lib.name === name)[0];
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ARRH633M.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ARRH633M.js
   var iconFiles = new Map();
   var requestIcon = (url) => {
     if (iconFiles.has(url)) {
@@ -10878,7 +10905,7 @@
     }
   };
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.JLHSNTW6.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.JLHSNTW6.js
   var e32 = class extends i {
     constructor(i25) {
       if (super(i25), this.it = x, i25.type !== t.CHILD)
@@ -11026,7 +11053,7 @@
     n5("sl-icon")
   ], SlIcon);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.RH5RR2TD.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.RH5RR2TD.js
   var rating_styles_default = r`
   ${component_styles_default}
 
@@ -11298,7 +11325,7 @@
     n5("sl-rating")
   ], SlRating);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.RT3QLC6D.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.RT3QLC6D.js
   var SlRelativeTime = class extends n4 {
     constructor() {
       super(...arguments);
@@ -11403,7 +11430,7 @@
     n5("sl-relative-time")
   ], SlRelativeTime);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.YMX4WALY.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.YMX4WALY.js
   var resize_observer_styles_default = r`
   ${component_styles_default}
 
@@ -11472,7 +11499,7 @@
     n5("sl-resize-observer")
   ], SlResizeObserver);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ZMQMZPLA.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ZMQMZPLA.js
   var responsive_media_styles_default = r`
   ${component_styles_default}
 
@@ -11542,7 +11569,7 @@
     n5("sl-responsive-media")
   ], SlResponsiveMedia);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.3YP5KPYK.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.3YP5KPYK.js
   var select_styles_default = r`
   ${component_styles_default}
   ${form_control_styles_default}
@@ -12309,7 +12336,7 @@
     n5("sl-select")
   ], SlSelect);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.SVWSLRKI.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.SVWSLRKI.js
   var tag_styles_default = r`
   ${component_styles_default}
 
@@ -12481,7 +12508,7 @@
     n5("sl-tag")
   ], SlTag);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.FZBYA2RV.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.FZBYA2RV.js
   var menu_styles_default = r`
   ${component_styles_default}
 
@@ -12631,7 +12658,7 @@
     n5("sl-menu")
   ], SlMenu);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.X6WUEP6W.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.X6WUEP6W.js
   var menu_item_styles_default = r`
   ${component_styles_default}
 
@@ -12784,7 +12811,7 @@
     n5("sl-menu-item")
   ], SlMenuItem);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.MP4EJCD7.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.MP4EJCD7.js
   var menu_label_styles_default = r`
   ${component_styles_default}
 
@@ -12817,7 +12844,7 @@
     n5("sl-menu-label")
   ], SlMenuLabel);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.GWR76YOE.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.GWR76YOE.js
   var mutation_observer_styles_default = r`
   ${component_styles_default}
 
@@ -12917,7 +12944,7 @@
     n5("sl-mutation-observer")
   ], SlMutationObserver);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.WJG7TPMD.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.WJG7TPMD.js
   var progress_bar_styles_default = r`
   ${component_styles_default}
 
@@ -13019,7 +13046,7 @@
     n5("sl-progress-bar")
   ], SlProgressBar);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.5OWHYIPT.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.5OWHYIPT.js
   var progress_ring_styles_default = r`
   ${component_styles_default}
 
@@ -13139,7 +13166,7 @@
     n5("sl-progress-ring")
   ], SlProgressRing);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.XPSJUSOQ.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.XPSJUSOQ.js
   var G = null;
   var H2 = class {
   };
@@ -13924,7 +13951,7 @@
     n5("sl-qr-code")
   ], SlQrCode);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.3QVVXEOR.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.3QVVXEOR.js
   var image_comparer_styles_default = r`
   ${component_styles_default}
 
@@ -14111,7 +14138,7 @@
     n5("sl-image-comparer")
   ], SlImageComparer);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.DTM5B7PO.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.DTM5B7PO.js
   var includeFiles = new Map();
   var requestInclude = async (src, mode = "cors") => {
     if (includeFiles.has(src)) {
@@ -14129,7 +14156,7 @@
     }
   };
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.JPVERGSU.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.JPVERGSU.js
   var include_styles_default = r`
   ${component_styles_default}
 
@@ -14193,7 +14220,7 @@
     n5("sl-include")
   ], SlInclude);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.FBWBXHYE.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.FBWBXHYE.js
   var divider_styles_default = r`
   ${component_styles_default}
 
@@ -14246,7 +14273,7 @@
     n5("sl-divider")
   ], SlDivider);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.DTSUHNT6.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.DTSUHNT6.js
   function isTabbable(el) {
     const tag = el.tagName.toLowerCase();
     if (el.getAttribute("tabindex") === "-1") {
@@ -14295,7 +14322,7 @@
     return { start: start3, end: end2 };
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.P4ITZG26.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.P4ITZG26.js
   function isPreventScrollSupported() {
     let supported = false;
     document.createElement("div").focus({
@@ -14346,7 +14373,7 @@
   };
   var modal_default = Modal;
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.MVU6JTZ5.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.MVU6JTZ5.js
   function uppercaseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
@@ -14758,7 +14785,7 @@
     options: { duration: 250 }
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.QL7TFEQJ.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.QL7TFEQJ.js
   var form_styles_default = r`
   ${component_styles_default}
 
@@ -14971,7 +14998,7 @@
     n5("sl-form")
   ], SlForm);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.N3LBHWG7.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.N3LBHWG7.js
   function formatBytes(bytes, options) {
     options = Object.assign({
       unit: "bytes",
@@ -15016,7 +15043,7 @@
     n5("sl-format-bytes")
   ], SlFormatBytes);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.3HVYS55R.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.3HVYS55R.js
   var SlFormatDate = class extends n4 {
     constructor() {
       super(...arguments);
@@ -15087,7 +15114,7 @@
     n5("sl-format-date")
   ], SlFormatDate);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.AQLVB734.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.AQLVB734.js
   var SlFormatNumber = class extends n4 {
     constructor() {
       super(...arguments);
@@ -15151,7 +15178,7 @@
     n5("sl-format-number")
   ], SlFormatNumber);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.AJPCCIUW.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.AJPCCIUW.js
   var breadcrumb_item_styles_default = r`
   ${component_styles_default}
 
@@ -15306,7 +15333,7 @@
     n5("sl-breadcrumb-item")
   ], SlBreadcrumbItem);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.LXQRNSEM.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.LXQRNSEM.js
   var card_styles_default = r`
   ${component_styles_default}
 
@@ -15422,7 +15449,7 @@
     n5("sl-card")
   ], SlCard);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.BWSRDZWU.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.BWSRDZWU.js
   var checkbox_styles_default = r`
   ${component_styles_default}
 
@@ -15688,7 +15715,7 @@
     n5("sl-checkbox")
   ], SlCheckbox);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.IBWS4CII.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.IBWS4CII.js
   var require_color_name = __commonJS({
     "node_modules/color-name/index.js"(exports, module) {
       "use strict";
@@ -18244,7 +18271,7 @@
     n5("sl-color-picker")
   ], SlColorPicker);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.PSLL7PDN.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.PSLL7PDN.js
   var input_styles_default = r`
   ${component_styles_default}
   ${form_control_styles_default}
@@ -18844,7 +18871,7 @@
     n5("sl-input")
   ], SlInput);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.YSAZ2NRU.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.YSAZ2NRU.js
   var dropdown_styles_default = r`
   ${component_styles_default}
 
@@ -19234,7 +19261,7 @@
     options: { duration: 150, easing: "ease" }
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ZTLESLPR.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ZTLESLPR.js
   var button_styles_default = r`
   ${component_styles_default}
 
@@ -20089,7 +20116,7 @@
     n5("sl-button")
   ], SlButton);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.4W7IZJQJ.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.4W7IZJQJ.js
   var spinner_styles_default = r`
   ${component_styles_default}
 
@@ -20165,7 +20192,7 @@
     n5("sl-spinner")
   ], SlSpinner);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.UBBO3XSS.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.UBBO3XSS.js
   var button_group_styles_default = r`
   ${component_styles_default}
 
@@ -20243,7 +20270,7 @@
     return el.tagName.toLowerCase() === "sl-button" ? el : el.querySelector("sl-button");
   }
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.CHUKLK5E.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.CHUKLK5E.js
   var details_styles_default = r`
   ${component_styles_default}
 
@@ -20464,7 +20491,7 @@
     options: { duration: 250, easing: "linear" }
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.S437OBPC.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.S437OBPC.js
   var dialog_styles_default = r`
   ${component_styles_default}
 
@@ -20778,7 +20805,7 @@
     options: { duration: 250 }
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.MZZ5CQV2.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.MZZ5CQV2.js
   var alert_styles_default = r`
   ${component_styles_default}
 
@@ -21034,7 +21061,7 @@
     options: { duration: 250, easing: "ease" }
   });
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.OBQZMEYB.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.OBQZMEYB.js
   var icon_button_styles_default = r`
   ${component_styles_default}
 
@@ -21158,7 +21185,7 @@
     n5("sl-icon-button")
   ], SlIconButton);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.P3C2CSPZ.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.P3C2CSPZ.js
   var animated_image_styles_default = r`
   ${component_styles_default}
 
@@ -21300,7 +21327,7 @@
     n5("sl-animated-image")
   ], SlAnimatedImage);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ZRVM725B.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.ZRVM725B.js
   var dist_exports = {};
   __export2(dist_exports, {
     backInDown: () => backInDown,
@@ -22064,7 +22091,7 @@
     easeInOutBack: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
   };
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.E74XTVO2.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.E74XTVO2.js
   var animation_styles_default = r`
   ${component_styles_default}
 
@@ -22260,7 +22287,7 @@
     n5("sl-animation")
   ], SlAnimation);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.2RKFFWHG.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.2RKFFWHG.js
   var badge_styles_default = r`
   ${component_styles_default}
 
@@ -22394,7 +22421,7 @@
     n5("sl-badge")
   ], SlBadge);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.2NRYR2GU.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.2NRYR2GU.js
   var breadcrumb_styles_default = r`
   ${component_styles_default}
 
@@ -22456,7 +22483,7 @@
     n5("sl-breadcrumb")
   ], SlBreadcrumb);
 
-  // node_modules/@shoelace-style/shoelace/dist/chunks/chunk.RQBWTREG.js
+  // ../../node_modules/@shoelace-style/shoelace/dist/chunks/chunk.RQBWTREG.js
   var avatar_styles_default = r`
   ${component_styles_default}
 
@@ -22578,8 +22605,8 @@
     n5("sl-avatar")
   ], SlAvatar);
 
-  // app/javascript/application.js
-  setBasePath("./shoelace/dist/");
+  // application.js
+  setBasePath("https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.60/dist/");
 })();
 /**
  * @license

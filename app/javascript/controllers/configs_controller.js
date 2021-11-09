@@ -1,7 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-console.log("controllers.")
-
 // Connects to data-controller="configs"
 export default class extends Controller {
   static targets = [ "tabGroup" ]
@@ -9,10 +7,6 @@ export default class extends Controller {
   connect() {
     document.delayFooterAppearance()
     this.goToAnchor()
-  }
-
-  teardown() {
-    document.querySelector("sl-tab-group").style.visibility = "hidden"
   }
 
   // shows the config tab indicated by the URL's anchor (if any).

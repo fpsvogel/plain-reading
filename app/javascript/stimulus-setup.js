@@ -7,18 +7,19 @@ window.Stimulus      = application
 export { application }
 
 // globs work because of https://github.com/excid3/esbuild-rails
-import controllers from "./controllers/*_controller.js"
+namePrefix = "controllers--"
+import controllers from `./controllers/*_controller.js`
 controllers.forEach(controller => {
-  application.register(controller.name, controller.module.default)
+  console.log(controller.name.substring(namePrefix.length))
+  application.register(controller.name.substring(namePrefix.length),
+                      controller.module.default)
 })
 
 // hides the content so that Shoelace components don't flicker on page load.
 // based on https://www.betterstimulus.com/turbolinks/teardown.html
 document.addEventListener('turbo:before-cache', () => {
-  application.controllers.forEach(controller => {
-    document.querySelector("main.container").style.visibility = "hidden"
-    document.querySelector("footer").style.visibility = "hidden"
-  })
+  document.querySelector("main.container").style.visibility = "hidden"
+  document.querySelector("footer").style.visibility = "hidden"
 })
 
 // called in each controller's connect().
