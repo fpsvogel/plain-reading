@@ -6,11 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.57/dist/themes/dark.css">
+    <link rel="stylesheet" href="https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.60/dist/themes/dark.css">
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
   <body>
     <%= render partial: "shared/navbar" %>

@@ -4,8 +4,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "container", "filters", "table", "plannedTable" ]
 
-  // runs on page load.
   connect() {
+    document.delayFooterAppearance()
     this.resetOptions()
     this.goToAnchor()
   }

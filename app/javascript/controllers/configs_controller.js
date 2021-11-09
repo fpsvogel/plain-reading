@@ -7,6 +7,7 @@ export default class extends Controller {
   static targets = [ "tabGroup" ]
 
   connect() {
+    document.delayFooterAppearance()
     this.goToAnchor()
   }
 
