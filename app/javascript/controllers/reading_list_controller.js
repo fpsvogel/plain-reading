@@ -4,16 +4,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "container", "filters", "table", "plannedTable" ]
 
-  // runs on page load.
   connect() {
+    document.delayFooterAppearance()
     this.resetOptions()
     this.goToAnchor()
-  }
-
-  disconnect() {
-    // this.containerTarget.querySelector("sl-tab-group").style.visibility = "hidden"
-    document.querySelector("main.container").display = "none"
-    document.querySelector("footer").display = "none"
   }
 
   // resets sort and filters.
