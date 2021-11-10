@@ -72,7 +72,7 @@ gem "sorcery"
 gem "sidekiq"
 
 # Dropbox API [https://github.com/Jesus/dropbox_api/]
-gem "dropbox_api", "~> 0.1.19"
+gem "dropbox_api", "0.1.19"
 
 # CSV reading log parsing [https://github.com/fpsvogel/reading-csv]
 gem "reading-csv"

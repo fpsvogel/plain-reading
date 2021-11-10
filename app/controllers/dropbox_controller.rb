@@ -8,6 +8,7 @@ class DropboxController < ApplicationController
   # GET /dropbox/auth_callback?code=VofXAX8DO1sAAAAAAAACUKBwkDZyMg1zKT0f_FNONeA
   def auth_callback
     token = MyDropboxToken.from_code(self.class.authenticator, params[:code], redirect_uri: redirect_uri)
+    token.current_user = current_user
     token.save!
     current_user.list.items.destroy_all
     redirect_to settings_path + "#sync", notice: "Successfully connected your Dropbox account. If your reading.csv file is in a Dropbox subfolder, set its path in Settings ⇨ Sync. Your previously loaded list (if any) has been cleared."
