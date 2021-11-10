@@ -1,4 +1,4 @@
-class CreateExperiences < ActiveRecord::Migration
+class CreateExperiences < ActiveRecord::Migration[7.0]
   def change
     create_table :experiences do |t|
       t.date :date_added

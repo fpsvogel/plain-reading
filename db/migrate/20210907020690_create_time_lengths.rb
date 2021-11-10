@@ -1,4 +1,4 @@
-class CreateTimeLengths < ActiveRecord::Migration
+class CreateTimeLengths < ActiveRecord::Migration[7.0]
   def change
     create_table :time_lengths do |t|
       t.float :hours
