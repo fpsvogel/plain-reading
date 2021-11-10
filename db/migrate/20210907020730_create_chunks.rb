@@ -1,4 +1,4 @@
-class CreateChunks < ActiveRecord::Migration[6.1]
+class CreateChunks < ActiveRecord::Migration
   def change
     create_table :chunks do |t|
       t.integer :amount_pages

@@ -1,9 +1,11 @@
 class Item < ApplicationRecord
   belongs_to :list
-  has_and_belongs_to_many :series
+  has_many :series, dependent: :destroy
   has_many :variants, dependent: :destroy
   has_many :experiences, dependent: :destroy
   has_and_belongs_to_many :genres
+  # has_many :item_genres
+  # has_many :genres, through: :item_genres
   has_one :view_variant, -> {where view: true}, class_name: "Variant"
   has_one :view_format, through: :view_variant, source: :format, dependent: :nullify, class_name: "Format"
 
@@ -18,7 +20,7 @@ class Item < ApplicationRecord
   validates :title,
     presence: true
 
-  # TODO invalidate this cache, when Settings is changed
+  # this attribute is set to nil when Settings are changed.
   def view_rating
     return read_attribute(:view_rating) unless read_attribute(:view_rating).nil?
     if list.user.csv_config.show_stars_as_rating?
@@ -38,7 +40,7 @@ class Item < ApplicationRecord
     read_attribute(:view_rating)
   end
 
-  # TODO invalidate this cache, when Settings is changed
+  # this attribute is set to nil when Settings are changed.
   def view_type
     return read_attribute(:view_type) unless read_attribute(:view_type).nil?
     if list.user.visibility_configs.find_by(level: VisibilityConfig::LEVELS[:public]).formats_visible
@@ -56,7 +58,7 @@ class Item < ApplicationRecord
       CsvConfig::IN_PROGRESS_LABEL
   end
 
-  # TODO invalidate this cache, when Settings is changed
+  # this attribute is set to nil when Settings are changed.
   def group_experiences
     return read_attribute(:group_experiences) unless read_attribute(:group_experiences).nil?
     self.group_experiences = experiences.map { |experience| experience.group }.compact.presence
@@ -95,12 +97,11 @@ class Item < ApplicationRecord
     end
   end
 
-  # TODO load all of this user's Formats, Sources
   def load_hash_variants(data, user_formats = nil, user_sources = nil)
     data[:variants].each do |variants_hash|
       # TODO why do I need item_id here? what if I do variants.new?
       new_variant = variants.build(item_id: id)
-      if user_formats.nil?
+      if user_formats.nil? # RM after refactor. see List#load_items
         new_variant.format = Format.find_by(name: variants_hash[:format])
       else
         new_variant.format = user_formats.find do |user_format|
@@ -108,9 +109,9 @@ class Item < ApplicationRecord
         end
       end
       variants_hash[:sources].each do |source_hash|
-        if user_sources.nil?
+        if user_sources.nil? # RM after refactor. see List#load_items
           existing_source = Source.find_by(name: source_hash[:name],
-                                           url: source_hash[:url])
+                                          url: source_hash[:url])
         else
           existing_source = user_sources.find do |user_source|
             user_source.name == source_hash[:name] && user_source.url == source_hash[:url]
@@ -149,10 +150,9 @@ class Item < ApplicationRecord
     self.planned = experiences.none? { |experience| experience.date_started || experience.date_finished }
   end
 
-  # TODO load all of this user's Genres
   def load_hash_genres(data, user_genres = nil)
     data[:genres].each do |genre_string|
-      if user_genres.nil?
+      if user_genres.nil? # RM after refactor. see List#load_items
         existing_genre = Genre.find_by(name: genre_string)
       else
         existing_genre = user_genres.find do |user_genre|
@@ -163,12 +163,12 @@ class Item < ApplicationRecord
         self.genres << existing_genre
       else
         new_genre = self.genres.build(name: genre_string)
-        user_genres << new_genre
+        user_genres << new_genre unless user_genres.nil?
       end
     end
   end
 
-  # TODO use the preloaded user Formats
+  # TODO add variants to the refactor.
   def set_view_attributes(data, user_formats = nil)
     first_isbn, format, extra_info =
       data[:variants].map do |variant|
@@ -196,7 +196,7 @@ class Item < ApplicationRecord
     self.view_name = "#{author + " – " if author}#{title}" +
                      "#{" 〜 " + (series_and_extras).join(" 〜 ") unless series_and_extras.empty?}"
     self.view_date_finished = data[:experiences].last&.dig(:date_finished)&.gsub("/", "-")
-    if user_formats.nil?
+    if user_formats.nil? # RM after refactor. see List#load_items
       self.view_format = Format.find_by(name: format)
     else
       self.view_format = user_formats.find do |user_format|

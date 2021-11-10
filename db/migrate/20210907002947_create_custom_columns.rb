@@ -1,4 +1,4 @@
-class CreateCustomColumns < ActiveRecord::Migration[6.1]
+class CreateCustomColumns < ActiveRecord::Migration
   def change
     create_table :custom_columns do |t|
       t.string :name

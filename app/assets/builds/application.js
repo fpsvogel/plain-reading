@@ -5453,7 +5453,6 @@
   });
   var configs_controller_default = class extends Controller {
     connect() {
-      document.delayFooterAppearance();
       this.goToAnchor();
     }
     goToAnchor() {
@@ -5470,7 +5469,6 @@
   });
   var reading_list_controller_default = class extends Controller {
     connect() {
-      document.delayFooterAppearance();
       this.resetOptions();
       this.goToAnchor();
     }
@@ -5640,13 +5638,35 @@
   window.Stimulus = application;
   namePrefix = "controllers--";
   controller_default.forEach((controller) => {
-    console.log(controller.name.substring(namePrefix.length));
     application.register(controller.name.substring(namePrefix.length), controller.module.default);
   });
   document.addEventListener("turbo:before-cache", () => {
+    if (document.querySelector("sl-tab-group")) {
+      document.hideContentBeforeCache();
+    }
+  });
+  document.hideContentBeforeCache = () => {
     document.querySelector("main.container").style.visibility = "hidden";
     document.querySelector("footer").style.visibility = "hidden";
+  };
+  document.addEventListener("turbo:load", () => {
+    document.adjustForShoelaceComponents();
   });
+  document.adjustForShoelaceComponents = () => {
+    if (document.querySelector("sl-tab-group")) {
+      document.unhideContentOnRestoration();
+      document.delayFooterAppearance();
+    }
+  };
+  document.unhideContentOnRestoration = () => {
+    if (!document.isPreview()) {
+      document.querySelector("main.container").style.visibility = "visible";
+      document.querySelector("footer").style.visibility = "visible";
+    }
+  };
+  document.isPreview = () => {
+    return document.documentElement.hasAttribute("data-turbo-preview");
+  };
   document.delayFooterAppearance = () => {
     document.querySelector("footer").style.visibility = "hidden";
     let aWhile = 10;

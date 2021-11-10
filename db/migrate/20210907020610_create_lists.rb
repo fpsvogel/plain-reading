@@ -1,4 +1,4 @@
-class CreateLists < ActiveRecord::Migration[6.1]
+class CreateLists < ActiveRecord::Migration
   def change
     create_table :lists do |t|
       t.text :load_errors

@@ -1,4 +1,4 @@
-class CreateCsvConfigs < ActiveRecord::Migration[6.1]
+class CreateCsvConfigs < ActiveRecord::Migration
   def change
     create_table :csv_configs do |t|
       t.integer :maximum_rating

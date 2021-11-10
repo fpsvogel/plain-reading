@@ -5,7 +5,6 @@ export default class extends Controller {
   static targets = [ "container", "filters", "table", "plannedTable" ]
 
   connect() {
-    document.delayFooterAppearance()
     this.resetOptions()
     this.goToAnchor()
   }

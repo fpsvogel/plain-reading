@@ -38,7 +38,7 @@ class CsvConfig < ApplicationRecord
   attribute :reverse_dates,
             default: false
   attribute :skip_compact_planned,
-            default: false
+            default: true # TODO default to false (true is more convenient for my testing)
 
   def show_sort?
     show_sort

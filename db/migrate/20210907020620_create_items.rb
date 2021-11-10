@@ -1,4 +1,4 @@
-class CreateItems < ActiveRecord::Migration[6.1]
+class CreateItems < ActiveRecord::Migration
   def change
     create_table :items do |t|
       t.float :rating

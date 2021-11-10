@@ -2,6 +2,8 @@ class Variant < ApplicationRecord
   belongs_to :item
   belongs_to :format, optional: true
   has_and_belongs_to_many :sources
+  # has_many :variant_sources
+  # has_many :sources, through: :variant_sources
   belongs_to :length, optional: true, polymorphic: true
   # TODO: ideally the associations with :format and :length would be reversed.
   # has_one :format (and in Format, belongs_to_many :variants)

@@ -1,27 +1,19 @@
-class CreateSources < ActiveRecord::Migration[6.1]
+class CreateSources < ActiveRecord::Migration
   def change
     create_table :sources do |t|
       t.string :name
       t.string :url
-      # t.references :variant, null: false, foreign_key: true
 
       t.timestamps
     end
 
     add_index :sources, :name
     add_index :sources, :url
+    add_index :sources, [:name, :url], unique: true
 
-    # TODO why do I need both of these join tables for HABTM? in the Rails
-    # Guides there's only one. but when I have only one, there's a DB error
-    # either in creating or destroying an item, depending on which is omitted.
-    create_table :variants_sources, id: false do |t|
-      t.belongs_to :variant
-      t.belongs_to :source
-    end
-
-    create_table :sources_variants, id: false do |t|
-      t.belongs_to :source
-      t.belongs_to :variant
+    create_join_table :variants, :sources do |t|
+      t.index :variant_id
+      t.index :source_id
     end
   end
 end

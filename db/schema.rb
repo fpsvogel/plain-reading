@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
   end
 
   create_table "genres_items", id: false, force: :cascade do |t|
-    t.bigint "genre_id"
-    t.bigint "item_id"
+    t.bigint "item_id", null: false
+    t.bigint "genre_id", null: false
     t.index ["genre_id"], name: "index_genres_items_on_genre_id"
     t.index ["item_id"], name: "index_genres_items_on_item_id"
   end
@@ -145,20 +145,6 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.index ["visibility"], name: "index_items_on_visibility"
   end
 
-  create_table "items_genres", id: false, force: :cascade do |t|
-    t.bigint "item_id"
-    t.bigint "genre_id"
-    t.index ["genre_id"], name: "index_items_genres_on_genre_id"
-    t.index ["item_id"], name: "index_items_genres_on_item_id"
-  end
-
-  create_table "items_series", id: false, force: :cascade do |t|
-    t.bigint "item_id"
-    t.bigint "series_id"
-    t.index ["item_id"], name: "index_items_series_on_item_id"
-    t.index ["series_id"], name: "index_items_series_on_series_id"
-  end
-
   create_table "lists", force: :cascade do |t|
     t.text "load_errors"
     t.bigint "user_id", null: false
@@ -178,16 +164,11 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
   create_table "series", force: :cascade do |t|
     t.string "name"
     t.integer "volume"
+    t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_series_on_item_id"
     t.index ["name"], name: "index_series_on_name"
-  end
-
-  create_table "series_items", id: false, force: :cascade do |t|
-    t.bigint "series_id"
-    t.bigint "item_id"
-    t.index ["item_id"], name: "index_series_items_on_item_id"
-    t.index ["series_id"], name: "index_series_items_on_series_id"
   end
 
   create_table "sources", force: :cascade do |t|
@@ -195,13 +176,14 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "url"], name: "index_sources_on_name_and_url", unique: true
     t.index ["name"], name: "index_sources_on_name"
     t.index ["url"], name: "index_sources_on_url"
   end
 
   create_table "sources_variants", id: false, force: :cascade do |t|
-    t.bigint "source_id"
-    t.bigint "variant_id"
+    t.bigint "variant_id", null: false
+    t.bigint "source_id", null: false
     t.index ["source_id"], name: "index_sources_variants_on_source_id"
     t.index ["variant_id"], name: "index_sources_variants_on_variant_id"
   end
@@ -252,13 +234,6 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.index ["view"], name: "index_variants_on_view"
   end
 
-  create_table "variants_sources", id: false, force: :cascade do |t|
-    t.bigint "variant_id"
-    t.bigint "source_id"
-    t.index ["source_id"], name: "index_variants_sources_on_source_id"
-    t.index ["variant_id"], name: "index_variants_sources_on_variant_id"
-  end
-
   create_table "visibility_configs", force: :cascade do |t|
     t.integer "level"
     t.float "minimum_rating"
@@ -290,6 +265,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
   add_foreign_key "items", "lists"
   add_foreign_key "lists", "users"
   add_foreign_key "pages_lengths", "variants"
+  add_foreign_key "series", "items"
   add_foreign_key "time_lengths", "variants"
   add_foreign_key "types", "csv_configs"
   add_foreign_key "variants", "formats"

@@ -1,4 +1,4 @@
-class CreatePagesLengths < ActiveRecord::Migration[6.1]
+class CreatePagesLengths < ActiveRecord::Migration
   def change
     create_table :pages_lengths do |t|
       t.integer :pages

@@ -1,4 +1,4 @@
-class CreateFormats < ActiveRecord::Migration[6.1]
+class CreateFormats < ActiveRecord::Migration
   def change
     create_table :formats do |t|
       t.string :name

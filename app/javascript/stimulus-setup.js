@@ -10,17 +10,47 @@ export { application }
 namePrefix = "controllers--"
 import controllers from `./controllers/*_controller.js`
 controllers.forEach(controller => {
-  console.log(controller.name.substring(namePrefix.length))
   application.register(controller.name.substring(namePrefix.length),
                       controller.module.default)
 })
 
+// fires just before navigating away from the page.
 // hides the content so that Shoelace components don't flicker on page load.
 // based on https://www.betterstimulus.com/turbolinks/teardown.html
 document.addEventListener('turbo:before-cache', () => {
+  if (document.querySelector("sl-tab-group")) {
+    document.hideContentBeforeCache()
+  }
+})
+
+document.hideContentBeforeCache = () => {
   document.querySelector("main.container").style.visibility = "hidden"
   document.querySelector("footer").style.visibility = "hidden"
+}
+
+// fires in early page load, before the cached preview is shown.
+document.addEventListener('turbo:load', () => {
+  document.adjustForShoelaceComponents()
 })
+
+document.adjustForShoelaceComponents = () => {
+  if (document.querySelector("sl-tab-group")) {
+    document.unhideContentOnRestoration()
+    document.delayFooterAppearance()
+  }
+}
+
+// without this, the page content is hidden after using browser back or forward.
+document.unhideContentOnRestoration = () => {
+  if (!document.isPreview()) {
+    document.querySelector("main.container").style.visibility = "visible"
+    document.querySelector("footer").style.visibility = "visible"
+  }
+}
+
+document.isPreview = () => {
+  return document.documentElement.hasAttribute("data-turbo-preview");
+}
 
 // called in each controller's connect().
 // without this, the footer appears at the top of the page for a moment.

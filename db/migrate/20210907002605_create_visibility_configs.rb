@@ -1,4 +1,4 @@
-class CreateVisibilityConfigs < ActiveRecord::Migration[6.1]
+class CreateVisibilityConfigs < ActiveRecord::Migration
   def change
     create_table :visibility_configs do |t|
       t.integer :level

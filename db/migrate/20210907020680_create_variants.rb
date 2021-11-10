@@ -1,4 +1,4 @@
-class CreateVariants < ActiveRecord::Migration[6.1]
+class CreateVariants < ActiveRecord::Migration
   def change
     create_table :variants do |t|
       t.string :isbn

@@ -1,5 +1,5 @@
 class Series < ApplicationRecord
-  has_and_belongs_to_many :items
+  belongs_to :item
 
   def to_s
     if volume
