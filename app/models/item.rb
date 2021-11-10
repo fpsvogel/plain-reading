@@ -20,50 +20,17 @@ class Item < ApplicationRecord
   validates :title,
     presence: true
 
-  # this attribute is set to nil when Settings are changed.
-  def view_rating
-    return read_attribute(:view_rating) unless read_attribute(:view_rating).nil?
-    if list.user.csv_config.show_stars_as_rating?
-      if rating >= list.user.csv_config.star_for_rating_minimum
-        self.view_rating = "⭐"
-      else
-        self.view_rating = ""
-      end
-    else
-      if rating.to_i == rating
-        self.view_rating = rating.to_i
-      else
-        self.view_rating = rating
-      end
-    end
-    save
-    read_attribute(:view_rating)
-  end
-
-  # this attribute is set to nil when Settings are changed.
-  def view_type
-    return read_attribute(:view_type) unless read_attribute(:view_type).nil?
-    if list.user.visibility_configs.find_by(level: VisibilityConfig::LEVELS[:public]).formats_visible
-      self.view_type = view_format || list.user.csv_config.default_emoji
-    else
-      self.view_type = view_format&.type || list.user.csv_config.default_emoji
-    end
-    save
-    read_attribute(:view_type)
+  # these attributes are reset after Settings are changed.
+  def reset_settings_related_view_attributes
+    reset_view_rating
+    reset_view_type
+    reset_group_experiences
   end
 
   def view_date
     view_date_finished ||
       (CsvConfig::PLANNED_LABEL if planned?) ||
       CsvConfig::IN_PROGRESS_LABEL
-  end
-
-  # this attribute is set to nil when Settings are changed.
-  def group_experiences
-    return read_attribute(:group_experiences) unless read_attribute(:group_experiences).nil?
-    self.group_experiences = experiences.map { |experience| experience.group }.compact.presence
-    save
-    read_attribute(:group_experiences)
   end
 
   def load_hash(data, user_formats: nil, user_sources: nil, user_genres: nil)
@@ -203,5 +170,34 @@ class Item < ApplicationRecord
         user_format.name == format
       end
     end
+    reset_settings_related_view_attributes
+  end
+
+  def reset_view_rating
+    if list.user.csv_config.show_stars_as_rating?
+      if rating >= list.user.csv_config.star_for_rating_minimum
+        self.view_rating = "⭐"
+      else
+        self.view_rating = ""
+      end
+    else
+      if rating.to_i == rating
+        self.view_rating = rating.to_i
+      else
+        self.view_rating = rating
+      end
+    end
+  end
+
+  def reset_view_type
+    if list.user.visibility_configs.find_by(level: VisibilityConfig::LEVELS[:public]).formats_visible
+      self.view_type = view_format || list.user.csv_config.default_emoji
+    else
+      self.view_type = view_format&.type || list.user.csv_config.default_emoji
+    end
+  end
+
+  def reset_group_experiences
+    self.group_experiences = experiences.map { |experience| experience.group }.compact.presence
   end
 end
