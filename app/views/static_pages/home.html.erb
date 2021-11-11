@@ -20,7 +20,11 @@
         <h4 id="demo">Plain Reading in action</h4>
         <p>Along with <%= link_to "Rainbow CSV", "https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv" %></p>
       </hgroup>
-      <%= image_tag "plain-reading-demo.gif", id: "demo-img", alt: "Plain Reading demo" %>
+      <sl-animated-image
+        id="demo-img"
+        src=<%= image_url("plain-reading-demo.gif") %>
+        alt="Plain Reading demo"
+      ></sl-animated-image>
     </div>
   </section>
   <section id="principles" class="container">
