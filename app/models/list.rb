@@ -57,7 +57,6 @@ class List < ApplicationRecord
       item.save
     end
     # TODO why does load_errors become nil by this point if it's a plain instance variable (instead of a db field)?
-    debugger
     load_errors.map!(&:to_s)
     save
   end
