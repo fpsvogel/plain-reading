@@ -372,16 +372,16 @@ article.grid {
     background-size: cover;
   }
   & div.image-book-glasses {
-    background-image: url("book-glasses.jpg");
+    background-image: image-url("book-glasses.jpg");
   }
   & div.image-library {
-    background-image: url("library.jpg");
+    background-image: image-url("library.jpg");
   }
   & div.image-book-stack-bright {
-    background-image: url("book-stack-bright.jpg");
+    background-image: image-url("book-stack-bright.jpg");
   }
   & div.image-book-flower {
-    background-image: url("book-flower.jpg");
+    background-image: image-url("book-flower.jpg");
   }
 }
 
