@@ -79,3 +79,7 @@ gem "reading-csv"
 
 # Autolinking [https://github.com/vmg/rinku]
 gem "rinku"
+
+# For Markdown views [https://github.com/ytbryan/emd]
+gem 'redcarpet'
+gem 'emd'

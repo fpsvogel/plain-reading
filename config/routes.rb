@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'main#index'
+  root to: 'static_pages#home'
+
+  get 'guide', to: 'static_pages#guide'
 
   get  'register', to: 'users#new'
   post 'register', to: 'users#create'

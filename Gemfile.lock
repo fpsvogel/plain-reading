@@ -87,6 +87,8 @@ GEM
     dropbox_api (0.1.19)
       faraday (~> 1.0)
       oauth2 (~> 1.1)
+    emd (0.6.0)
+      redcarpet (= 3.5.1)
     erubi (1.10.0)
     faraday (1.8.0)
       faraday-em_http (~> 1.0)
@@ -190,6 +192,7 @@ GEM
       attr_extras (~> 6.0)
       date (~> 3.0)
       pastel (~> 0.8)
+    redcarpet (3.5.1)
     redis (4.5.1)
     regexp_parser (2.1.1)
     reline (0.2.7)
@@ -260,6 +263,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   debug (>= 1.0.0)
   dropbox_api (= 0.1.19)
+  emd
   jbuilder (~> 2.7)
   jsbundling-rails
   memory_profiler
@@ -268,6 +272,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (~> 7.0.0.alpha2)
   reading-csv
+  redcarpet
   rinku
   sassc-rails (~> 2.1)
   selenium-webdriver

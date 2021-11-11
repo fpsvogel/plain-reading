@@ -1,24 +1,18 @@
-# README
+<h1 align="center">Plain Reading 📘</h1>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to the [Plain Reading](https://plainreading.herokuapp.com) codebase. If you've ever wanted to keep track of your reading in a plain text file, and yet you still wanted a way to share it with friends, then Plain Reading is for you!
 
-Things you may want to cover:
+For the project's goal and rationale, see ["Why am I building this?"](https://plainreading.herokuapp.com/guide#preface-why-am-i-building-this) in the guide at Plain Reading.
 
-* Ruby version
+### Table of Contents
 
-* System dependencies
+- [Contributing](#contributing)
+- [License](#license)
 
-* Configuration
+## Contributing
 
-* Database creation
+Bug reports and pull requests are welcome on GitHub at https://github.com/fpsvogel/plainreading.
 
-* Database initialization
+## License
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
