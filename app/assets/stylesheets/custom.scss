@@ -222,7 +222,7 @@ body > header {
   padding-bottom: 0;
 }
 
-header h1, header p, #demo {
+header h1, header p, #demo-section {
   text-align: center;
 }
 
@@ -244,7 +244,7 @@ header + main {
   padding-top: 0;
 }
 
-#demo {
+#demo-section {
   padding-top: 15rem;
   background: linear-gradient(180deg,#11191f 0%,rgba(10,53,67,0.5) 33%,rgba(10,53,67,0.5) 66%,#11191f 100%);
 }

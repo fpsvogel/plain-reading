@@ -9,15 +9,15 @@
 
   <p>
     <%= link_to "Get started", guide_path, role: "button" %>
-    <a role="button" class="secondary" href="#demo-start">See a demo</a>
+    <a role="button" class="secondary" href="#demo">See a demo</a>
   </p>
 </header>
 
 <main>
-  <section id="demo">
+  <section id="demo-section">
     <div class="container">
       <hgroup>
-        <h4 id="demo-start">Plain Reading in action</h4>
+        <h4 id="demo">Plain Reading in action</h4>
         <p>Along with <%= link_to "Rainbow CSV", "https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv" %></p>
       </hgroup>
       <%= image_tag "plain-reading-demo.gif", id: "demo-img", alt: "Plain Reading demo" %>
