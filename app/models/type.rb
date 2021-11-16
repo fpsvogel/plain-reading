@@ -1,4 +1,4 @@
-class Type < ApplicationRecord
+class FormatType < ApplicationRecord
   belongs_to :csv_config
   has_many :formats
 

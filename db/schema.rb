@@ -86,19 +86,29 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.index ["variant_id"], name: "index_experiences_on_variant_id"
   end
 
+  create_table "format_types", force: :cascade do |t|
+    t.string "name"
+    t.string "emoji"
+    t.bigint "csv_config_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["csv_config_id"], name: "index_format_types_on_csv_config_id"
+    t.index ["name"], name: "index_format_types_on_name"
+  end
+
   create_table "formats", force: :cascade do |t|
     t.string "name"
     t.string "emoji"
     t.bigint "visibility_config_id"
     t.bigint "csv_config_id", null: false
-    t.bigint "type_id"
+    t.bigint "format_type_id"
     t.bigint "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["csv_config_id"], name: "index_formats_on_csv_config_id"
+    t.index ["format_type_id"], name: "index_formats_on_format_type_id"
     t.index ["item_id"], name: "index_formats_on_item_id"
     t.index ["name"], name: "index_formats_on_name"
-    t.index ["type_id"], name: "index_formats_on_type_id"
     t.index ["visibility_config_id"], name: "index_formats_on_visibility_config_id"
   end
 
@@ -128,7 +138,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.text "private_notes"
     t.text "history"
     t.string "view_rating"
-    t.string "view_type"
+    t.string "view_format_type"
     t.string "view_url"
     t.string "view_name"
     t.string "view_date_finished"
@@ -141,7 +151,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.index ["planned"], name: "index_items_on_planned"
     t.index ["rating"], name: "index_items_on_rating"
     t.index ["view_date_finished"], name: "index_items_on_view_date_finished"
-    t.index ["view_type"], name: "index_items_on_view_type"
+    t.index ["view_format_type"], name: "index_items_on_view_format_type"
     t.index ["visibility"], name: "index_items_on_visibility"
   end
 
@@ -196,16 +206,6 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.index ["variant_id"], name: "index_time_lengths_on_variant_id"
   end
 
-  create_table "types", force: :cascade do |t|
-    t.string "name"
-    t.string "emoji"
-    t.bigint "csv_config_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["csv_config_id"], name: "index_types_on_csv_config_id"
-    t.index ["name"], name: "index_types_on_name"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
@@ -257,9 +257,10 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
   add_foreign_key "dropbox_accounts", "users"
   add_foreign_key "experiences", "items"
   add_foreign_key "experiences", "variants"
+  add_foreign_key "format_types", "csv_configs"
   add_foreign_key "formats", "csv_configs"
+  add_foreign_key "formats", "format_types"
   add_foreign_key "formats", "items"
-  add_foreign_key "formats", "types"
   add_foreign_key "formats", "visibility_configs"
   add_foreign_key "genres", "visibility_configs"
   add_foreign_key "items", "lists"
@@ -267,7 +268,6 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
   add_foreign_key "pages_lengths", "variants"
   add_foreign_key "series", "items"
   add_foreign_key "time_lengths", "variants"
-  add_foreign_key "types", "csv_configs"
   add_foreign_key "variants", "formats"
   add_foreign_key "variants", "items"
   add_foreign_key "visibility_configs", "users"

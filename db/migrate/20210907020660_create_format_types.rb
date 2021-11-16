@@ -1,6 +1,6 @@
-class CreateTypes < ActiveRecord::Migration[7.0]
+class CreateFormatTypes < ActiveRecord::Migration[7.0]
   def change
-    create_table :types do |t|
+    create_table :format_types do |t|
       t.string :name
       t.string :emoji
       t.references :csv_config, null: false, foreign_key: true
@@ -8,6 +8,6 @@ class CreateTypes < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    add_index :types, :name
+    add_index :format_types, :name
   end
 end

@@ -1,17 +1,17 @@
 class CsvConfig < ApplicationRecord
   belongs_to :user
   has_many :formats
-  has_many :types
+  has_many :format_types
   has_many :columns
   has_many :custom_columns
 
   accepts_nested_attributes_for :formats
-  accepts_nested_attributes_for :types
+  accepts_nested_attributes_for :format_types
   accepts_nested_attributes_for :formats
   accepts_nested_attributes_for :columns
   accepts_nested_attributes_for :custom_columns
 
-  before_create :build_default_types
+  before_create :build_default_format_types
   before_create :build_default_formats
   before_create :build_default_columns
 
@@ -48,11 +48,11 @@ class CsvConfig < ApplicationRecord
     star_for_rating_minimum > 0
   end
 
-  def view_types
+  def view_format_types
     if user.visibility_configs.find_by(level: VisibilityConfig::LEVELS[:public]).formats_visible
       formats
     else
-      types
+      format_types
     end
   end
 
@@ -69,8 +69,8 @@ class CsvConfig < ApplicationRecord
   def destroy_blanks
     formats.where(name: nil).destroy_all
     formats.where(emoji: nil).destroy_all
-    types.where(name: nil).destroy_all
-    types.where(emoji: nil).destroy_all
+    format_types.where(name: nil).destroy_all
+    format_types.where(emoji: nil).destroy_all
     custom_columns.where(name: nil).destroy_all
   end
 
@@ -89,7 +89,7 @@ class CsvConfig < ApplicationRecord
     #                      audio: "🔊",
     #                      … } }
     columns_hash = columns.map { |c| [c.name, c.enabled] }.to_h
-    custom_columns_hash = custom_columns.map { |cc| [cc.name, cc.type] }.to_h
+    custom_columns_hash = custom_columns.map { |cc| [cc.name, cc.format_type] }.to_h
     formats_hash = formats.map { |f| [f.name, f.emoji] }.to_h
     csv_config = %w[comment_character
                     dnf_string
@@ -104,11 +104,11 @@ class CsvConfig < ApplicationRecord
 
   private
 
-  def build_default_types
+  def build_default_format_types
     Format::DEFAULTS.each do |name, (emoji, formats_in_type)|
       if formats_in_type
         # TODO why is it necessary to specify csv_config here?
-        types.build(name: name, emoji: emoji, csv_config: self)
+        format_types.build(name: name, emoji: emoji, csv_config: self)
       end
     end
     true
@@ -119,13 +119,13 @@ class CsvConfig < ApplicationRecord
       if !formats_in_type
         formats.build(name: name, emoji: emoji)
       else
-        type = types.select { |type| type.name == name.to_s &&
-                                        type.emoji == emoji }
+        type = format_types.select { |type| type.name == name.to_s &&
+                                            type.emoji == emoji }
                     .first
         formats_in_type.each do |inner_name, inner_emoji|
           formats.build(name: inner_name,
                         emoji: inner_emoji,
-                        type: type)
+                        format_type: type)
         end
       end
     end

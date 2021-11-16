@@ -36,9 +36,9 @@ class ConfigsController < ApplicationController
     if params[:config_add_csv_format]
       current_user.csv_config.formats.create
       @notice = "Blank format added."
-    elsif params[:config_add_csv_type]
-      current_user.csv_config.types.create
-      @notice = "Blank type added."
+    elsif params[:config_add_csv_format_type]
+      current_user.csv_config.format_type.create
+      @notice = "Blank format type added."
     elsif params[:config_add_csv_column]
       current_user.csv_config.custom_columns.create
       @notice = "Blank column added."

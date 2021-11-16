@@ -1,7 +1,7 @@
 class Format < ApplicationRecord
   belongs_to :visibility_config, optional: true
   belongs_to :csv_config
-  belongs_to :type, optional: true
+  belongs_to :format_type, optional: true
   has_many :variants
 
   DEFAULTS = {book:       ["📕", # print ... pdf each appear as book in My List.
@@ -27,11 +27,11 @@ class Format < ApplicationRecord
     uniqueness: true
 
   def type_by_name
-    type&.name
+    format_type&.name
   end
 
   def type_by_name=(new_value)
-    t = Type.find_by(name)
+    t = FormatType.find_by(name)
     t.formats << self
     t.save
   end
