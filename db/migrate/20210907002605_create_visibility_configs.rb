@@ -3,7 +3,7 @@ class CreateVisibilityConfigs < ActiveRecord::Migration[7.0]
     create_table :visibility_configs do |t|
       t.integer :level
       t.float :minimum_rating
-      t.text :hidden_genres
+      t.text :hidden_genres, array: true
       t.boolean :formats_visible
       t.boolean :group_experiences_visible
       t.boolean :planned_visible

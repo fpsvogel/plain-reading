@@ -4,18 +4,18 @@ class Item < ApplicationRecord
   has_many :variants, dependent: :destroy
   has_many :experiences, dependent: :destroy
   has_and_belongs_to_many :genres
-  # has_many :item_genres
-  # has_many :genres, through: :item_genres
-  has_one :view_variant, -> {where view: true}, class_name: "Variant"
-  has_one :view_format, through: :view_variant, source: :format, dependent: :nullify, class_name: "Format"
+  has_one :view_variant,
+          -> {where view: true},
+          class_name: "Variant"
+  has_one :view_format,
+          through: :view_variant,
+          source: :format,
+          dependent: :nullify,
+          class_name: "Format"
 
   before_create :add_defaults
 
   attribute :visibility, default: VisibilityConfig::LEVELS[:public]
-  serialize :group_experiences, Array
-  serialize :public_notes, Array
-  serialize :private_notes, Array
-  serialize :history, Array
 
   validates :title,
     presence: true

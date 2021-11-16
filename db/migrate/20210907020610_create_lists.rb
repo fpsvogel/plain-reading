@@ -1,7 +1,7 @@
 class CreateLists < ActiveRecord::Migration[7.0]
   def change
     create_table :lists do |t|
-      t.text :load_errors
+      t.text :load_errors, array: true
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

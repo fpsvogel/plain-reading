@@ -2,7 +2,7 @@ class CreateVariants < ActiveRecord::Migration[7.0]
   def change
     create_table :variants do |t|
       t.string :isbn
-      t.text :extra_info
+      t.text :extra_info, array: true
       t.boolean :view
       t.references :length, polymorphic: true
       t.references :item, null: false, foreign_key: true

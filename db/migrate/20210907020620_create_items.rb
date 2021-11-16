@@ -5,17 +5,17 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.string :author
       t.string :title
       t.integer :visibility
-      t.text :public_notes
+      t.text :public_notes, array: true
       t.text :blurb
-      t.text :private_notes
-      t.text :history
+      t.text :private_notes, array: true
+      t.text :history, array: true
       t.string :view_rating
       t.string :view_format_type
       t.string :view_url
       t.string :view_name
       t.string :view_date_finished
       t.boolean :planned
-      t.string :group_experiences
+      t.string :group_experiences, array: true
       t.references :list, null: false, foreign_key: true
 
       t.timestamps

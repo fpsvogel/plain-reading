@@ -2,8 +2,6 @@ class List < ApplicationRecord
   belongs_to :user
   has_many :items
 
-  serialize :load_errors, Array
-
   def path
     "/#{user.username}"
   end

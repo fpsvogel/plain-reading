@@ -19,8 +19,6 @@ class VisibilityConfig < ApplicationRecord
   attribute :public_notes_visible      , default: true
   attribute :private_notes_visible     , default: false
 
-  serialize :hidden_genres, Array
-
   def hidden_genres_string
     hidden_genres.join(", ")
   end

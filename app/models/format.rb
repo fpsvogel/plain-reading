@@ -22,7 +22,7 @@ class Format < ApplicationRecord
     uniqueness: true
 
   validates :emoji,
-  # presence: true, # TODO re-enable this and delete allow_blank when the Settings page is reactive.
+    # presence: true, # TODO re-enable this and delete allow_blank when the Settings page is reactive.
     allow_blank: true,
     uniqueness: true
 

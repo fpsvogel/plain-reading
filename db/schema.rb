@@ -133,17 +133,17 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.string "author"
     t.string "title"
     t.integer "visibility"
-    t.text "public_notes"
+    t.text "public_notes", array: true
     t.text "blurb"
-    t.text "private_notes"
-    t.text "history"
+    t.text "private_notes", array: true
+    t.text "history", array: true
     t.string "view_rating"
     t.string "view_format_type"
     t.string "view_url"
     t.string "view_name"
     t.string "view_date_finished"
     t.boolean "planned"
-    t.string "group_experiences"
+    t.string "group_experiences", array: true
     t.bigint "list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
   end
 
   create_table "lists", force: :cascade do |t|
-    t.text "load_errors"
+    t.text "load_errors", array: true
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
 
   create_table "variants", force: :cascade do |t|
     t.string "isbn"
-    t.text "extra_info"
+    t.text "extra_info", array: true
     t.boolean "view"
     t.string "length_type"
     t.bigint "length_id"
@@ -237,7 +237,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
   create_table "visibility_configs", force: :cascade do |t|
     t.integer "level"
     t.float "minimum_rating"
-    t.text "hidden_genres"
+    t.text "hidden_genres", array: true
     t.boolean "formats_visible"
     t.boolean "group_experiences_visible"
     t.boolean "planned_visible"
