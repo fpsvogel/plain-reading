@@ -68,7 +68,7 @@ class Item < ApplicationRecord
     data[:variants].each do |variants_hash|
       # TODO why do I need item_id here? what if I do variants.new?
       new_variant = variants.build(item_id: id)
-      if user_formats.nil? # RM after refactor. see List#load_items
+      if user_formats.nil?
         new_variant.format = Format.find_by(name: variants_hash[:format])
       else
         new_variant.format = user_formats.find do |user_format|
@@ -76,7 +76,7 @@ class Item < ApplicationRecord
         end
       end
       variants_hash[:sources].each do |source_hash|
-        if user_sources.nil? # RM after refactor. see List#load_items
+        if user_sources.nil?
           existing_source = Source.find_by(name: source_hash[:name],
                                           url: source_hash[:url])
         else
@@ -119,7 +119,7 @@ class Item < ApplicationRecord
 
   def load_hash_genres(data, user_genres = nil)
     data[:genres].each do |genre_string|
-      if user_genres.nil? # RM after refactor. see List#load_items
+      if user_genres.nil?
         existing_genre = Genre.find_by(name: genre_string)
       else
         existing_genre = user_genres.find do |user_genre|
@@ -145,7 +145,7 @@ class Item < ApplicationRecord
       .first
     if first_isbn
       self.view_url = "https://www.goodreads.com/book/isbn?isbn=#{first_isbn}"
-      variants.find { |variant| variant.isbn == first_isbn }.view = true
+      variants.find_by(isbn: first_isbn).view = true
     else
       first_url, format, extra_info =
         data[:variants].map do |variant|
@@ -156,6 +156,7 @@ class Item < ApplicationRecord
         .first
       self.view_url = first_url
       unless first_url.nil?
+        # TODO turn into a find_by query?
         variants.find { |variant| variant.sources.map(&:url).include?(first_url) }.view = true
       end
     end
@@ -163,7 +164,7 @@ class Item < ApplicationRecord
     self.view_name = "#{author + " – " if author}#{title}" +
                      "#{" 〜 " + (series_and_extras).join(" 〜 ") unless series_and_extras.empty?}"
     self.view_date_finished = data[:experiences].last&.dig(:date_finished)&.gsub("/", "-")
-    if user_formats.nil? # RM after refactor. see List#load_items
+    if user_formats.nil?
       self.view_format = Format.find_by(name: format)
     else
       self.view_format = user_formats.find do |user_format|

@@ -42,18 +42,19 @@ class List < ApplicationRecord
                                     .call(file,
                                           selective: selective,
                                           skip_compact_planned: user.csv_config.skip_compact_planned)
+    # these avoid a per-new-item DB hit for Formats, Sources, and Genres.
     user_formats = user.csv_config.formats.to_a
-    # # TODO finish this refactor to avoid a DB hit for Sources and Genres for each new item.
-    # # this looks good to me, but it produces an error.
-    # user_sources = Source.includes(variants: { item: :list })
-    #                      .where('variants.item.list.user = ?', user)
-    #                      .to_a
-    # user_genres = Genre.includes(items: :list)
-    #                    .where(items: { list: { user_id: user.id } }) # or: .where('items.list.user_id = ?', user.id)
-    #                    .to_a
+    user_sources = Source.includes(variants: { item: { list: :user } })
+                         .where(variants: { items: { lists: { users: user } } })
+                         .to_a
+    user_genres = Genre.includes(items: { list: :user })
+                       .where(items: { lists: { users: user } })
+                       .to_a
     items_data.each do |data|
       item = items.new
-      item.load_hash(data, user_formats: user_formats)#, user_sources: user_sources, user_genres: user_genres)
+      item.load_hash(data, user_formats: user_formats,
+                           user_sources: user_sources,
+                           user_genres: user_genres)
       item.save
     end
     # TODO why does load_errors become nil by this point if it's a plain instance variable (instead of a db field)?
