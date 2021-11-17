@@ -7,6 +7,8 @@ class Variant < ApplicationRecord
               polymorphic: true
 
   before_save :add_defaults
+  # for the sake of speed I'm instead doing a batch check in List#load_items.
+  # before_destroy :destroy_orphaned_sources
 
   private
 
@@ -16,4 +18,10 @@ class Variant < ApplicationRecord
     end
     true
   end
+
+  # def destroy_orphaned_sources
+  #   sources.each do |source|
+  #     source.destroy if source.variants.to_a == [self]
+  #   end
+  # end
 end

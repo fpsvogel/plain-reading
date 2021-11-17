@@ -18,6 +18,8 @@ class Item < ApplicationRecord
           class_name: "Format"
 
   before_save :add_defaults
+  # for the sake of speed I'm instead doing a batch check in List#load_items.
+  # before_destroy :destroy_orphaned_genres
 
   attribute :visibility, default: VisibilityConfig::LEVELS[:public]
 
@@ -60,6 +62,12 @@ class Item < ApplicationRecord
     end
     true
   end
+
+  # def destroy_orphaned_genres
+  #   genres.each do |genre|
+  #     genre.destroy if genre.items.to_a == [self]
+  #   end
+  # end
 
   def load_hash_series(data)
     data[:series].each do |series_hash|

@@ -35,6 +35,8 @@ class List < ApplicationRecord
   def load_items(uploaded_file: nil, selective: true)
     clear_load_errors
     items.destroy_all
+    destroy_orphaned_sources
+    destroy_orphaned_genres
     file = uploaded_file || user.dropbox_account.reading_csv_file
     items_data = Reading::Csv::Parse.new(load_config)
                                     .call(file,
@@ -66,6 +68,18 @@ class List < ApplicationRecord
   end
 
   private
+
+  def destroy_orphaned_sources
+    Source.left_outer_joins(:variants)
+          .where(variants: { id: nil })
+          .destroy_all
+  end
+
+  def destroy_orphaned_genres
+    Genre.left_outer_joins(:items)
+          .where(items: { id: nil })
+          .destroy_all
+  end
 
   def visibility_to_current_user
     # TODO assign different level based on whether the current user is myself, a
