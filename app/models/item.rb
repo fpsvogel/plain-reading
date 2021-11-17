@@ -4,8 +4,12 @@ class Item < ApplicationRecord
   has_many :variants, dependent: :destroy
   has_many :experiences, dependent: :destroy
   has_and_belongs_to_many :genres
+  # # from https://stackoverflow.com/a/9365154/4158773
+  # # but leads to an extra Variant being created.
+  # has_one :view_variant,
+  #         -> {where view: true},
+  #         class_name: "Variant"
   has_one :view_variant,
-          -> {where view: true},
           class_name: "Variant"
   has_one :view_format,
           through: :view_variant,
@@ -13,7 +17,7 @@ class Item < ApplicationRecord
           dependent: :nullify,
           class_name: "Format"
 
-  before_create :add_defaults
+  before_save :add_defaults
 
   attribute :visibility, default: VisibilityConfig::LEVELS[:public]
 
@@ -41,10 +45,10 @@ class Item < ApplicationRecord
     load_hash_experiences(data)
     self.visibility = data[:visibility]
     load_hash_genres(data, user_genres)
-    self.public_notes = data[:public_notes]
+    self.public_notes = data[:public_notes].presence
     self.blurb = data[:blurb]
-    self.private_notes = data[:private_notes]
-    self.history = data[:history]
+    self.private_notes = data[:private_notes].presence
+    self.history = data[:history].presence
     set_view_attributes(data, user_formats)
   end
 
@@ -66,8 +70,8 @@ class Item < ApplicationRecord
 
   def load_hash_variants(data, user_formats = nil, user_sources = nil)
     data[:variants].each do |variants_hash|
-      # TODO why do I need item_id here? what if I do variants.new?
-      new_variant = variants.build(item_id: id)
+      # TODO why do I need item_id here?
+      new_variant = variants.build
       if user_formats.nil?
         new_variant.format = Format.find_by(name: variants_hash[:format])
       else
@@ -78,7 +82,7 @@ class Item < ApplicationRecord
       variants_hash[:sources].each do |source_hash|
         if user_sources.nil?
           existing_source = Source.find_by(name: source_hash[:name],
-                                          url: source_hash[:url])
+                                            url: source_hash[:url])
         else
           existing_source = user_sources.find do |user_source|
             user_source.name == source_hash[:name] && user_source.url == source_hash[:url]
@@ -87,8 +91,9 @@ class Item < ApplicationRecord
         if existing_source
           new_variant.sources << existing_source
         else
-          new_variant.sources.build(name: source_hash[:name],
-                                    url: source_hash[:url])
+          new_source = new_variant.sources.build(name: source_hash[:name],
+                                                  url: source_hash[:url])
+          user_sources << new_source unless user_sources.nil?
         end
       end
       new_variant.isbn = variants_hash[:isbn]
@@ -135,7 +140,6 @@ class Item < ApplicationRecord
     end
   end
 
-  # TODO add variants to the refactor.
   def set_view_attributes(data, user_formats = nil)
     first_isbn, format, extra_info =
       data[:variants].map do |variant|
@@ -145,7 +149,8 @@ class Item < ApplicationRecord
       .first
     if first_isbn
       self.view_url = "https://www.goodreads.com/book/isbn?isbn=#{first_isbn}"
-      variants.find_by(isbn: first_isbn).view = true
+      # use the non-AR .find because variants are not yet saved at this point.
+      self.view_variant = variants.find { |variant| variant.isbn == first_isbn }
     else
       first_url, format, extra_info =
         data[:variants].map do |variant|
@@ -156,8 +161,7 @@ class Item < ApplicationRecord
         .first
       self.view_url = first_url
       unless first_url.nil?
-        # TODO turn into a find_by query?
-        variants.find { |variant| variant.sources.map(&:url).include?(first_url) }.view = true
+        self.view_variant = variants.find { |variant| variant.sources.map(&:url).include?(first_url) }
       end
     end
     series_and_extras = series.map(&:to_s) + (extra_info || [])

@@ -6,7 +6,7 @@ class Variant < ApplicationRecord
               optional: true,
               polymorphic: true
 
-  before_create :add_defaults
+  before_save :add_defaults
 
   private
 

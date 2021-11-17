@@ -55,7 +55,7 @@ class ListsController < ApplicationController
   end
 
   def redirect_after_loading
-    if current_user.list.load_errors.any?
+    if current_user.list.load_errors&.any?
       redirect_to current_user.list.path, alert: "Not all items could be loaded. #{view_context.link_to "View the errors here.", errors_path}"
     else
       redirect_to current_user.list.path, notice: "List updated successfully."

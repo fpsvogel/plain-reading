@@ -57,10 +57,14 @@ class User < ApplicationRecord
 
   def self.nuke
     DropboxAccount.destroy_all
+    Variant.destroy_all
     Format.destroy_all
+    Column.destroy_all
+    FormatType.destroy_all
     CsvConfig.destroy_all
     VisibilityConfig.destroy_all
     Item.destroy_all
+    List.destroy_all
     destroy_all
   end
 end

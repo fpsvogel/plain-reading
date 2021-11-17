@@ -3,7 +3,6 @@ class CreateVariants < ActiveRecord::Migration[7.0]
     create_table :variants do |t|
       t.string :isbn
       t.text :extra_info, array: true
-      t.boolean :view
       t.references :length, polymorphic: true
       t.references :item, null: false, foreign_key: true
       t.references :format, foreign_key: true
@@ -12,6 +11,5 @@ class CreateVariants < ActiveRecord::Migration[7.0]
     end
 
     add_index :variants, :isbn
-    add_index :variants, :view
   end
 end

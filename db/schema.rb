@@ -220,7 +220,6 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
   create_table "variants", force: :cascade do |t|
     t.string "isbn"
     t.text "extra_info", array: true
-    t.boolean "view"
     t.string "length_type"
     t.bigint "length_id"
     t.bigint "item_id", null: false
@@ -231,7 +230,6 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.index ["isbn"], name: "index_variants_on_isbn"
     t.index ["item_id"], name: "index_variants_on_item_id"
     t.index ["length_type", "length_id"], name: "index_variants_on_length"
-    t.index ["view"], name: "index_variants_on_view"
   end
 
   create_table "visibility_configs", force: :cascade do |t|

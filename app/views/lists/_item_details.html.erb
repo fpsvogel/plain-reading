@@ -1,5 +1,5 @@
 <rl-details>
-  <% if item.group_experiences.any? %>
+  <% if item.group_experiences&.any? %>
     <p class="rl-groups">
       <strong>GROUPS: </strong>
       <%= item.group_experiences.join(", ") %>
@@ -11,7 +11,7 @@
       <%=raw Rinku.auto_link(item.blurb) %>
     </p>
   <% end %>
-  <% if item.public_notes.any? %>
+  <% if item.public_notes&.any? %>
     <rl-notes>
       <strong>NOTES: </strong>
       <% item.public_notes.each do |note| %>
