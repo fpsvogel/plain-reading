@@ -32,6 +32,10 @@ class List < ApplicationRecord
     end
   end
 
+  def reset_settings_related_view_attributes
+    items.each(&:reset_settings_related_view_attributes)
+  end
+
   def load_items(uploaded_file: nil, selective: true)
     clear_load_errors
     items.destroy_all
@@ -42,7 +46,8 @@ class List < ApplicationRecord
                                     .call(file,
                                           selective: selective,
                                           skip_compact_planned: user.csv_config.skip_compact_planned)
-    # these avoid a per-new-item DB hit for Formats, Sources, and Genres.
+    # these pre-queried objects avoid a per-new-item DB hit for Formats,
+    # Sources, and Genres.
     user_formats = user.csv_config.formats.to_a
     user_sources = Source.includes(variants: { item: { list: :user } })
                          .where(variants: { items: { lists: { users: user } } })
@@ -57,10 +62,10 @@ class List < ApplicationRecord
                            user_genres: user_genres)
       item.save
     end
-    # TODO why does load_errors become nil by this point if it's a plain instance variable (instead of a db field)?
+    # TODO why does load_errors become nil by this point if it's a plain
+    # instance variable (instead of a db field)?
     load_errors.map!(&:to_s)
     save
-    self
   end
 
   def clear_load_errors

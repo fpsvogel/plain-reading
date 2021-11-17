@@ -8,6 +8,7 @@ class ConfigsController < ApplicationController
     if current_user.csv_config.update(csv_params)
       current_user.csv_config.destroy_blanks
       add_field # TODO remove this after making the Settings page reactive.
+      current_user.list.reset_settings_related_view_attributes
       redirect_to settings_path + "#csv", notice: @notice || "CSV settings updated."
     else
       render :index
@@ -16,6 +17,7 @@ class ConfigsController < ApplicationController
 
   def update_visibility_config
     if current_user.visibility_configs.find_by(level: params[:level]).update(visibility_params)
+      current_user.list.reset_settings_related_view_attributes
       redirect_to settings_path + "#visibility", notice: "Visibility settings updated."
     else
       render :index

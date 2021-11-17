@@ -4,8 +4,9 @@ class Item < ApplicationRecord
   has_many :variants, dependent: :destroy
   has_many :experiences, dependent: :destroy
   has_and_belongs_to_many :genres
+  # # RM
   # # from https://stackoverflow.com/a/9365154/4158773
-  # # but leads to an extra Variant being created.
+  # # but it leads to an extra Variant being created.
   # has_one :view_variant,
   #         -> {where view: true},
   #         class_name: "Variant"
@@ -18,7 +19,7 @@ class Item < ApplicationRecord
           class_name: "Format"
 
   before_save :add_defaults
-  # for the sake of speed I'm instead doing a batch check in List#load_items.
+  # RM for the sake of speed I'm instead doing a batch check in List#load_items.
   # before_destroy :destroy_orphaned_genres
 
   attribute :visibility, default: VisibilityConfig::LEVELS[:public]
@@ -78,7 +79,6 @@ class Item < ApplicationRecord
 
   def load_hash_variants(data, user_formats = nil, user_sources = nil)
     data[:variants].each do |variants_hash|
-      # TODO why do I need item_id here?
       new_variant = variants.build
       if user_formats.nil?
         new_variant.format = Format.find_by(name: variants_hash[:format])
