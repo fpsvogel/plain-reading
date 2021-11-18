@@ -68,4 +68,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # config.active_job.queue_adapter = :sidekiq # sidekiq doesn't work in WSL (lack of systemd)
+
+  config.hosts = nil
 end

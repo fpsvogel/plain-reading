@@ -32,6 +32,7 @@ class Item < ApplicationRecord
     reset_view_rating
     reset_view_format_type
     reset_group_experiences
+    save
   end
 
   def view_date
@@ -188,7 +189,7 @@ class Item < ApplicationRecord
 
   def reset_view_rating
     if list.user.csv_config.show_stars_as_rating?
-      if rating >= list.user.csv_config.star_for_rating_minimum
+      if !rating.nil? && rating >= list.user.csv_config.star_for_rating_minimum
         self.view_rating = "⭐"
       else
         self.view_rating = ""
