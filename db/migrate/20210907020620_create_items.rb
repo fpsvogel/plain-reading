@@ -10,7 +10,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.text :private_notes, array: true
       t.text :history, array: true
       t.string :view_rating
-      t.string :view_format_type
+      t.string :view_format_or_type
       t.string :view_url
       t.string :view_name
       t.string :view_date_finished
@@ -22,7 +22,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
     end
 
     add_index :items, :rating
-    add_index :items, :view_format_type
+    add_index :items, :view_format_or_type
     add_index :items, :visibility
     add_index :items, :planned
     add_index :items, :view_date_finished

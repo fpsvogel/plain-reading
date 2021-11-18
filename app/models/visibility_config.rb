@@ -19,11 +19,11 @@ class VisibilityConfig < ApplicationRecord
   attribute :public_notes_visible      , default: true
   attribute :private_notes_visible     , default: false
 
-  def hidden_genres_string
+  def hidden_genre_names
     hidden_genres.join(", ")
   end
 
-  def hidden_genres_string=(new_value)
+  def hidden_genre_names=(new_value)
     self.hidden_genres = new_value.split(/,\s*/)
   end
 

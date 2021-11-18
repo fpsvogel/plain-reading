@@ -34,8 +34,8 @@
         step: 0.5,
         value: number_with_precision(f.object.minimum_rating, precision: 2,  strip_insignificant_zeros: true) %>
 
-      <%= f.label :hidden_genres_string, "Genres hidden in this and higher visibility levels:" %>
-      <%= f.text_field :hidden_genres_string %>
+      <%= f.label :hidden_genre_names, "Genres hidden in this and higher visibility levels:" %>
+      <%= f.text_field :hidden_genre_names %>
 
       <%= f.submit "Save" %>
     </div>

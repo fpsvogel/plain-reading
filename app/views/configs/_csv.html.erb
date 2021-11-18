@@ -101,21 +101,11 @@
               <%= ff.text_field :emoji %>
             <% end %>
           </div>
-          <div>
-            <% label_shown = false %>
-            <%= f.fields_for :formats do |ff| %>
-              <% unless label_shown %>
-                <%= ff.label :type_by_name, "Type" %>
-                <% label_shown = true %>
-              <% end %>
-              <%= ff.text_field :type_by_name %>
-            <% end %>
-          </div>
         </div>
       </fieldset>
       <fieldset class="compact">
         <legend>
-          Types
+          Format types
           <sl-tooltip content="These are what appear in My List, unless you have set formats to be visible in Visibility settings. To delete one, leave it blank and then press Save.">
             <sl-icon name="question-circle"></sl-icon>
           </sl-tooltip>
@@ -123,7 +113,7 @@
         <div class=grid>
           <div>
             <% label_shown = false %>
-            <%= f.fields_for :types do |ff| %>
+            <%= f.fields_for :format_types do |ff| %>
               <% unless label_shown %>
                 <%= ff.label :name %>
                 <% label_shown = true %>
@@ -134,12 +124,22 @@
           </div>
           <div>
             <% label_shown = false %>
-            <%= f.fields_for :types do |ff| %>
+            <%= f.fields_for :format_types do |ff| %>
               <% unless label_shown %>
                 <%= ff.label :emoji %>
                 <% label_shown = true %>
               <% end %>
               <%= ff.text_field :emoji %>
+            <% end %>
+          </div>
+          <div>
+            <% label_shown = false %>
+            <%= f.fields_for :format_types do |ff| %>
+              <% unless label_shown %>
+                <%= ff.label :format_names, "Formats" %>
+                <% label_shown = true %>
+              <% end %>
+              <%= ff.text_field :format_names %>
             <% end %>
           </div>
         </div>

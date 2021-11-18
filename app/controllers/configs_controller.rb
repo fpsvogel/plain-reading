@@ -76,7 +76,7 @@ class ConfigsController < ApplicationController
   def visibility_params
     params.require(:visibility_config)
           .permit(:minimum_rating,
-                  :hidden_genres_string,
+                  :hidden_genre_names,
                   :formats_visible,
                   :group_experiences_visible,
                   :planned_visible,

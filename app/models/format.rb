@@ -4,17 +4,18 @@ class Format < ApplicationRecord
   belongs_to :format_type, optional: true
   has_many :variants
 
-  DEFAULTS = {book:       ["📕", # print ... pdf each appear as book in My List.
-                { print:      "📕",
-                  ebook:      "⚡",
-                  audiobook:  "🔊",
-                  pdf:        "📄" }],
-              audio:      ["🔊", # to show a different emoji in My List.
-                { audio:      "🎤" }],
-              video:      ["🎞️"],
-              course:     ["🏫"],
-              article:    ["📰"],
-              website:    ["🌐"] }
+  DEFAULTS =
+    {
+      print:      "📕",
+      ebook:      "⚡",
+      audiobook:  "🔊",
+      pdf:        "📄",
+      course:     "🏫",
+      piece:      "✏️",
+      audio:      "🎤",
+      video:      "🎞️",
+      website:    "🌐"
+    }
 
   validates :name,
     # presence: true, # TODO re-enable this and delete allow_blank when the Settings page is reactive.
@@ -26,17 +27,15 @@ class Format < ApplicationRecord
     allow_blank: true,
     uniqueness: true
 
-  def type_by_name
-    format_type&.name
-  end
-
-  def type_by_name=(new_value)
-    t = FormatType.find_by(name)
-    t.formats << self
-    t.save
-  end
-
   def to_s
     emoji
+  end
+
+  def format_or_type
+    if format_type.nil?
+      self
+    else
+      format_type
+    end
   end
 end

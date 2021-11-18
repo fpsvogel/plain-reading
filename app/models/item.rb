@@ -30,7 +30,7 @@ class Item < ApplicationRecord
   # these attributes are reset after Settings are changed.
   def reset_settings_related_view_attributes
     reset_view_rating
-    reset_view_format_type
+    reset_view_format_or_type
     reset_group_experiences
     save
   end
@@ -203,11 +203,11 @@ class Item < ApplicationRecord
     end
   end
 
-  def reset_view_format_type
+  def reset_view_format_or_type
     if list.user.visibility_configs.find_by(level: VisibilityConfig::LEVELS[:public]).formats_visible
-      self.view_format_type = view_format || list.user.csv_config.default_emoji
+      self.view_format_or_type = view_format || list.user.csv_config.default_emoji
     else
-      self.view_format_type = view_format&.format_type || list.user.csv_config.default_emoji
+      self.view_format_or_type = view_format&.format_or_type || list.user.csv_config.default_emoji
     end
   end
 

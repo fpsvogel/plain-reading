@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.text "private_notes", array: true
     t.text "history", array: true
     t.string "view_rating"
-    t.string "view_format_type"
+    t.string "view_format_or_type"
     t.string "view_url"
     t.string "view_name"
     t.string "view_date_finished"
@@ -151,7 +151,7 @@ ActiveRecord::Schema.define(version: 2021_09_07_020730) do
     t.index ["planned"], name: "index_items_on_planned"
     t.index ["rating"], name: "index_items_on_rating"
     t.index ["view_date_finished"], name: "index_items_on_view_date_finished"
-    t.index ["view_format_type"], name: "index_items_on_view_format_type"
+    t.index ["view_format_or_type"], name: "index_items_on_view_format_or_type"
     t.index ["visibility"], name: "index_items_on_visibility"
   end
 

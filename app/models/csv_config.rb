@@ -11,8 +11,8 @@ class CsvConfig < ApplicationRecord
   accepts_nested_attributes_for :columns
   accepts_nested_attributes_for :custom_columns
 
-  before_create :build_default_format_types
   before_create :build_default_formats
+  before_create :build_default_format_types
   before_create :build_default_columns
 
   GROUP_EXPERIENCE_EMOJI = "🤝🏼"
@@ -48,11 +48,11 @@ class CsvConfig < ApplicationRecord
     star_for_rating_minimum > 0
   end
 
-  def view_format_types
+  def formats_or_types
     if user.visibility_configs.find_by(level: VisibilityConfig::LEVELS[:public]).formats_visible
-      formats
+      formats.to_a
     else
-      format_types
+      formats.map(&:format_or_type).uniq
     end
   end
 
@@ -104,29 +104,25 @@ class CsvConfig < ApplicationRecord
 
   private
 
-  def build_default_format_types
-    Format::DEFAULTS.each do |name, (emoji, formats_in_type)|
-      if formats_in_type
-        # TODO why is it necessary to specify csv_config here?
-        format_types.build(name: name, emoji: emoji, csv_config: self)
-      end
+  def build_default_formats
+    Format::DEFAULTS.each do |name, emoji|
+      # TODO why is it necessary to specify csv_config here?
+      formats.build(name: name, emoji: emoji, csv_config: self)
     end
     true
   end
 
-  def build_default_formats
-    Format::DEFAULTS.each do |name, (emoji, formats_in_type)|
-      if !formats_in_type
-        formats.build(name: name, emoji: emoji)
-      else
-        type = format_types.select { |type| type.name == name.to_s &&
-                                            type.emoji == emoji }
-                    .first
-        formats_in_type.each do |inner_name, inner_emoji|
-          formats.build(name: inner_name,
-                        emoji: inner_emoji,
-                        format_type: type)
+  def build_default_format_types
+    FormatType::DEFAULTS.each do |type_name, (emoji, formats_of_type)|
+      # TODO why is it necessary to specify csv_config here?
+      new_format_type = format_types.build(name: type_name, emoji: emoji, csv_config: self)
+      formats_of_type.each do |format_name|
+        # .find because the formats have not yet been saved.
+        format = formats.find { |format| format.name == format_name.to_s }
+        if format.nil?
+          raise "There is no Format called #{format_name}. Fix this in FormatType::DEFAULTS."
         end
+        new_format_type.formats << format
       end
     end
     true

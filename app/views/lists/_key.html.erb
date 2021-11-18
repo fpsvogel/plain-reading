@@ -1,8 +1,8 @@
 <rl-key>
   <rl-label>Key:</rl-label>
-  <% @config.view_format_types.each do |type| %>
+  <% @config.formats_or_types.each do |format_or_type| %>
     <rl-key-item>
-      <%= type.emoji %> <%= type.name %>
+      <%= format_or_type.emoji %> <%= format_or_type.name %>
     </rl-key-item>
     |
   <% end %>
