@@ -95,22 +95,24 @@ class List < ApplicationRecord
   # returns the unique varieties of an attribute across all items.
   # sort_by: :frequency or :value
   # convert: type conversion, such as :to_s
-  def uniq_of_attribute(visible_items, attribute, sort_by:, convert: nil)
-    all = visible_items.flat_map do |item|
+  def uniq_of_attribute(attribute, items, sort_by:, convert: nil)
+    all = items.flat_map do |item|
       item.send(attribute).presence
-    end.compact.uniq
+    end.compact
+    if sort_by == :frequency
+      all = all.group_by(&:itself)
+        .sort_by { |value, duplicates| duplicates.count }
+        .reverse.to_h.keys
+    end
     if convert
-      all.map do |value|
+      all = all.map do |value|
         value.send(convert)
       end
     end
-    if sort_by == :frequency
-      all.group_by(&:itself)
-        .sort_by { |value, duplicates| duplicates.count }
-        .reverse.to_h.keys
-    elsif sort_by == :value
-      all.sort
+    if sort_by == :value
+      all = all.sort
     end
+    all
   end
 
   def load_config
