@@ -19,11 +19,11 @@ class List < ApplicationRecord
   end
 
   def visible_genres(visible_items)
-    uniq_of_attribute(visible_items, :genres, sort_by: :frequency, convert: :to_s)
+    uniq_of_attribute(:genres, visible_items, sort_by: :frequency, convert: :to_s)
   end
 
   def visible_ratings(visible_items)
-    uniq_of_attribute(visible_items, :rating, sort_by: :value).map do |uniq_rating|
+    uniq_of_attribute(:rating, visible_items, sort_by: :value).map do |uniq_rating|
       if uniq_rating.to_i == uniq_rating
         uniq_rating.to_i
       else

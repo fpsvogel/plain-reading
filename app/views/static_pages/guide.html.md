@@ -1,3 +1,4 @@
+<% provide(:title, "Guide") %>
 <main class="container">
 
 Welcome! This is a guide to setting up your own `reading.csv` to be displayed on Plain Reading. If you want the quickest start possible, then download [the reading.csv template](https://github.com/fpsvogel/plainreading/blob/main/doc/reading.csv) and fill it in, referring to this guide as needed. Then register for an account here if you haven't already, and upload your `reading.csv` file or connect to your Dropbox where you have it saved.
