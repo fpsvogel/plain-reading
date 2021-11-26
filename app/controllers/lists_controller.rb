@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
 
   def show
-    @username = request.path.split("/").last
+    @username = params[:username]
     user = User.find_by(username: @username)
     if user.nil?
       not_found(username)

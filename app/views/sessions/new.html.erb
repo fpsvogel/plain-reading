@@ -5,7 +5,7 @@
     <div>
       <h1>Log in</h1>
       <%= form_with model: @user, url: login_path do |f| %>
-        <%= render partial: "shared/flash" %>
+        <%= render "shared/flash" %>
         <%# TODO: render form_errors instead? %>
 
         <%= f.label :email %>
