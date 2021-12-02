@@ -98,7 +98,7 @@ class List < ApplicationRecord
   def uniq_of_attribute(attribute, items, sort_by:, convert: nil)
     all = items.flat_map do |item|
       item.send(attribute).presence
-    end.compact
+    end.uniq.compact
     if sort_by == :frequency
       all = all.group_by(&:itself)
         .sort_by { |value, duplicates| duplicates.count }
