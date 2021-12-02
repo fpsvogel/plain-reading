@@ -371,6 +371,7 @@ article.grid {
     background-position: center;
     background-size: cover;
   }
+  // TODO: use an ERB .map here?
   & div.image-book-glasses {
     background-image: image-url("book-glasses.jpg");
   }
