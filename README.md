@@ -49,8 +49,8 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/fpsvog
 - Log in to PostgreSQL and create a user:
     ```sh
     $ psql -U postgres
-    postgres=\# create role "your_username" login createdb
-    postgres=\# exit
+    postgres=&#35; create role "your_username" login createdb
+    postgres=&#35; exit
     ```
 - Create the development and test databases:
     ```sh
