@@ -3,7 +3,7 @@
 
 Welcome! This is a guide to setting up your own `reading.csv` to be displayed on Plain Reading. If you want the quickest start possible, then download [the reading.csv template](https://github.com/fpsvogel/plainreading/blob/main/doc/reading.csv) and fill it in, referring to this guide as needed. Then register for an account here if you haven't already, and upload your `reading.csv` file or connect to your Dropbox where you have it saved.
 
-## Preface: Why am I building this?
+<h2 id="preface">Preface: Why am I building this?</h2>
 
 Because I love reading and keeping track of my reading, but I don't love the limitations of Goodreads and other social reading sites. In particular:
 
@@ -17,7 +17,7 @@ That's where Plain Reading helps: it transforms your `reading.csv` into a page t
 
 Plain Reading is customizable in what data you want to include in your `reading.csv`. For more on the reading list format, read on!
 
-## Basics
+<h2 id="basics">Basics</h2>
 
 Let's take a look at how your reading.csv should be formatted. Here is the beginning of a minimal reading list:
 
@@ -57,7 +57,7 @@ But by default, all columns are enabled. Here are those same two items, but now 
 
 On the Settings page in Plain Reading, you can also hide individual pieces of information, if you want to have them in your reading.csv but not in your pretty webpage. Many other things are customizable in Settings, such as the rating scale (1-5, 1-10, etc.) and the formats and their emojis.
 
-## Advanced
+<h2 id="advanced">Advanced</h2>
 
 Here are a few more examples. If at any point you wonder, *"Why do I have to do it exactly this way, when Plain Reading doesn't even show all this information in My List?"* the answer is that this information *is* being parsed and saved by Plain Reading, and will play a part in upcoming features such as a Statistics page.
 
@@ -93,7 +93,7 @@ Whew! That covers all the odd cases that Plain Reading handles, except for the H
 
 I'm open to new ideas, so if you want to add an item in your reading.csv in a different way that Plain Reading *can't* handle currently, then please let me know by adding a feature request at https://github.com/fpsvogel/plainreading/issues
 
-## Planned items
+<h2 id="planned-items">Planned items</h2>
 
 Next up: planned items, a.k.a. your "to read" list. One way to track this is to have normal items, but without a date started, and (if you want) with a date added, which is marked by a semicolon after it.
 
@@ -121,7 +121,7 @@ Here is a quicker and more compact way to jot down planned items:
 
 By default, planned items are visible only to friends. To change this and other settings, and to discover even more features not covered here, see the Settings page: https://plainreading.com/settings
 
-## History
+<h2 id="history">History</h2>
 
 The History column is handy if you want to track your reading/watching/listening in detail.
 
