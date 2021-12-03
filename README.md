@@ -46,8 +46,17 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/fpsvog
     ```sh
     plainreading$ bundle
     ```
-- Log in to PostgreSQL with `psql -U postgres`, then create a PostgreSQL user with `create role "your_username" login createdb`. Close PostgreSQL with `exit`.
-- Create the development and test databases: `rails db:create`. If you see an error about peer authentication, then you need to [change one or two settings in pg_hba.conf](https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge), then try creating the databases again.
+- Log in to PostgreSQL and create a user:
+    ```sh
+    $ psql -U postgres
+    postgres=# create role "your_username" login createdb
+    postgres=# exit
+    ```
+- Create the development and test databases:
+    ```sh
+    plainreading$ rails db:create
+    ```
+  - If you see an error about peer authentication, then you need to [change one or two settings in pg_hba.conf](https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge), then try creating the databases again.
 - Load the schema into the new database:
     ```sh
     plainreading$ rails db:schema:load
