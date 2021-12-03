@@ -47,10 +47,10 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/fpsvog
     plainreading$ bundle
     ```
 - Log in to PostgreSQL and create a user:
-    ```sh
+    ```
     $ psql -U postgres
-    postgres=&#35; create role "your_username" login createdb
-    postgres=&#35; exit
+    postgres=# create role "your_username" login createdb
+    postgres=# exit
     ```
 - Create the development and test databases:
     ```sh
