@@ -46,7 +46,8 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/fpsvog
     ```sh
     plainreading$ bundle
     ```
-- Create a PostgreSQL database, username, and (if you want) password and put them in the `config/database.yml` file. Other DBs supported by ActiveRecord may work, only PostgreSQL has been tested. You will also want a separate database for running tests. The database names presently in `config/database.yml` are `plainreading_development` and `plainreading_test`.
+- Log in to PostgreSQL with `psql -U postgres`, then create a PostgreSQL user with `create role "your_username" login createdb`. Close PostgreSQL with `exit`.
+- Create the development and test databases: `rails db:create`. If you see an error about peer authentication, then you need to [change one or two settings in pg_hba.conf](https://stackoverflow.com/questions/18664074/getting-error-peer-authentication-failed-for-user-postgres-when-trying-to-ge), then try creating the databases again.
 - Load the schema into the new database:
     ```sh
     plainreading$ rails db:schema:load
