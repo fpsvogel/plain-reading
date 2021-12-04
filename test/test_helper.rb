@@ -14,4 +14,5 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   include ApplicationHelper
+  include Sorcery::TestHelpers::Rails
 end

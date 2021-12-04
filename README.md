@@ -30,7 +30,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/fpsvog
 
 ## Requirements
 
-- The Ruby version specified in [.ruby-version](https://github.com/fpsvogel/plainreading/blob/main/.ruby-version)
+- Ruby 3+
 - Node.js 14+
 - PostgreSQL 9.3+
 
