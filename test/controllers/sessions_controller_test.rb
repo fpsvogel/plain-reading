@@ -12,7 +12,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get create" do
+  test "should post create" do
     post :create, params: { email: "sam@example.com",
                             password: "password" }
     assert_redirected_to root_path
@@ -26,7 +26,7 @@ class SessionsControllerTest < ActionController::TestCase
     assert_equal("Logged out.", flash[:notice])
   end
 
-  test "when logged out should not get destroy" do
+  test "when logged out should not delete destroy" do
     logout_user
     get :destroy
     assert_redirected_to root_url
