@@ -1,6 +1,6 @@
-felipe:
-  username: felipe
-  email: felipe@example.com
+sam:
+  username: sam
+  email: sam@example.com
   salt: <%= salt = "saltsaltbaby1234" %>
   crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("password", salt) %>
 
