@@ -4,11 +4,24 @@ Welcome to the [Plain Reading](https://plainreading.herokuapp.com) codebase. If 
 
 ### Table of Contents
 
+- [Why this is on my GitHub profile](#why-this-is-on-my-github-profile)
 - [Rationale: Why am I building this?](#rationale-why-am-i-building-this)
 - [Contributing](#contributing)
 - [Requirements](#requirements)
 - [Initial setup](#initial-setup)
 - [License](#license)
+
+## Why this is on my GitHub profile
+
+This app is my labor of love. It's an evolution of [the Reading page on my personal site](https://fpsvogel.com/reading/): I wanted to give other people the tools to set up their own page built from on a plain-text reading list.
+
+Plain Reading is also the most ambitious of my projects. Its CSV parser, which is [in my reading-csv gem](https://github.com/fpsvogel/reading-csv), flexibly accomodates a wide range of reading-tracking habits, from the minimal (writing down only titles and dates finished) to the meticulous (tracking everything up to amounts read per day).
+
+The app itself deals with a lot of data: an avid reader's list could easily contain thousands of items. So I had to [carefully construct Active Record queries](https://github.com/fpsvogel/plainreading/blob/main/app/models/list.rb#L9) and [use a form of caching](https://github.com/fpsvogel/plainreading/blob/main/app/models/item.rb#L31) for some of the data shown on a user's reading list page.
+
+You can read more about how I built the app in [my post after my first month's work on it](https://fpsvogel.com/posts/2021/first-rails-app-plain-reading).
+
+As of December 2021, I'm taking a short break from working on Plain Reading. I'm improving my testing skills with Jason Swett's [Complete Guide to Rails Testing](https://www.codewithjason.com/complete-guide-to-rails-testing/), and I'm following his advice to train myself using fresh apps rather than trying to add tests into an existing app. (I'm normally careful about testing in my Ruby projects, but when I was learning Rails as I built this app, I found it more manageable not to worry about tests right away, and in any case the major backend component of the CSV parser was thoroughly covered by tests in the gem. This means I'll have to circle back in early 2022 to finish Plain Reading's test suite and build the rest of the planned features.)
 
 ## Rationale: Why am I building this?
 
