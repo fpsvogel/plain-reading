@@ -15,7 +15,7 @@ Welcome to the [Plain Reading](https://plainreading.herokuapp.com) codebase. If 
 
 This app is my labor of love. It's an evolution of [the Reading page on my personal site](https://fpsvogel.com/reading/): I wanted to give other people the tools to set up their own page built from on a plain-text reading list.
 
-Plain Reading is also the most ambitious of my projects. Its CSV parser, which is [in my reading-csv gem](https://github.com/fpsvogel/reading-csv), flexibly accomodates a wide range of reading-tracking habits, from the minimal (writing down only titles and dates finished) to the meticulous (tracking everything up to amounts read per day).
+Plain Reading is also the most ambitious of my projects. Its CSV parser, which is [in my reading-csv gem](https://github.com/fpsvogel/reading-csv), flexibly accomodates a wide range of reading-tracking habits, from the minimal (a list of titles) to the meticulous (all of a book's info, even amounts read per day).
 
 The app itself deals with a lot of data: an avid reader's list could easily contain thousands of items. So I had to [carefully construct Active Record queries](https://github.com/fpsvogel/plainreading/blob/main/app/models/list.rb#L9) and [use a form of caching](https://github.com/fpsvogel/plainreading/blob/main/app/models/item.rb#L31) for some of the data shown on a user's reading list page.
 
