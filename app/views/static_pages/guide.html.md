@@ -48,7 +48,7 @@ But by default, all columns are enabled. Here are those same two items, but now 
     \Rating|Format, Author, Title|Sources, ISBN/ASIN|Dates added > Started, Progress|Dates finished|Genres|Length|Public notes|Blurb|Private notes|History
     \------ IN PROGRESS
     |🔊Sapiens: A Brief History of Humankind|Vail Library B00ICN066A|2021/06/11 > 2021/09/20| |history, wisdom|15:17|Ch. 5: "We did not domesticate wheat. It domesticated us." -- End of ch. 8: the ubiquity of patriarchal societies is so far unexplained. It would make more sense for women (being on average more socially adept) to have formed a matriarchal society as among the bonobos. -- Ch. 19: are we happier in modernity? It's doubtful.|History with a sociological bent, with special attention paid to human happiness.
-    5|50% 📕Tom Holt - Goatsong: A Novel of Ancient Athens -- The Walled Orchard, #1|0312038380|2019/05/28, 2020/05/01, 2021/08/17|2019/06/13, 2020/05/23|historical fiction|247||||2019/5/1 p31, 5/2 p54, 5/6-15 10p, 5/20 p200, 5/21 done
+    5|50% 📕Tom Holt - Goatsong: A Novel of Ancient Athens -- The Walled Orchard, #1|0312038380|2019/05/28, 2020/05/01, 2021/08/17|2019/06/13, 2020/05/23|historical fiction|247||||2019/5/1 p31 -- 5/2 p54 -- 5/6-15 10p -- 5/20 p200 -- 5/21 done
     ```
 
 - Wow. That's a lot. But again, you can go to Settings and disable the columns that you don't want.
@@ -123,35 +123,36 @@ By default, planned items are visible only to friends. To change this and other 
 
 <h2 id="history">History</h2>
 
-The History column is handy if you want to track your reading/watching/listening in detail.
+The History column is handy if you want to track your reading/watching/listening in detail. Even if you don't care to track how much you read per day, this column can still be handy for tracking which episodes of a show or podcast you've listened to, without having to clutter up the notes column with that, and without having to manually sum up the total time of the episodes.
 
 In the future, Plain Reading will have a Statistics page where you can see charts about your reading habits. For Plain Reading to understand your reading histories, they must be written in a particular way. Here are some examples:
 
     ```
     \------ DONE
-    4|🎞️Eyes on the Prize: America's Civil Rights Movement|https://worldchannel.org/show/eyes-on-the-prize/ https://jeffco.kanopy.com/video/eyes-prize|2021/07/28, 2021/09/01|2021/08/03|history|14:00||||2021/7/28 1:00, 7/29, 7/30, 7/31 x5, 8/1 x4, 8/2, 8/3 -- 9/1, 9/2
-    4|🎤Escriba Café|https://www.escribacafe.com/| | |portuguese,history,podcast| | |Most Portuguese podcasts are annoyingly chatty, but this one is the opposite: historical yarns intended to transport you into another time and place.||2021/7/12 0:20 Bella Luna, 13, 7/13 0:45, 7/17 0:30, 7/18-21, 8/1 As sete Maravilhas
+    4|🎞️Eyes on the Prize: America's Civil Rights Movement|https://worldchannel.org/show/eyes-on-the-prize/ https://jeffco.kanopy.com/video/eyes-prize|2021/07/28, 2021/09/01|2021/08/03|history|14:00||||2021/7/28 1:00 -- 7/29 -- 7/30 -- 7/31 x5 -- 8/1 x4 -- 8/2 -- 8/3 ---- 9/1 -- 9/2
+    4|🎤Escriba Café|https://www.escribacafe.com/| | |portuguese,history,podcast| | |Most Portuguese podcasts are annoyingly chatty, but this one is the opposite: historical yarns intended to transport you into another time and place.||2021/7/12 0:20 Bella Luna -- 7/13 -- 0:45 -- 7/17 0:30 -- 7/18-21 -- 8/1 As sete Maravilhas
     ```
 
 - **"Eyes on the Prize":** You can use a URL as a source, and you can list multiple sources.
     - This is is also an example of more detailed tracking with the History column, a comma-separated list of dates when you made progress on an item.
     - Only the first date needs to be written out in full.
     - The length of your progress should appear after the date: in this case, one hour on the 28th of July.
-    - Length can be omitted wherever it is the same as the one last indicated. All of the episodes in this series are one hour long, so in this case the "1:00" after the other dates would be unnecessary, and so it's omitted.
+    - Length (and date, as we'll see below) can be omitted wherever it is the same as the one last indicated. All of the episodes in this series are one hour long, so in this case the "1:00" after the other dates would be unnecessary, and so it's omitted.
     - "x5" and "x4" mean "five times" and "four times": on the 31st you watched five episodes, and on the 1st you watched four episodes. Then on the 2nd and 3rd you went back to watching just one episode per day as before. (You could also do "7/31 5:00, 8/1 4:00, 8/2 1:00, 8/3" and that means the same thing.)
-    - Use " -- " to start a new perusal (re-watching). (Since you're currently re-watching this, it would make sense to move it up to your "In progress" section, but you don't *have* to.)
+    - Use " ---- " to start a new perusal (re-watching). (Since you're currently re-watching this, it would make sense to move it up to your "In progress" section of the file, but you don't *have* to.)
     - This example means, in plain English: "On the 28th of July, 2021, I watched for an hour. I did the same on the 29th and 30th. Then over the weekend I went on a bender and watched 5 hours on the 31st and four hours on the 1st of Autust. I finished up the series by watching an hour on the 2nd and another hour on the 3rd. But I enjoyed the series so much that I started it over in September, watching an hour on the 1st and another hour on the 2nd."
 - **"Escriba Café":** Here's a more complex History, where you're listening to a podcast with irregular episode lengths.
-    - In this case you left the Dates Started, Dates Finished, and Length columns empty because you think you'll keep listening to a new episode once in a while. There is no definite state of being "in progress" or "done" with this podcast, and therefore no definite total length either.
-    - So this way, the total length is the sum of what you've written in History, the date started is the first date in History, and the date finished is the last date in History. Technically this means the item is always in a "finished" state, so it's best for items that you consume sporadically.
+    - In this case you left the Dates Started, Dates Finished, and Length columns empty because you think you'll keep listening to a new episode once in a while. Leaving these columns blank means that you don't have to update them every time you watch a new episode; they are automatically by Plain Reading based on the dates and lengths in the History column.
+    - More specifically, the total length is the sum of the individual lengths in History, the date started is the first date of each re-read in History, and the date finished is the last date of each re-read in History. Technically this means the item is always in a "finished" state, so this approach is best for items that you consume sporadically.
     - You can add extra text after the date, such as (in this example) "Bella Luna" to indicate the title of the first episode. This extra text can appear either before or after the length.
+    - This bit may be confusing: " -- 7/13 -- 0:45 ". In the first entry, the length is omitted, which means the length is the same as the previous entry. In the second entry, the date is omitted, which means the date is the same as the previous entry. So, on the 13th of July I listened to an episode of the same length as last time, and on that same day I also listened to another episode that was 45 minutes long.
     - This example means, in plain English: "On the 12th of July, 2021, I listened to the episode Bella Luna, which was twenty minutes long. Then on the 13th I listened to another episode of the same length. Then on the same day I listened to a 45-minute episode. On the 17th I listened to a half-hour episode, then from the 18th through the 21st I listened to one episode per day, each of them half an hour long. On the 1st of August, I listened to another half-hour episode called As sete Maravilhas."
     - If you wanted to track this History more simply, you could just write an average episode length after the first date, so this example would look like this: "2021/07/12 0:30, 7/13 x2, 7/17, 7/18-21, 8/1". You could even omit the months wherever unnecessary: "2021/07/12 0:30, 13 x2, 17, 18-21, 8/1".
 
 Now let's go back to our novel Goatsong, way above in the "In progress" examples, to take another look at its History column:
 
     ```
-    5|50% 📕Tom Holt - Goatsong: A Novel of Ancient Athens -- The Walled Orchard, #1|0312038380|2019/05/28, 2020/05/01, 2021/08/17|2019/06/13, 2020/05/23|novel,history|247||||2019/5/1 p31, 5/2 p54, 5/6-15 10p, 5/20 p200, 5/21 done
+    5|50% 📕Tom Holt - Goatsong: A Novel of Ancient Athens -- The Walled Orchard, #1|0312038380|2019/05/28, 2020/05/01, 2021/08/17|2019/06/13, 2020/05/23|historical fiction|247||||2019/5/1 p31 -- 5/2 p54 -- 5/6-15 10p -- 5/20 p200 -- 5/21 done
     ```
 
 - Here's what we can learn from this example:
