@@ -100,7 +100,7 @@ Next up: planned items, a.k.a. your "to read" list. One way to track this is to 
     ```
     \------ PLANNED
     |⚡Tom Holt - A Song for Nero|B00GW4U2TM| | |historical fiction|580
-    |📕Randall Munroe - How To: Absurd Scientific Advice for Common Real-World Problems|Lexpub B07NCQTJV3|2021/06/27 >| |science|320
+    |📕Randall Munroe - How To|Lexpub B07NCQTJV3|2021/06/27 >| |science|320
     ```
 
 But this method has two disadvantages for listing books that you just *might* read: (a) it takes more time than just jotting down the title, and (b) it takes up a lot of space if you have a long "to read" list.
@@ -109,15 +109,15 @@ Here is a quicker and more compact way to jot down planned items:
 
     ```
     \------ PLANNED
-    \HISTORICAL FICTION: ⚡Tom Holt - A Song for Nero, 🔊True Grit @Little Library, @Hoopla, 🔊Two Gentlemen of Lebowski @Lexpub
-    \SCIENCE: 📕Randall Munroe - How To: Absurd Scientific Advice for Common Real-World Problems @Lexpub, 🔊On the Origin of Species, 🔊Weird Earth @Hoopla
+    \HISTORICAL FICTION: ⚡Tom Holt - A Song for Nero, 🔊True Grit @Little Library @Hoopla, 🔊Two Gentlemen of Lebowski @https://www.runleiarun.com/lebowski/
+    \SCIENCE: 📕⚡Randall Munroe - How To @Lexpub @🔊⚡Hoopla @🔊Jeffco, 🔊Weird Earth @Hoopla @📕🔊⚡Lexpub
     ```
 
 - For Plain Reading to parse planned these compact planned items, you must:
-    - Include the format emoji before each title.
+    - Include the format emoji(s) before each title. These apply to all sources (denoted with `@`) that do not themselves have format emojis.
     - Start the line with a comment character, then a single genre in all caps, then a colon (`:`).
 - The all-caps genre is changed to lowercase in Plain Reading. So if you have a "science" genre, the items after "SCIENCE" here will be in that same "science" genre.
-- At the end of an item you can list sources, each immediately preceded by "@".
+- At the end of an item you can list sources, each immediately preceded by `@`. One or more format emojis may be listed immediately after the `@` and before the author/title.
 
 By default, planned items are visible only to friends. To change this and other settings, and to discover even more features not covered here, see the Settings page: https://plainreading.com/settings
 
